@@ -1,0 +1,20 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Home{% endblock %}
+
+{% block content %}
+<!-- <br><br> -->
+
+    <div style="border:0 border-collapse: collapse; width: 700px;">
+        <img style="padding-left: 100px" border="0" src="{{ base_url() }}\logo.png">
+        <br/>
+        <h2>Application Services UK Oncall Rotas</h2>
+    </div>
+
+    <div style="border:0 border-collapse: collapse; width: 700px;">
+        <h3><b>Apps</b></h3>
+            <a href="{{ base_url() }}{{ path_for('oncall',{'rota': 'MF'}) }}">Mainframe Apps</a><br />
+            <a href="{{ base_url() }}{{ path_for('oncall',{'rota': 'WIN'}) }}">Windows Apps</a>
+    </div>
+{% endblock %}
+        

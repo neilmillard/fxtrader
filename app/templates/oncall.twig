@@ -1,0 +1,70 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Home{% endblock %}
+
+{% block content %}
+
+<table>
+<tr>
+    <td align="left">
+        <img width=200 src="{{ base_url() }}\logo.png">
+        <br/>
+        <h2>{{ title }}</h2>
+    </td>
+</tr>
+    <tr>
+        <td style="color:black">
+            {{ formatDate }}<br/>
+            <b>{{ onCallNow }} is on call.</b>
+        </td>
+    </tr>
+</table>
+<br/>
+<table>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    {% set count=1 %}
+                    {% for time in months  %}
+                    {% set monthtime = months[count] %}
+                    <td width="10%">&nbsp;</td>
+                    <td style="vertical-align: top">
+                        {{ include('calendar.twig', {'data': data[count],'colour': colour[count]}) }}
+                    </td>
+
+                    {% if count % 3 == 0 %}
+                </tr><tr>
+                    {% endif %}
+                    {% set count = count +1 %}
+                    {% endfor %}
+                </tr>
+            </table>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+            <table width="300px">
+                {% for user in users %}
+                    <tr>
+                        <td style="color:black;background-color: {{ user.colour }}">{{ user.fullname }}
+                            {% if user.shortdial is not empty %}
+                                <br/>{{ user.shortdial }} (shortdial)
+                            {% endif %}
+                            {% if user.longdial is not empty %}
+                                <br/>{{ user.longdial }} (longdial)
+                            {% endif %}
+                            {% if user.mobile is not empty %}
+                                <br/>{{ user.mobile }}
+                            {% endif %}
+                            {% if user.home is not empty %}
+                                <br/>{{ user.home }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

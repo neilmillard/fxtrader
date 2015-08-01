@@ -1,0 +1,33 @@
+{
+    "name": "neilmillard/fxtrader",
+    "description": "Simple Slim Framework 3 skeleton with Twig & Monolog.",
+    "license": "BSD-3-Clause",
+    "type": "project",
+    "keywords": ["slim-framework", "fx", "trader"],
+    "authors": [
+        {
+            "name": "Rob Allen",
+            "email": "rob@akrabat.com",
+            "homepage": "http://akrabat.com"
+        },
+      {
+        "name": "Neil Millard",
+        "email": "neil@neilmillard.com"
+      }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/src"
+        }
+    },
+    "require": {
+      "slim/slim": "^3.0@beta",
+      "slim/twig-view": "^1.2",
+      "slim/flash": "dev-master",
+      "monolog/monolog": "^1.13",
+      "gabordemooij/redbean": "dev-master",
+      "tavurth/oandawrap": "dev-master",
+        "ircmaxell/password-compat": "1.0.3"
+    },
+    "minimum-stability": "dev"
+}
