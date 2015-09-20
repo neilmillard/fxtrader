@@ -9,23 +9,8 @@ use Slim\Router;
 use Slim\Views\Twig;
 use Monolog\Logger;
 
-final class LoginAction
+final class LoginAction extends Controller
 {
-    private $view;
-    private $logger;
-    private $router;
-    private $authenticator;
-    private $flash;
-
-    public function __construct(Twig $view, Logger $logger, Router $router, Authenticator $authenticator, Messages $flash)
-    {
-        $this->view = $view;
-        $this->logger = $logger;
-        $this->router = $router;
-        $this->authenticator = $authenticator;
-        $this->flash = $flash;
-    }
-
     public function login(Request $request, Response $response, Array $args)
     {
         $this->logger->info("Login page action dispatched");

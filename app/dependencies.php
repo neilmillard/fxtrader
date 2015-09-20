@@ -84,19 +84,11 @@ $container['authenticator'] = function ($c) {
 // -----------------------------------------------------------------------------
 
 $container['App\Action\HomeAction'] = function ($c) {
-    return new App\Action\HomeAction($c['view'], $c['logger'], $c['router']);
-};
-
-$container['App\Action\OncallAction'] = function ($c) {
-    return new App\Action\OncallAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
+    return new App\Action\HomeAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
 
 $container['App\Action\ProfileAction'] = function ($c) {
     return new App\Action\ProfileAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
-};
-
-$container['App\Action\RotaAction'] = function ($c) {
-    return new App\Action\RotaAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
 
 $container['App\Action\AdminAction'] = function ($c) {
@@ -109,5 +101,5 @@ $container['App\Action\UserAction'] = function ($c) {
 
 
 $container['App\Action\LoginAction'] = function ($c) {
-    return new App\Action\LoginAction($c['view'], $c['logger'], $c['router'], $c['authenticator'], $c['flash']);
+    return new App\Action\LoginAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };

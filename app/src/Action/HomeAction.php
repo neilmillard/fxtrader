@@ -7,18 +7,8 @@ use Slim\Router;
 use Slim\Views\Twig;
 use Monolog\Logger;
 
-final class HomeAction
+final class HomeAction extends Controller
 {
-    private $view;
-    private $logger;
-    private $router;
-
-    public function __construct(Twig $view, Logger $logger, Router $router)
-    {
-        $this->view = $view;
-        $this->logger = $logger;
-        $this->router = $router;
-    }
 
     public function dispatch(Request $request, Response $response, Array $args)
     {
