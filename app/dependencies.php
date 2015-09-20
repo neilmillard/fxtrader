@@ -52,7 +52,7 @@ $container['dsn'] = function ($c) {
     return $dsn;
 };
 
-$frozen = true;
+$frozen = $container['settings']['database']['frozen'];
 //with namespace Model
 define( 'REDBEAN_MODEL_PREFIX', '\\App\\Model\\' );
 \RedBeanPHP\R::setup($container['dsn'], $container['settings']['database']['username'], $container['settings']['database']['password'],$frozen);
