@@ -1,5 +1,5 @@
 <?php
-namespace App\Worker;
+namespace App\Helper;
 use RedBeanPHP\R;
 
 /**
@@ -27,7 +27,7 @@ class GetOandaHistory {
         return;
     }
 
-    public function fetch($days = 2){
+    public function fetchDaily($days = 2){
 
         $updated=0;
         $new=0;
@@ -43,23 +43,23 @@ class GetOandaHistory {
                     $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
                     $candletime = $candle->time;
                     //get candle data so we can update it
-                    $todayscandle = R::findOrCreate('candle',
+                    $todayCandle = R::findOrCreate('candle',
                         [ 'date' => $date,
                           'instrument' => $instrument ]);
-                    if($todayscandle->id)
+                    if($todayCandle->id)
                     {
                         $updated++;
                     } else {
                         $new++;
                     }
-                    $todayscandle->candletime = $candletime;
-                    $todayscandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
-                    $todayscandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
-                    $todayscandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
-                    $todayscandle->close = substr(sprintf("%.4f", $candle->closeMid),0,6);
-                    $todayscandle->complete = $candle->complete;
-
-                    R::store($todayscandle);
+                    $todayCandle->candletime = $candletime;
+                    $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
+                    $todayCandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
+                    $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
+                    $todayCandle->close = substr(sprintf("%.4f", $candle->closeMid),0,6);
+                    $todayCandle->complete = $candle->complete;
+                    $todayCandle->gran = 'D';
+                    R::store($todayCandle);
 
                 }
             }

@@ -13,18 +13,21 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
-// Instantiate the app
-$path = __DIR__ . '/../app/settings.php';
-if (!file_exists($path)){
-    $settings = require __DIR__ . '/../app/settings_dist.php';
-} else {
-    $settings = require $path;
-}
+require __DIR__ . '/../app/loadsettings.php';
 
 $app = new \Slim\App($settings);
 
+// DIC configuration
+/**
+ * @var \Slim\Container $container
+ */
+$container = $app->getContainer();
+
 // Set up dependencies
 require __DIR__ . '/../app/dependencies.php';
+
+// Set up providers
+require __DIR__ . '/../app/providers.php';
 
 // Register middleware
 require __DIR__ . '/../app/middleware.php';

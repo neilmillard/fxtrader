@@ -37,8 +37,15 @@ return [
         'credentialfield' => 'hash'
     ],
 
-    // hashid salt
-    'hashid' => [
-        'salt'  => 'this is my salt',
+    //oanda root account settings
+    'oanda' => [
+        'apiKey'    => 'yourapikey',
+        'accountId' => 'youraccid',
+        'pairs'     => [
+            'USD_CAD', 'USD_CHF', 'USD_JPY',
+            'AUD_USD', 'GBP_USD', 'NZD_USD',
+            'EUR_USD', 'EUR_AUD', 'EUR_JPY',
+            'AUD_JPY', 'GBP_JPY', 'AUD_NZD'
+        ]
     ]
 ];

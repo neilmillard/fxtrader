@@ -27,7 +27,9 @@
       "monolog/monolog": "^1.13",
       "gabordemooij/redbean": "dev-master",
       "tavurth/oandawrap": "dev-master",
-        "ircmaxell/password-compat": "1.0.3"
+        "ircmaxell/password-compat": "1.0.3",
+        "chrisboulton/php-resque": "1.2",
+        "chrisboulton/php-resque-scheduler": "1.1"
 
     },
     "minimum-stability": "dev"
