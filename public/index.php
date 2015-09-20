@@ -14,10 +14,11 @@ require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
 // Instantiate the app
-try{
-    $settings = require __DIR__ . '/../app/settings.php';
-} catch (\Exception $e){
+$path = __DIR__ . '/../app/settings.php';
+if (!file_exists($path)){
     $settings = require __DIR__ . '/../app/settings_dist.php';
+} else {
+    $settings = require $path;
 }
 
 $app = new \Slim\App($settings);

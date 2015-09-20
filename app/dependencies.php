@@ -26,7 +26,9 @@ $view->addExtension(new Slim\Views\TwigExtension(
 $container->register($view);
 
 // Flash messages
-$container->register(new \Slim\Flash\Messages);
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages();
+};
 
 // -----------------------------------------------------------------------------
 // Service factories
