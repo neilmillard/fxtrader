@@ -30,7 +30,7 @@
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
-            {% if identity.name == 'ADMIN' %}
+            {% if identity.role == 'ADMIN' %}
                 <li><a href="{{ base_url() }}{{ path_for('admin') }}">AdminMenu</a></li>
             {% endif %}
             <li><a href="{{ base_url() }}{{ path_for('homepage') }}">Home</a></li>

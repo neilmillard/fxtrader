@@ -35,5 +35,10 @@ return [
         'tablename' => 'users',
         'usernamefield' => 'email',
         'credentialfield' => 'hash'
+    ],
+
+    // hashid salt
+    'hashid' => [
+        'salt'  => 'this is my salt',
     ]
 ];

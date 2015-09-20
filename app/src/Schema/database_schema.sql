@@ -19,12 +19,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fullname` char(20) NOT NULL,
   `password` char(15) NOT NULL,
   `hash` varchar(255) NOT NULL,
+  `role` char(15) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE KEY `Email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-INSERT INTO `users` (`id`, `email`, `fullname`, `password`, `hash`) VALUES
-	(1, 'admin@neilmillard.com', 'Administrator_', 'Password1', '$2y$10$/Z3v5y2T/jBWaNcxXzFsA.KyF34yy0Dpbxz/R6Ba09Wn19J2tiSiW');
+INSERT INTO `users` (`id`, `email`, `fullname`, `password`, `hash`, `role`) VALUES
+	(1, 'admin@neilmillard.com', 'Administrator_', 'Password1', '$2y$10$/Z3v5y2T/jBWaNcxXzFsA.KyF34yy0Dpbxz/R6Ba09Wn19J2tiSiW', 'ADMIN');
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

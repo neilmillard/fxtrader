@@ -99,7 +99,6 @@ $container['App\Action\UserAction'] = function ($c) {
     return new App\Action\UserAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
 
-
 $container['App\Action\LoginAction'] = function ($c) {
     return new App\Action\LoginAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };

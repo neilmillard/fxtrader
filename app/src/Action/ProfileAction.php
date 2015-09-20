@@ -2,6 +2,7 @@
 namespace App\Action;
 
 use App\Authentication\Authenticator;
+use Hashids\Hashids;
 use RedBeanPHP\R;
 use Slim\Flash\Messages;
 use Slim\Http\Request;
@@ -18,29 +19,32 @@ final class ProfileAction extends Controller
 
         //grab identity id.
         $id=$this->authenticator->getIdentity();
-        $user = R::findOne('users',' name = :username ',['username'=>$id['name']]);
-        $this->view->render($response, 'profile.twig',$user->export());
+        $user = R::findOne('users',' email = :username ',['username'=>$id['email']]);
+        $expUser = $user->export();
+        $expUser['hashemail'] = base64_encode($user['email']);
+        $this->view->render($response, 'profile.twig',$expUser);
         return $response;
     }
 
     public function editUser(Request $request, Response $response, Array $args)
     {
-        $username = strtolower($args['username']);
+        $username = $args['username'];
         if(empty($username)){
             $this->flash->addMessage('flash','No user specified');
             return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('profile'));
         }
+        $username = base64_decode($username);
         $id=$this->authenticator->getIdentity();
-        // restrict access to own profile or Admin user
-        if($username!=strtolower($id['name'])){
-            if(strtolower($id['name'])!='admin'){
+        // restrict access to own profile or Admin role
+        if($username!=strtolower($id['email'])){
+            if(strtolower($id['role'])!='admin'){
                 $this->flash->addMessage('flash','Access Denied');
                 return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('profile'));
             }
         }
         if($username!='new'){
             $user = R::findOrCreate('users', [
-                'name' => $username
+                'email' => $username
             ]);
         } else {
             $user = R::dispense('users');
@@ -48,9 +52,9 @@ final class ProfileAction extends Controller
         if ($request->isPost()) {
             $data = $request->getParams();
             //$username = $request->getParam('username');
-            $user->import($data,'fullname,shortdial,longdial,colour,mobile,home');
-            $user->name = $request->getParam('username');
-            $password = $request->getParam('password');
+            $user->import($data,'userfullname');
+            $user->email = $request->getParam('username');
+            $password = $request->getParam('userpassword');
             if(!empty($password)){
                 $pass = password_hash($password, PASSWORD_DEFAULT);
                 $user->hash = $pass;
@@ -58,12 +62,11 @@ final class ProfileAction extends Controller
 
             $id = R::store($user);
             $this->flash->addMessage('flash',"$user->name updated");
-            return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('edituser',['username'=>$username]));
-//            $member = 'INSERT INTO `users` (`name`, `fullname`, `password`, `hash`, `colour`, `shortdial`, `longdial`, `mobile`, `home`, `ins_mf`, `ins_win`, `health_mf`, `health_win`, `life_mf`, `life_win`, `wealth_mf`, `wealth_win`, `uk_shift`, `atss`) VALUES '
-//                . "($username, $fullname, :pass, '', 'FAD2F5', $shortdial, $longdial, '', '', '1', '0', '0', '1', '0', '0', '0', '1', '0', '0');
-//                ";
+            return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('edituser',['username'=>base64_encode($username)]));
         }
-        $this->view->render($response, 'user.twig',$user->export());
+        $expUser['user']= $user->export();
+        $expUser['user']['hashemail'] = base64_encode($user['email']);
+        $this->view->render($response, 'user.twig',$expUser);
         return $response;
 
     }

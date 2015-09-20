@@ -28,6 +28,7 @@
       "gabordemooij/redbean": "dev-master",
       "tavurth/oandawrap": "dev-master",
         "ircmaxell/password-compat": "1.0.3"
+
     },
     "minimum-stability": "dev"
 }

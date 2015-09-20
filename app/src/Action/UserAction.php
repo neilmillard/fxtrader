@@ -29,7 +29,7 @@ final class UserAction extends Controller
             $this->flash->addMessage('flash','No user specified');
             return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('users'));
         }
-        $user = R::findOne('users', ' name = ? ',[ $name ]);
+        $user = R::findOne('users', ' email = ? ',[ $name ]);
         if(!empty($user)){
             R::trash($user);
             $this->flash->addMessage('flash',"$name deleted");
