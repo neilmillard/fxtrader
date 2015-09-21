@@ -8,8 +8,7 @@
 
 namespace App;
 
-
-use Pimple\Container;
+use Slim\Container;
 
 class Job
 {
@@ -17,16 +16,17 @@ class Job
     protected $settings;
     protected $container;
 
-    public function __construct($settings)
+    public function setUp()
     {
-
+        // load the $settings
+        require_once __DIR__ . '/../loadsettings.php';
+        $settings = loadsettings();
         $this->settings = $settings;
 
         $container = new Container($settings);
         $this->container = $container;
         // Set up dependencies
         require __DIR__ . '/../dependencies.php';
-
     }
 
 }

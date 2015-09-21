@@ -47,5 +47,17 @@ return [
             'EUR_USD', 'EUR_AUD', 'EUR_JPY',
             'AUD_JPY', 'GBP_JPY', 'AUD_NZD'
         ]
+    ],
+
+    // Resque
+    'resque'    => [
+        'REDIS_BACKEND' => '127.0.0.1:6379',
+        'LOGGING'       => '',
+        'VERBOSE'       => '',
+        'VVERBOSE'      => '',
+        'INTERVAL'      => 5,
+        'COUNT'         => 1,
+        'PIDFILE'       => '',
+
     ]
 ];

@@ -15,6 +15,7 @@ class GetOandaHistory {
     public function __construct($apiKey, $accountId, $pairs){
         $this->apiKey = $apiKey;
         $this->accountId = $accountId;
+        $this->pairs = $pairs;
 
         //Check to see that OandaWrap is setup correctly.
         //Arg1 can be 'Demo', 'Live', or Sandbox;
