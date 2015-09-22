@@ -22,8 +22,8 @@ class Job
         require_once __DIR__ . '/../loadsettings.php';
         $settings = loadsettings();
         $this->settings = $settings;
-
-        $container = new Container($settings);
+        $setup['settings'] = $settings;
+        $container = new Container($setup);
         $this->container = $container;
         // Set up dependencies
         require __DIR__ . '/../dependencies.php';

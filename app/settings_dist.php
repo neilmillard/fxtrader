@@ -41,6 +41,7 @@ return [
     'oanda' => [
         'apiKey'    => 'yourapikey',
         'accountId' => 'youraccid',
+        'serverType'=> 'Demo',
         'pairs'     => [
             'USD_CAD', 'USD_CHF', 'USD_JPY',
             'AUD_USD', 'GBP_USD', 'NZD_USD',

@@ -15,8 +15,9 @@ class GetDayCandles extends Job
         parent::setUp();
         $apiKey = $this->settings['oanda']['apiKey'];
         $accountId = $this->settings['oanda']['accountId'];
+        $type = $this->settings['oanda']['serverType'];
         $pairs = $this->settings['oanda']['pairs'];
-        $this->oandaHistory = new GetOandaHistory($apiKey,$accountId, $pairs);
+        $this->oandaHistory = new GetOandaHistory($apiKey,$accountId, $type, $pairs);
     }
 
     public function perform()

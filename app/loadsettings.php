@@ -11,4 +11,4 @@ function loadsettings()
     }
     return $settings;
 }
-$settings = loadsettings();
+$settings = ['settings'=> loadsettings()];

@@ -27,7 +27,7 @@
       }
     ],
     "require": {
-      "slim/slim": "^3.0@beta",
+      "slim/slim": "^3.0@RC",
       "slim/twig-view": "^1.2",
       "slim/flash": "dev-master",
       "monolog/monolog": "^1.13",

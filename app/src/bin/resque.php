@@ -22,6 +22,7 @@ require __DIR__ . '/../../../vendor/autoload.php';
 date_default_timezone_set('Europe/London');
 
 require __DIR__ . '/../../loadsettings.php';
+$settings = loadsettings();
 
 $REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
 
