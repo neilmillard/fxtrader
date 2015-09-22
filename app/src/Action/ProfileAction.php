@@ -2,7 +2,6 @@
 namespace App\Action;
 
 use App\Authentication\Authenticator;
-use Hashids\Hashids;
 use RedBeanPHP\R;
 use Slim\Flash\Messages;
 use Slim\Http\Request;

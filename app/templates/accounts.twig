@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Accounts{% endblock %}
+
+{% block content %}
+
+    <div>
+        <h2>Identity</h2>
+        <p> Email: {{ identity.email }}</p>
+    </div>
+    {% for account in accounts %}
+    <div style="text-align: left">
+        <p>APIKey: {{ account.apikey }} </p>
+        <p>AccountID: {{ account.accountid }} </p>
+        <p>Server Type: {{ account.servertype }} </p>
+        <p>Balance: {{ account.balance }} </p>
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editaccount',{'uid': account.id}) }}">
+            Update
+        </a>
+    </div>
+    {% endfor %}
+    <div>
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editaccount',{'uid': 'new'}) }}">
+            Create New account
+        </a>
+    </div>
+    <br/><br/>
+
+{% endblock %}

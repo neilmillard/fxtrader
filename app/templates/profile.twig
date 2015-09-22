@@ -3,7 +3,11 @@
 {% block page_title %}{{ parent() }} | Profile{% endblock %}
 
 {% block content %}
-
+<div style="text-align: left">
+    <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('accounts') }}">
+        Accounts
+    </a>
+</div>
 <div>
     <h2>Identity</h2>
     <p> Email: {{ email }}</p>

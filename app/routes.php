@@ -10,7 +10,18 @@ $app->get('/profile', 'App\Action\ProfileAction:dispatch')
     ->add('Authenticator\Middleware:auth');
 
 /** @noinspection PhpUndefinedMethodInspection */
-$app->map(['GET','POST'],'/edituser/{username}', 'App\Action\ProfileAction:edituser')
+$app->get('/accounts', 'App\Action\AccountAction:dispatch')
+    ->setName('accounts')
+    ->add('Authenticator\Middleware:auth');
+
+/** @noinspection PhpUndefinedMethodInspection */
+$app->map(['GET','POST'],'/account/{uid}/edit', 'App\Action\AccountAction:edit')
+    ->setName('editaccount')
+    ->add('Authenticator\Middleware:auth');
+
+
+/** @noinspection PhpUndefinedMethodInspection */
+$app->map(['GET','POST'],'/user/{username}/edit', 'App\Action\ProfileAction:edituser')
     ->setName('edituser')
     ->add('Authenticator\Middleware:auth');
 

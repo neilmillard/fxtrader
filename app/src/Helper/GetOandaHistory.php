@@ -10,19 +10,19 @@ use RedBeanPHP\R;
 class GetOandaHistory {
     private $apiKey;
     private $accountId;
+    private $serverType;
     private $pairs;
 
-    public function __construct($apiKey, $accountId, $pairs){
+    public function __construct($apiKey, $accountId, $type, $pairs){
         $this->apiKey = $apiKey;
         $this->accountId = $accountId;
+        $this->serverType = $type;
         $this->pairs = $pairs;
 
         //Check to see that OandaWrap is setup correctly.
         //Arg1 can be 'Demo', 'Live', or Sandbox;
-        if (\OandaWrap::setup('Demo', $apiKey, $accountId, 0) == FALSE) {
-            echo 'OandaWrap failed to initialize, ';
-            echo 'contact will.whitty.arbeit@gmail.com to submit a bug report.';
-            exit(1);
+        if (\OandaWrap::setup($type, $apiKey, $accountId, 0) == FALSE) {
+            throw new \Exception('Oanda Connection failed to initialize');
         }
 
         return;
