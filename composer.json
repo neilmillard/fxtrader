@@ -20,13 +20,19 @@
             "App\\": "app/src"
         }
     },
+    "repositories": [
+      {
+      "url": "https://github.com/neilmillard/oandawrap",
+      "type": "vcs"
+      }
+    ],
     "require": {
       "slim/slim": "^3.0@beta",
       "slim/twig-view": "^1.2",
       "slim/flash": "dev-master",
       "monolog/monolog": "^1.13",
       "gabordemooij/redbean": "dev-master",
-      "tavurth/oandawrap": "dev-master",
+      "tavurth/oandawrap": "dev-class",
         "ircmaxell/password-compat": "1.0.3",
         "chrisboulton/php-resque": "1.2",
         "chrisboulton/php-resque-scheduler": "1.1"

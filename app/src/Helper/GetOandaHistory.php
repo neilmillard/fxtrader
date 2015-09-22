@@ -12,6 +12,7 @@ class GetOandaHistory {
     private $accountId;
     private $serverType;
     private $pairs;
+    private $oandaWrap;
 
     public function __construct($apiKey, $accountId, $type, $pairs){
         $this->apiKey = $apiKey;
@@ -21,10 +22,11 @@ class GetOandaHistory {
 
         //Check to see that OandaWrap is setup correctly.
         //Arg1 can be 'Demo', 'Live', or Sandbox;
-        if (\OandaWrap::setup($type, $apiKey, $accountId, 0) == FALSE) {
+        $oandaWrap = new \OandaWrap($type, $apiKey, $accountId, 0);
+        if ($oandaWrap == FALSE) {
             throw new \Exception('Oanda Connection failed to initialize');
         }
-
+        $this->oandaWrap = $oandaWrap;
         return;
     }
 
@@ -37,7 +39,7 @@ class GetOandaHistory {
         foreach ($this->pairs as $pair){
             $start = mktime(0, 0, 1, date("m")  , date("d")-1, date("Y"));
             $start=$start-(($days)*(60*60*24));
-            $history=\OandaWrap::candles($pair, 'D',array('start'=>$start, 'count'=>$days+1, 'candleFormat' => 'midpoint'));
+            $history=$this->oandaWrap->candles($pair, 'D',array('start'=>$start, 'count'=>$days+1, 'candleFormat' => 'midpoint'));
             if(!isset($history->code)){
                 $instrument = $history->instrument;
                 foreach( $history->candles as $candle ) {

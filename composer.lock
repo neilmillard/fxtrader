@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b139d2788f6ed1b2e16b3a2db599393f",
+    "hash": "56880c7ddfcdb28128e53321fe52244d",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -620,17 +620,11 @@
         },
         {
             "name": "tavurth/oandawrap",
-            "version": "dev-master",
+            "version": "dev-class",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tavurth/OandaWrap.git",
-                "reference": "37ee07b50e053cbf6b3bfa9a83502f5d3ddce352"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tavurth/OandaWrap/zipball/37ee07b50e053cbf6b3bfa9a83502f5d3ddce352",
-                "reference": "37ee07b50e053cbf6b3bfa9a83502f5d3ddce352",
-                "shasum": ""
+                "url": "https://github.com/neilmillard/oandawrap",
+                "reference": "1693c2c84baf11c0302e0a9c965f80606660aaf5"
             },
             "type": "library",
             "autoload": {
@@ -638,7 +632,6 @@
                     "OandaWrap.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -650,7 +643,7 @@
             ],
             "description": "Php interface for Oanda API",
             "homepage": "http://tinyurl.com/OandaWrapReference",
-            "time": "2015-07-30 15:48:31"
+            "time": "2015-09-22 15:19:51"
         },
         {
             "name": "twig/twig",
