@@ -71,6 +71,48 @@ class GetOandaHistory {
         echo "New:$new : Updated:$updated\n";
 
     }
+
+    public function fetchHourly($hours = 2){
+
+        $updated=0;
+        $new=0;
+        // offset so candle 'date' is more reflective. i.e. candle starts @ 2nd Jan 2015 @ 2200hr. That would be labeled as 2015-01-03.
+        $dateOffsetSeconds = 0; // offset is 1 second as midpoint of hourly
+        foreach ($this->pairs as $pair){
+            $start = time();
+            $start=$start-(($hours)*(60*60));
+            $history=$this->oandaWrap->candles($pair, 'H1',array('start'=>$start, 'count'=>$hours+1, 'candleFormat' => 'midpoint'));
+            if(!isset($history->code)){
+                $instrument = $history->instrument;
+                foreach( $history->candles as $candle ) {
+                    $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
+                    $candletime = $candle->time;
+                    //get candle data so we can update it
+                    $todayCandle = R::findOrCreate('candle',
+                        [ 'date' => $date,
+                            'instrument' => $instrument ]);
+                    if($todayCandle->id)
+                    {
+                        $updated++;
+                    } else {
+                        $new++;
+                    }
+                    $todayCandle->candletime = $candletime;
+                    $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
+                    $todayCandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
+                    $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
+                    $todayCandle->close = substr(sprintf("%.4f", $candle->closeMid),0,6);
+                    $todayCandle->complete = $candle->complete;
+                    $todayCandle->gran = 'H1';
+                    R::store($todayCandle);
+
+                }
+            }
+        }
+        echo date('Y-m-d H:i')." : ";
+        echo "New:$new : Updated:$updated\n";
+
+    }
 }
 
 

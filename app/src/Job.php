@@ -26,7 +26,7 @@ class Job
         $container = new Container($setup);
         $this->container = $container;
         // Set up dependencies
-        require __DIR__ . '/../dependencies.php';
+        require_once __DIR__ . '/../dependencies.php';
     }
 
 }
