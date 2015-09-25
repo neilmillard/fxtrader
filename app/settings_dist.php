@@ -60,5 +60,8 @@ return [
         'COUNT'         => 1,
         'PIDFILE'       => '',
 
+    ],
+    'resquescheduler' => [
+        'PIDFILE'   => '',
     ]
 ];

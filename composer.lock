@@ -616,8 +616,14 @@
             "version": "dev-class",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/oandawrap",
-                "reference": "0dc2217cc0fbfdc6d13a641e53da4ec59dd0938e"
+                "url": "https://github.com/neilmillard/OandaWrap.git",
+                "reference": "d1c8c9c6371f914c83f43710ff806f514e41430f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neilmillard/OandaWrap/zipball/d1c8c9c6371f914c83f43710ff806f514e41430f",
+                "reference": "d1c8c9c6371f914c83f43710ff806f514e41430f",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -636,7 +642,10 @@
             ],
             "description": "Php interface for Oanda API",
             "homepage": "http://tinyurl.com/OandaWrapReference",
-            "time": "2015-09-22 16:01:10"
+            "support": {
+                "source": "https://github.com/neilmillard/OandaWrap/tree/class"
+            },
+            "time": "2015-09-25 18:17:57"
         },
         {
             "name": "twig/twig",
@@ -644,12 +653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "f0b5b8ce8e9905d88c33524e0294149fda6121e2"
+                "reference": "604e94883bc1691071d9a30ff522808dc476394c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f0b5b8ce8e9905d88c33524e0294149fda6121e2",
-                "reference": "f0b5b8ce8e9905d88c33524e0294149fda6121e2",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/604e94883bc1691071d9a30ff522808dc476394c",
+                "reference": "604e94883bc1691071d9a30ff522808dc476394c",
                 "shasum": ""
             },
             "require": {
@@ -697,7 +706,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-22 14:03:12"
+            "time": "2015-09-24 14:39:22"
         }
     ],
     "packages-dev": [],
