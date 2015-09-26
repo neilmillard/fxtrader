@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block content %}
-
+    <div style="text-align: left">
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('accounts') }}">
+            Accounts
+        </a>
+    </div>
+    <div>
     <form class="form-signin well well-sm" role="form" name="account" id="account" method="post">
         <h2 class="form-signin-heading">Edit Account</h2>
         <input type="text" name="apikey" class="form-control" placeholder="apikey" value="{{ account.apikey }}" autofocus required>
@@ -14,7 +19,7 @@
         <select name="servertype"><option value="Demo">Demo</option><option value="Live">Live</option></select>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
-
+    </div>
     <br/><br/>
 
 {% endblock %}

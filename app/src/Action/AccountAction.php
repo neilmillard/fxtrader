@@ -55,9 +55,21 @@ class AccountAction extends Controller
             $account->import($data,'apikey,accountid,servertype');
             $account->users = $user;
 
-            $aid = R::store($account);
-            $this->flash->addMessage('flash',"account updated");
-            return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('editaccount',['uid'=>$aid]));
+            // verify and get account balance
+            $oandaWrap = new \OandaWrap($account['servertype'], $account['apikey'], $account['accountid'], 0);
+            if ($oandaWrap == FALSE) {
+                $viewdata['flash']='Account Details Invalid';
+            } else {
+                $data=$oandaWrap->account($account['accountid']);
+                $account->balance=$data->balance;
+                $account->openTrades=$data->openTrades;
+                $account->openOrders=$data->openOrders;
+                $account->unrealizedPl=$data->unrealizedPl;
+                $aid = R::store($account);
+                $this->flash->addMessage('flash',"account updated");
+                return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('editaccount',['uid'=>$aid]));
+            }
+
         }
         $viewdata['account']=$account;
         $this->view->render($response, 'account.twig',$viewdata);

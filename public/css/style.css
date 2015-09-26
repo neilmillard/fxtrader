@@ -24,3 +24,7 @@ h2 {
 a{
     color:  #326bca;
 }
+
+.xdebug-var-dump{
+    text-align: left;
+}

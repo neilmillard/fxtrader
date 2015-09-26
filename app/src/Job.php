@@ -13,8 +13,16 @@ use Slim\Container;
 class Job
 {
 
+    /* @var array */
     protected $settings;
+    /* @var Container */
     protected $container;
+    /* @var \Resque_Job */
+    public $job;
+    /* @var array */
+    public $args;
+    /* @var string The name of the queue that this job belongs to. */
+    public $queue;
 
     public function setUp()
     {
