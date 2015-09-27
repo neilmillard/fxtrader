@@ -18,7 +18,18 @@ class GetOandaInfo {
         $this->serverType = $type;
         $this->apiKey = $apiKey;
         $this->accountId = $accountId;
-        $this->pairs = $pairs;
+        if(isset($pairs[0])){
+            $this->pairs = $pairs;
+        } else {
+            //setup default pairs
+            $this->pairs     = [
+                'USD_CAD', 'USD_CHF', 'USD_JPY',
+                'AUD_USD', 'GBP_USD', 'NZD_USD',
+                'EUR_USD', 'EUR_AUD', 'EUR_JPY',
+                'AUD_JPY', 'GBP_JPY', 'AUD_NZD'
+            ];
+        }
+
 
         //Check to see that OandaWrap is setup correctly.
         //Arg1 can be 'Demo', 'Live', or Sandbox;
@@ -116,24 +127,160 @@ class GetOandaInfo {
 
     public function updateAccount(){
         $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
-        if(!empty($account)) {
-            $data = $this->oandaWrap->account($this->accountId);
-            $account->balance = $data->balance;
+        if(empty($account)) {
+            return;
+        }
+        $data = $this->oandaWrap->account($this->accountId);
+        $account->balance = $data->balance;
+        if($account->openTrades != $data->openTrades){
+            // our trades have changed best get them updated
+            // TODO: update trades table via a job
             $account->openTrades = $data->openTrades;
+        }
+        if($account->openOrders != $data->openOrders){
+            // our ourders have changed best get them updated
+            // TODO: update orders table via a job
             $account->openOrders = $data->openOrders;
-            $account->unrealizedPl = $data->unrealizedPl;
-            $aid = R::store($account);
+        }
+        $account->unrealizedPl = $data->unrealizedPl;
+        $aid = R::store($account);
+
+    }
+
+    //TODO updateTransactions()
+    /**
+     * This will get transactions from an account (from the last one acquired
+     * and process the types to update orders and trades
+     */
+    public function updateTransactions(){
+        $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
+        if(empty($account)) {
+            return;
+        }
+        $transactionId = $account['lasttid'];
+        //$transactions = $this->oandaWrap->transactions();
+        $transactions = $this->oandaWrap->transactions_minid($transactionId);
+        if(count($transactions>0)){
+            foreach($transactions as $transaction){
+                //check transaction type
+                /*
+                 * MARKET_ORDER_CREATE , STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
+                 * ORDER_UPDATE, ORDER_CANCEL, ORDER_FILLED,
+                 * TRADE_UPDATE, TRADE_CLOSE,
+                 * MIGRATE_TRADE_OPEN, MIGRATE_TRADE_CLOSE,
+                 * STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED,
+                 * MARGIN_CALL_ENTER, MARGIN_CALL_EXIT, MARGIN_CLOSEOUT, SET_MARGIN_RATE,
+                 * TRANSFER_FUNDS, DAILY_INTEREST, FEE
+                 */
+                switch ($transaction->type){
+                    case 'ORDER_UPDATE':
+                    case 'ORDER_CANCEL':
+                        $currOrder = R::findOrCreate('orders',
+                            ['oandaoid' => $transaction->orderId,
+                                'instrument' => $transaction->instrument ]);
+                        $currOrder->units = $transaction->units;
+                        $currOrder->expiry = $transaction->expiry;
+                        $currOrder->price = $transaction->price;
+                        $currOrder->takeProfit = $transaction->takeProfit;
+                        $currOrder->stopLoss = $transaction->stopLoss;
+                        if($transaction->type=='ORDER_CANCEL'){
+                            $currOrder->status='CANCELED';
+                        }
+                        R::store($currOrder);
+                        unset($currOrder);
+                        break;
+                    case 'ORDER_FILLED':
+                        $currOrder = R::findOrCreate('orders',
+                            ['oandaoid' => $transaction->orderId,
+                                'instrument' => $transaction->instrument ]);
+                        $currOrder->status='FILLED';
+                        $currTrade = R::findOrCreate('trades',
+                            ['oandaoid' => $transaction->tradeId,
+                                'instrument' => $transaction->instrument ]);
+                        $currTrade->units=$transaction->units;
+                        $currTrade->price = $transaction->price;
+                        $currTrade->side = $transaction->side;
+                        if(empty($currTrade->pl)){
+                            $currTrade->pl = 0.00;
+                        }
+                        //$currTrade->takeProfit = $transaction->takeProfit;
+                        //$currTrade->stopLoss = $transaction->stopLoss;
+                        R::store($currTrade);
+                        unset($currTrade);
+                        break;
+                    case 'TRADE_UPDATE':
+                    case 'TRADE_CLOSE':
+                    case 'STOP_LOSS_FILLED':
+                    case 'TAKE_PROFIT_FILLED':
+                        $currTrade = R::findOrCreate('trades',
+                            ['oandaoid' => $transaction->tradeId,
+                                'instrument' => $transaction->instrument ]);
+                        $currTrade->units=$transaction->units;
+                        $currTrade->price = $transaction->price;
+                        $currTrade->side = $transaction->side;
+                        $currTrade->pl = $transaction->pl;
+                        R::store($currTrade);
+                        unset($currTrade);
+                        break;
+                }
+
+                if($transaction->id>$transactionId){
+                    $transactionId=$transaction->id;
+                }
+
+            }
+            $account['lasttid'] = $transactionId;
+            R::store($account);
+        }
+
+    }
+
+    public function updateOrders(){
+        foreach($this->pairs as $pair){
+            $orders = $this->oandaWrap->order_pair($pair);
+            if (count($orders)>0) {
+                foreach($orders as $order){
+                    $currOrder = R::findOrCreate('orders',
+                        ['oandaoid' => $order->id,
+                         'instrument' => $order->instrument ]);
+                    $currOrder->units = $order->units;
+                    $currOrder->side = $order->side;
+                    $currOrder->type = $order->type;
+                    $currOrder->time = $order->time;
+                    $currOrder->expiry = $order->expiry;
+                    $currOrder->price = $order->price;
+                    $currOrder->takeProfit = $order->takeProfit;
+                    $currOrder->stopLoss = $order->stopLoss;
+                    R::store($currOrder);
+                    unset($currOrder);
+                }
+            }
         }
     }
 
-    //TODO updateOrders()
-    public function updateOrders(){
-
-    }
-
-    //TODO udpateTrades()
     public function updateTrades(){
+        foreach($this->pairs as $pair){
+            $trades = $this->oandaWrap->trade_pair($pair);
+            if (count($trades)>0) {
+                foreach($trades as $trade) {
+                    $currTrade = R::findOrCreate('trades',
+                        ['oandatid' => $trade->id,
+                        'instrument' => $trade->instrument ]);
 
+                    $currTrade->unit=$trade->units;
+                    $currTrade->side=$trade->side;
+                    $currTrade->time=$trade->time;
+                    $currTrade->price=$trade->price;
+                    $currTrade->takeProfit=$trade->takeProfit;
+                    $currTrade->stopLoss=$trade->stopLoss;
+                    if(empty($currTrade->status)){
+                        $currTrade->status='ORDER_FILLED';
+                    }
+                    R::store($currTrade);
+                    unset($currTrade);
+                }
+            }
+        }
     }
 }
 

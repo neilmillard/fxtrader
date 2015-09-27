@@ -617,12 +617,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/OandaWrap.git",
-                "reference": "d1c8c9c6371f914c83f43710ff806f514e41430f"
+                "reference": "c1cd9c3956a9cd22dc10202720d9ea67789ecff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/OandaWrap/zipball/d1c8c9c6371f914c83f43710ff806f514e41430f",
-                "reference": "d1c8c9c6371f914c83f43710ff806f514e41430f",
+                "url": "https://api.github.com/repos/neilmillard/OandaWrap/zipball/c1cd9c3956a9cd22dc10202720d9ea67789ecff1",
+                "reference": "c1cd9c3956a9cd22dc10202720d9ea67789ecff1",
                 "shasum": ""
             },
             "type": "library",
@@ -645,7 +645,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/OandaWrap/tree/class"
             },
-            "time": "2015-09-25 18:17:57"
+            "time": "2015-09-27 22:55:18"
         },
         {
             "name": "twig/twig",

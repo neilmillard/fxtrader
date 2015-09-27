@@ -55,6 +55,7 @@ class AccountAction extends Controller
             $data = $request->getParams();
             $account->import($data,'apikey,accountid,servertype');
             $account->users = $user;
+            $account->lasttid = 0;
 
             $oandaInfo = FALSE;
             // verify and get account balance
