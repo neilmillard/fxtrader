@@ -7,7 +7,7 @@ use RedBeanPHP\R;
  * Uses config file for oanda api settings and oandawrap.php
  * pass number of days to retrieve on cmd e.g. getoandahist.php 40
  */
-class GetOandaHistory {
+class GetOandaInfo {
     private $apiKey;
     private $accountId;
     private $serverType;

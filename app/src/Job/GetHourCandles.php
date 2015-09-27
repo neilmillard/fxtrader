@@ -2,13 +2,13 @@
 
 namespace App\Job;
 
-use App\Helper\GetOandaHistory;
+use App\Helper\GetOandaInfo;
 use App\Job;
 
 class GetHourCandles extends Job
 {
-    /* @var GetOandaHistory */
-    private $oandaHistory;
+    /* @var GetOandaInfo */
+    private $oandaInfo;
 
     public function setUp()
     {
@@ -17,12 +17,12 @@ class GetHourCandles extends Job
         $accountId = $this->settings['oanda']['accountId'];
         $type = $this->settings['oanda']['serverType'];
         $pairs = $this->settings['oanda']['pairs'];
-        $this->oandaHistory = new GetOandaHistory($apiKey,$accountId, $type, $pairs);
+        $this->oandaInfo = new GetOandaInfo($apiKey,$accountId, $type, $pairs);
     }
 
     public function perform()
     {
-        $this->oandaHistory->fetchHourly();
+        $this->oandaInfo->fetchHourly();
 
     }
 
