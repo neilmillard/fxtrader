@@ -125,6 +125,16 @@ class GetOandaInfo {
             $aid = R::store($account);
         }
     }
+
+    //TODO updateOrders()
+    public function updateOrders(){
+
+    }
+
+    //TODO udpateTrades()
+    public function updateTrades(){
+
+    }
 }
 
 

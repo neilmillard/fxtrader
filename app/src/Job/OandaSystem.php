@@ -2,13 +2,13 @@
 
 namespace App\Job;
 
-use App\Helper\GetOandaInfo;
 use App\Job;
+use App\Helper\GetOandaInfo;
 
-class GetHourCandles extends Job
+class OandaSystem extends Job
 {
     /* @var GetOandaInfo */
-    private $oandaInfo;
+    protected $oandaInfo;
 
     public function setUp()
     {
@@ -18,17 +18,6 @@ class GetHourCandles extends Job
         $type = $this->settings['oanda']['serverType'];
         $pairs = $this->settings['oanda']['pairs'];
         $this->oandaInfo = new GetOandaInfo($type, $apiKey,$accountId, $pairs);
-    }
-
-    public function perform()
-    {
-        $this->oandaInfo->fetchHourly();
 
     }
-
-    public function tearDown()
-    {
-
-    }
-
 }

@@ -6,20 +6,20 @@ use App\Job;
 use RedBeanPHP\R;
 use App\Helper\GetOandaInfo;
 
-class GetAccountInfo extends Job
+class Oanda extends Job
 {
     /* @var GetOandaInfo */
-    private $oandaInfo;
+    protected $oandaInfo;
 
     /**
      * require Args array
-     $args = array(
-        'time' => time(),
-        'userid' => '',
-        'oanda' => array(
-            'accountId' => '',
-         ),
-     );
+    $args = array(
+    'time' => time(),
+    'userid' => '',
+    'oanda' => array(
+    'accountId' => '',
+    ),
+    );
 
      */
     public function setUp()
@@ -36,17 +36,4 @@ class GetAccountInfo extends Job
         }
 
     }
-
-    public function perform()
-    {
-
-        $this->oandaInfo->updateAccount();
-
-    }
-
-    public function tearDown()
-    {
-
-    }
-
 }
