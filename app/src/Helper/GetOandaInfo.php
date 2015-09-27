@@ -14,10 +14,10 @@ class GetOandaInfo {
     private $pairs;
     private $oandaWrap;
 
-    public function __construct($apiKey, $accountId, $type, $pairs){
+    public function __construct($type, $apiKey, $accountId, $pairs=[]){
+        $this->serverType = $type;
         $this->apiKey = $apiKey;
         $this->accountId = $accountId;
-        $this->serverType = $type;
         $this->pairs = $pairs;
 
         //Check to see that OandaWrap is setup correctly.
@@ -112,6 +112,18 @@ class GetOandaInfo {
         echo date('Y-m-d H:i')." : ";
         echo "New:$new : Updated:$updated\n";
 
+    }
+
+    public function updateAccount(){
+        $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
+        if(!empty($account)) {
+            $data = $this->oandaWrap->account($this->accountId);
+            $account->balance = $data->balance;
+            $account->openTrades = $data->openTrades;
+            $account->openOrders = $data->openOrders;
+            $account->unrealizedPl = $data->unrealizedPl;
+            $aid = R::store($account);
+        }
     }
 }
 

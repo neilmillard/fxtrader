@@ -3,6 +3,7 @@
 namespace App\Action;
 
 
+use App\Helper\GetOandaInfo;
 use RedBeanPHP\R;
 use Slim\Http\Response;
 use Slim\Http\Request;
@@ -55,24 +56,24 @@ class AccountAction extends Controller
             $account->import($data,'apikey,accountid,servertype');
             $account->users = $user;
 
+            $oandaInfo = FALSE;
             // verify and get account balance
-            $oandaWrap = new \OandaWrap($account['servertype'], $account['apikey'], $account['accountid'], 0);
-            if ($oandaWrap == FALSE) {
-                $viewdata['flash']='Account Details Invalid';
-            } else {
-                $data=$oandaWrap->account($account['accountid']);
-                $account->balance=$data->balance;
-                $account->openTrades=$data->openTrades;
-                $account->openOrders=$data->openOrders;
-                $account->unrealizedPl=$data->unrealizedPl;
+            try {
+                $oandaInfo = new GetOandaInfo($account['servertype'], $account['apikey'], $account['accountid'], 0);
+            } catch (\Exception $e){
+                $viewData['flash']='Account Details Invalid';
+            }
+
+            if ($oandaInfo != FALSE) {
                 $aid = R::store($account);
+                $oandaInfo->updateAccount();
                 $this->flash->addMessage('flash',"account updated");
                 return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('editaccount',['uid'=>$aid]));
             }
 
         }
-        $viewdata['account']=$account;
-        $this->view->render($response, 'account.twig',$viewdata);
+        $viewData['account']=$account;
+        $this->view->render($response, 'account.twig',$viewData);
         return $response;
 
     }

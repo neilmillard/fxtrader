@@ -4,11 +4,12 @@ namespace App\Job;
 
 use App\Job;
 use RedBeanPHP\R;
+use App\Helper\GetOandaInfo;
+
 class GetAccountInfo extends Job
 {
-    /* @var \OandaWrap */
-    private $oandaWrap;
-    private $accountId;
+    /* @var GetOandaInfo */
+    private $oandaInfo;
 
     /**
      * require Args array
@@ -16,9 +17,7 @@ class GetAccountInfo extends Job
         'time' => time(),
         'userid' => '',
         'oanda' => array(
-            'apiKey' => '',
             'accountId' => '',
-            'serverType' => '',
          ),
      );
 
@@ -26,28 +25,22 @@ class GetAccountInfo extends Job
     public function setUp()
     {
         parent::setUp();
-        $apiKey = $this->args['oanda']['apiKey'];
-        $this->accountId = $accountId = $this->args['oanda']['accountId'];
-        $type = $this->args['oanda']['serverType'];
-        $oandaWrap = new \OandaWrap($type, $apiKey, $accountId, 0);
-        if ($oandaWrap == FALSE) {
-            throw new \Exception('Oanda Connection failed to initialize');
+        $accountId = $this->args['oanda']['accountId'];
+        $account = R::findOne('accounts',' accountid = ?', [ $accountId ]);
+        if(!empty($account)){
+            $apiKey = $account['apikey'];
+            $type = $account['servertype'];
+            $this->oandaInfo = new GetOandaInfo($type, $apiKey,$accountId);
+        } else {
+            throw new \Exception('Oanda AccountId not found');
         }
-        $this->oandaWrap = $oandaWrap;
+
     }
 
     public function perform()
     {
 
-        $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
-        if(!empty($account)) {
-            $data = $this->oandaWrap->account($this->accountId);
-            $account->balance = $data->balance;
-            $account->openTrades = $data->openTrades;
-            $account->openOrders = $data->openOrders;
-            $account->unrealizedPl = $data->unrealizedPl;
-            $aid = R::store($account);
-        }
+        $this->oandaInfo->updateAccount();
 
     }
 

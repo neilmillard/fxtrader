@@ -17,7 +17,7 @@ class GetDayCandles extends Job
         $accountId = $this->settings['oanda']['accountId'];
         $type = $this->settings['oanda']['serverType'];
         $pairs = $this->settings['oanda']['pairs'];
-        $this->oandaInfo = new GetOandaInfo($apiKey,$accountId, $type, $pairs);
+        $this->oandaInfo = new GetOandaInfo($type, $apiKey,$accountId, $pairs);
     }
 
     public function perform()
