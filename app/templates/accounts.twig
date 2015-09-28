@@ -13,7 +13,7 @@
         <p>APIKey: **********{{ account.apikey[-6:] }} </p>
         <p>AccountID: {{ account.accountid }} </p>
         <p>Server Type: {{ account.servertype }} </p>
-        <p>Balance: {{ account.balance }} </p>
+        <p>Balance: {{ account.currency }}{{ account.balance }} </p>
         <p>Open Trades: {{ account.openTrades }}</p>
         <p>Open Orders: {{ account.openOrders }}</p>
         <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editaccount',{'uid': account.id}) }}">

@@ -20,6 +20,12 @@ $app->map(['GET','POST'],'/account/{uid}/edit', 'App\Action\AccountAction:edit')
     ->add('Authenticator\Middleware:auth');
 
 
+
+$app->get('/account/{uid}/test','App\Action\AccountAction:test')
+    ->add('Authenticator\Middleware:auth');
+
+
+
 /** @noinspection PhpUndefinedMethodInspection */
 $app->map(['GET','POST'],'/user/{username}/edit', 'App\Action\ProfileAction:edituser')
     ->setName('edituser')

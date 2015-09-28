@@ -3,7 +3,7 @@
 //    die('Specify the name of a job to add. e.g, php queue.php PHP_Job');
 //}
 
-$job = 'App\Job\Oanda\GetAccountInfo';
+$job = 'App\Job\Oanda\CreateOrder';
 
 require '../../vendor/chrisboulton/php-resque/lib/Resque.php';
 date_default_timezone_set('GMT');
