@@ -1,5 +1,5 @@
 <?php
-namespace App\Helper;
+namespace App\Broker;
 use RedBeanPHP\R;
 
 /**
@@ -7,7 +7,7 @@ use RedBeanPHP\R;
  * Uses config file for oanda api settings and oandawrap.php
  * pass number of days to retrieve on cmd e.g. getoandahist.php 40
  */
-class GetOandaInfo {
+class Broker_Oanda {
     private $apiKey;
     private $accountId;
     private $serverType;
@@ -147,12 +147,11 @@ class GetOandaInfo {
 
     }
 
-    //TODO updateTransactions()
     /**
      * This will get transactions from an account (from the last one acquired
      * and process the types to update orders and trades
      */
-    public function updateTransactions(){
+    public function processTransactions(){
         $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
         if(empty($account)) {
             return;

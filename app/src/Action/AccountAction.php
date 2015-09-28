@@ -3,7 +3,7 @@
 namespace App\Action;
 
 
-use App\Helper\GetOandaInfo;
+use App\Broker\Broker_Oanda;
 use RedBeanPHP\R;
 use Slim\Http\Response;
 use Slim\Http\Request;
@@ -60,7 +60,7 @@ class AccountAction extends Controller
             $oandaInfo = FALSE;
             // verify and get account balance
             try {
-                $oandaInfo = new GetOandaInfo($account['servertype'], $account['apikey'], $account['accountid'], 0);
+                $oandaInfo = new Broker_Oanda($account['servertype'], $account['apikey'], $account['accountid'], 0);
             } catch (\Exception $e){
                 $viewData['flash']='Account Details Invalid';
             }

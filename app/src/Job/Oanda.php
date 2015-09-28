@@ -4,11 +4,11 @@ namespace App\Job;
 
 use App\Job;
 use RedBeanPHP\R;
-use App\Helper\GetOandaInfo;
+use App\Broker\Broker_Oanda;
 
 class Oanda extends Job
 {
-    /* @var GetOandaInfo */
+    /* @var Broker_Oanda */
     protected $oandaInfo;
 
     /**
@@ -30,7 +30,7 @@ class Oanda extends Job
         if(!empty($account)){
             $apiKey = $account['apikey'];
             $type = $account['servertype'];
-            $this->oandaInfo = new GetOandaInfo($type, $apiKey,$accountId);
+            $this->oandaInfo = new Broker_Oanda($type, $apiKey,$accountId);
         } else {
             throw new \Exception('Oanda AccountId not found');
         }

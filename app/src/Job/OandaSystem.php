@@ -3,11 +3,11 @@
 namespace App\Job;
 
 use App\Job;
-use App\Helper\GetOandaInfo;
+use App\Broker\Broker_Oanda;
 
 class OandaSystem extends Job
 {
-    /* @var GetOandaInfo */
+    /* @var Broker_Oanda */
     protected $oandaInfo;
 
     public function setUp()
@@ -17,7 +17,7 @@ class OandaSystem extends Job
         $accountId = $this->settings['oanda']['accountId'];
         $type = $this->settings['oanda']['serverType'];
         $pairs = $this->settings['oanda']['pairs'];
-        $this->oandaInfo = new GetOandaInfo($type, $apiKey,$accountId, $pairs);
+        $this->oandaInfo = new Broker_Oanda($type, $apiKey,$accountId, $pairs);
 
     }
 }
