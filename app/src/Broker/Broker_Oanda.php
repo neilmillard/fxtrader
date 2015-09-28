@@ -281,6 +281,69 @@ class Broker_Oanda {
             }
         }
     }
+
+    /**
+     * @param string    $side       'buy' or 'sell'
+     * @param string    $pair       Name of Instrument
+     * @param float     $price      execution price
+     * @param int       $expiry     UTC timestamp format of order expiry e.g. now()+3600 (for 1 hour)
+     * @param float     $stopLoss   Price of stopLoss
+     * @param float     $takeProfit Price of takeProfit
+     * @param int       $risk       Risk percent of account 1 = 1%
+     */
+    public function placeLimitOrder($side,$pair,$price,$expiry,$stopLoss,$takeProfit=NULL,$risk=1){
+        //order options?
+        $orderOptions = FALSE;
+        //TODO calculate units based on risk
+        // find how many pips risked
+        $stopSize = (abs($price-$stopLoss))/$this->oandaWrap->instrument_pip($pair);
+        // find risk amount of account
+        $size = $this->oandaWrap->nav_size_percent($pair,$risk);
+        $units = $size / $stopSize;
+
+        /* @var \StdClass Oanda Order Object*/
+        $order=$this->oandaWrap->order_open($side,$units,$pair,'limit',$price,$expiry,$orderOptions);
+        // create and save order
+        $currOrder = R::findOrCreate('orders',
+            ['oandaoid' => $order->id,
+                'instrument' => $order->instrument ]);
+        $currOrder->units = $order->units;
+        $currOrder->side = $order->side;
+        $currOrder->type = $order->type;
+        $currOrder->time = $order->time;
+        $currOrder->expiry = $order->expiry;
+        $currOrder->price = $order->price;
+
+        // apply stop loss
+        $sOrder=$this->oandaWrap->order_set_stop($currOrder['oandaoid'],$stopLoss);
+        $currOrder->stopLoss = $stopLoss;
+        // apply takeprofit if set
+        if(!empty($takeProfit)){
+            $tOrder=$this->oandaWrap->order_set_tp($currOrder['oandaoid'],$takeProfit);
+            $currOrder->takeProfit = $order->takeProfit;
+        }
+
+        R::store($currOrder);
+
+    }
+
+    public function buy_bullish($pair, $risk, $stop, $leverage=50) {
+        //Macro: Buy $pair and limit size to equal %NAV loss over $stop pips. Then set stopLoss
+
+        //Retrieve current price
+        if (! $this->valid($price = $this->price($pair)))
+            return $price;
+
+        //Find the correct size so that $risk is divided by $pips
+        if (! $this->valid($size = $this->nav_size_percent_per_pip($pair, ($risk/$stop))))
+            return $size;
+
+        if (! $this->valid($newTrade = $this->buy_market($size, $pair)))
+            return $newTrade;
+
+        //Set the stoploss
+        return $this->trade_set_stop($newTrade->tradeId, $price->ask + ($this->instrument_pip($pair) * $stop));
+    }
 }
 
 
