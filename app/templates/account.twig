@@ -14,8 +14,8 @@
     <div>
     <form class="form-signin well well-sm" role="form" name="account" id="account" method="post">
         <h2 class="form-signin-heading">Edit Account</h2>
-        <input type="text" name="apikey" class="form-control" placeholder="apikey" value="{{ account.apikey }}" autofocus required>
         <input type="text" name="accountid" class="form-control" placeholder="accountid" value="{{ account.accountid }}" required>
+        <input type="text" name="apikey" class="form-control" placeholder="apikey" value="{{ account.apikey }}" autofocus required>
         <select name="servertype"><option value="Demo">Demo</option><option value="Live">Live</option></select>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
