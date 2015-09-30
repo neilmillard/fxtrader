@@ -29,19 +29,24 @@
 <body>
 <div class="container">
     <div class="header">
-        <ul class="nav nav-pills pull-right">
+        <ul class="nav nav-pills">
+            <li><a href="{{ base_url() }}{{ path_for('homepage') }}">Home</a></li>
             {% if identity.role == 'ADMIN' %}
                 <li><a href="{{ base_url() }}{{ path_for('admin') }}">AdminMenu</a></li>
             {% endif %}
-            <li><a href="{{ base_url() }}{{ path_for('homepage') }}">Home</a></li>
-            <li><a href="{{ base_url() }}{{ path_for('profile') }}">Profile</a></li>
             {% if hasIdentity %}
-                <li><a href="{{ base_url() }}{{ path_for('logout') }}">Logout</a></li>
+            <li class="dropdown pull-right">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">My Account<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ base_url() }}{{ path_for('profile') }}">Profile</a></li>
+                    <li><a href="{{ base_url() }}{{ path_for('accounts') }}">Accounts</a></li>
+                    <li><a href="{{ base_url() }}{{ path_for('logout') }}">Logout</a></li>
+                </ul>
+            </li>
             {% else %}
                 <li><a href="{{ base_url() }}{{ path_for('login') }}">Login</a></li>
             {% endif %}
         </ul>
-        <h4 class="text-muted">&nbsp; {{ identity.name|capitalize }}</h4>
     </div>
 
     {% if flash is not empty %}

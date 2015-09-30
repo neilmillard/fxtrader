@@ -21,7 +21,7 @@ $app->map(['GET','POST'],'/account/{uid}/edit', 'App\Action\AccountAction:edit')
 
 
 
-$app->get('/account/{uid}/test','App\Action\AccountAction:test')
+$app->get('/test/{uid}','App\Action\TestAction:test')
     ->add('Authenticator\Middleware:auth');
 
 

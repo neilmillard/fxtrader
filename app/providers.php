@@ -63,3 +63,7 @@ $container['App\Action\LoginAction'] = function ($c) {
 $container['App\Action\AccountAction'] = function ($c) {
     return new App\Action\AccountAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
+
+$container['App\Action\TestAction'] = function ($c) {
+    return new App\Action\TestAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
+};

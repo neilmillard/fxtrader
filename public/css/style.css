@@ -3,7 +3,7 @@ body {
     padding: 0;
     width: 100%;
     font-family: Calibri, sans-serif;
-    text-align: center;
+    /* text-align: center; */
     color: #aaa;
     font-size: 18px;
 }

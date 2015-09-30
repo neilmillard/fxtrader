@@ -79,38 +79,4 @@ class AccountAction extends Controller
 
     }
 
-    public function test(Request $request, Response $response, Array $args){
-        $uid = $args['uid'];
-        $myaccount = R::load('accounts', $uid);
-        $accountId = $myaccount->accountid;
-        $account = R::findOne('accounts',' accountid = ?', [ $accountId ]);
-        if(!empty($account)){
-            $apiKey = $account['apikey'];
-            $type = $account['servertype'];
-            $oandaInfo = new Broker_Oanda($type, $apiKey,$accountId);
-        } else {
-            throw new \Exception('Oanda AccountId not found');
-        }
-
-        $side='buy';
-        $pair='EUR_USD';
-        $price='1.1400';
-        $expiry = time()+60;
-        $stopLoss='1.1300';
-        $takeProfit=NULL;
-        $risk=1;
-
-//        $side='buy';
-//        $pair='GBP_CHF';
-//        $price='2.1443';
-//        $expiry = $oandaInfo->getExpiry(time()+60);
-//        $stopLoss='2.1452';
-//        $takeProfit=NULL;
-//        $risk=1;
-
-        //$oandaInfo->placeLimitOrder($side,$pair,$price,$expiry,$stopLoss,$takeProfit,$risk);
-
-        $oandaInfo->processTransactions();
-
-    }
 }
