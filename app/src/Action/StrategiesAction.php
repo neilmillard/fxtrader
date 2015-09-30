@@ -31,12 +31,12 @@ final class StrategiesAction extends Controller
             $strategy = R::load('strategies', $uid);
             if($strategy->id==0){
                 $this->flash->addMessage('flash','No record found');
-                return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('accounts'));
+                return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('stratagies'));
             }
             // restrict access to own profile or Admin role
             if(strtolower($id['role'])!='admin'){
                 $this->flash->addMessage('flash','Access Denied');
-                return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('accounts'));
+                return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('stratagies'));
             }
 
         } else {
@@ -45,7 +45,7 @@ final class StrategiesAction extends Controller
 
         if ($request->isPost()) {
             $data = $request->getParams();
-            $strategy->import($data,'name');
+            $strategy->import($data,'name, description, strategytype, function');
 
             $aid = R::store($strategy);
             $this->flash->addMessage('flash',"account updated");
@@ -53,7 +53,7 @@ final class StrategiesAction extends Controller
 
         }
         $viewData['strategy']=$strategy;
-        $this->view->render($response, 'account.twig',$viewData);
+        $this->view->render($response, 'strategy.twig',$viewData);
         return $response;
 
     }

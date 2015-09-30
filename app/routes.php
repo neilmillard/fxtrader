@@ -23,7 +23,7 @@ $app->get('/admin/strategies','App\Action\StrategiesAction:admin')
     ->setName('adminstrategies')
     ->add('Authenticator\Middleware:auth');
 
-$app->get('/admin/editstrategy','App\Action\StrategiesAction:edit')
+$app->get('/admin/editstrategy/{uid}','App\Action\StrategiesAction:edit')
     ->setName('editstrategy')
     ->add('Authenticator\Middleware:auth');
 

@@ -1,0 +1,34 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Strategy{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+    <div style="text-align: left">
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('adminstrategies') }}">
+            Strategies
+        </a>
+    </div>
+    <div>
+    <form class="form-signin well well-sm" role="form" name="strategy" id="strategy" method="post">
+        <h2 class="form-signin-heading">Manage Account</h2>
+        <input type="text" name="name" class="form-control" placeholder="name" value="{{ strategy.name }}" required>
+        <input type="text" name="description" class="form-control" placeholder="description" value="{{ strategy.description }}" required>
+        <select name="strategytype"><option value="Entry">Entry</option><option value="Exit">Exit</option></select>
+        <select name="function">
+            {% for function in functionlist %}
+                <option value="{{ function }}">{{ function }}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+    </form>
+    </div>
+    <br/><br/>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
