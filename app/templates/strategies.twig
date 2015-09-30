@@ -1,0 +1,23 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Strageties{% endblock %}
+
+{% block content %}
+
+    {% for strategy in strategies %}
+    <div style="">
+        <p>ID: {{ strategies.accountid }} </p>
+        <p>Name: {{ strategies.name }}</p>
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': strategy.id}) }}">
+            Update
+        </a>
+    </div>
+    {% endfor %}
+    <div>
+        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': 'new'}) }}">
+            Create New account
+        </a>
+    </div>
+    <br/><br/>
+
+{% endblock %}
