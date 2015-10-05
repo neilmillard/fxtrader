@@ -71,18 +71,18 @@ class FlagTest extends \PHPUnit_Framework_TestCase
     public function analyseProvider(){
         return array(
             array(
-                'Not enough candles',
+                'random',
                 array( //candles
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
-                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>0.0000,'high'=>0.0000,'low'=>0.0000,'close'=>0.0000,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4005,'low'=>1.3950,'close'=>1.3970,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3970,'high'=>1.4005,'low'=>1.3920,'close'=>1.3920,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3920,'high'=>1.4005,'low'=>1.3950,'close'=>1.3963,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3963,'high'=>1.4005,'low'=>1.3950,'close'=>1.3990,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3990,'high'=>1.4005,'low'=>1.3950,'close'=>1.4030,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4030,'high'=>1.4040,'low'=>1.3950,'close'=>1.4090,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4090,'high'=>1.4091,'low'=>1.3950,'close'=>1.3995,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3995,'high'=>1.4005,'low'=>1.3920,'close'=>1.3930,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3930,'high'=>1.4005,'low'=>1.3885,'close'=>1.3890,'complete'=>true,'gran'=>'D'),
+                        array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3890,'high'=>1.4005,'low'=>1.3850,'close'=>1.3850,'complete'=>true,'gran'=>'D'),
                 ),
                 array( //args
                     'noOfPoleCandles'=>2,
@@ -98,6 +98,37 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'side'=>'',
                     'entry'=>'',
                     'stopLoss'=>'',
+                    'rr'=>1
+                )
+            ),
+            array(
+                'bull flag',
+                array( //candles
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4005,'low'=>1.3950,'close'=>1.3970,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3970,'high'=>1.4005,'low'=>1.3920,'close'=>1.3920,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3920,'high'=>1.4005,'low'=>1.3950,'close'=>1.3963,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3963,'high'=>1.4005,'low'=>1.3950,'close'=>1.3990,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3990,'high'=>1.4005,'low'=>1.3950,'close'=>1.4030,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4030,'high'=>1.4040,'low'=>1.3950,'close'=>1.4090,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4090,'high'=>1.4091,'low'=>1.3950,'close'=>1.3995,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3925,'high'=>1.4005,'low'=>1.3920,'close'=>1.4000,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4105,'low'=>1.3995,'close'=>1.4100,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4100,'high'=>1.4100,'low'=>1.4060,'close'=>1.4069,'complete'=>true,'gran'=>'D'),
+                ),
+                array( //args
+                    'noOfPoleCandles'=>2,
+                    'maxBreatherCandles'=>1,
+                    'percentBreatherSize'=>0.3,
+                    'strongPoleCandleCent'=>0.9,
+                    'entryBufferPips'=>0.0005,
+                    'instrument'=>'EUR_USD'
+                ),
+                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr]
+                    'trade'=>true,
+                    'instrument'=>'EUR_USD',
+                    'side'=>'buy',
+                    'entry'=>'1.4110',
+                    'stopLoss'=>'1.4055',
                     'rr'=>1
                 )
             )
