@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+    <testsuites>
+        <testsuite name="FX Application Test Suite">
+            <directory>./App/test/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

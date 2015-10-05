@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Neil
- * Date: 04/10/2015
- * Time: 22:12
- */
 
 namespace App\Signals;
 
@@ -16,6 +10,9 @@ namespace App\Signals;
 class Flag extends Signal
 {
     protected $reqNumCandles = 10;
+    public $name = 'The Flag';
+    public $description =   'This signal will find a flag based on 2 or 3 candles in the pole with 1 breather candle '.
+                            'with two % settings for body/range of pole candles and % of breather retracement';
 
     public function __construct(){
 
@@ -25,11 +22,15 @@ class Flag extends Signal
      * @return array
      */
     public function showArgs(){
-//        $this->args['noOfPoleCandles'];
-//        $this->args['maxBreatherCandles'];
-//        $this->args['percentBreatherSize'];
-//        $this->args['strongPoleCandleCent'];
-//        $this->args['entryBufferPips'];
+        if(empty($this->argsnames)){
+        $this->argsnames = [
+            'noOfPoleCandles',
+            'maxBreatherCandles',
+            'percentBreatherSize',
+            'strongPoleCandleCent',
+            'entryBufferPips'
+        ];
+        }
 
         return $this->argsnames;
 
@@ -42,6 +43,7 @@ class Flag extends Signal
      */
 
     public function setArgs(Array $args){
+        //TODO check args in showArgs() are defined keys in input
         $this->args=$args;
         $this->reqNumCandles = $this->args['noOfPoleCandles']+$this->args['maxBreatherCandles']+2;
     }
