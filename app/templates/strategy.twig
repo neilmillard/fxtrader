@@ -16,12 +16,17 @@
         <h2 class="form-signin-heading">Manage Account</h2>
         <input type="text" name="name" class="form-control" placeholder="name" value="{{ strategy.name }}" required>
         <input type="text" name="description" class="form-control" placeholder="description" value="{{ strategy.description }}" required>
-        <select name="strategytype"><option value="Entry">Entry</option><option value="Exit">Exit</option></select>
-        <select name="function">
-            {% for function in functionlist %}
-                <option value="{{ function }}">{{ function }}</option>
+        <select name="strategyexit">
+            <option value="1">1%</option>
+            <option value="3">3 Bar</option>
+            <option value="2">signal custom</option>
+        </select>
+        <select name="signal">
+            {% for signal in signallist %}
+                <option value="{{ signal }}">{{ signal }}</option>
             {% endfor %}
         </select>
+        <input type="text" name="params" class="form-control" placeholder="params" value="{{ strategy.params }}" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
     </div>

@@ -45,7 +45,7 @@ final class StrategiesAction extends Controller
 
         if ($request->isPost()) {
             $data = $request->getParams();
-            $strategy->import($data,'name, description, strategytype, function');
+            $strategy->import($data,'name, description, strategyexit, signal, params');
 
             $aid = R::store($strategy);
             $this->flash->addMessage('flash',"account updated");
