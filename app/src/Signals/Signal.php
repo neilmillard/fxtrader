@@ -10,18 +10,43 @@ abstract class Signal
     protected $args;
     protected $candles;
 
+
+    /**
+     * @param $args
+     * @param $candles
+     * @throws \Exception
+     */
+    public final function __construct($args,$candles){
+        if($this->setArgs($args)==0){
+            throw new \Exception('Not enough args');
+        }
+        if($this->loadCandles($candles)==0){
+            throw new \Exception('Not enough Candles');
+        };
+        return $this;
+    }
     /**
      * Shows a list of argument names for this signal
      * @return array
      */
     abstract public function showArgs();
 
+    protected function checkArgs(Array $args){
+        $okay= true;
+        $argNames = $this->showArgs();
+        foreach($argNames as $argName){
+            if(!isset($args[$argName])){
+                $okay=false;
+            }
+        }
+        return $okay;
+    }
+
     /**
      * sets the arguments. accepts an array key=>value pairs
      * @param array $args
-     * @return void
+     * @return int
      */
-
     abstract public function setArgs(Array $args);
 
     /**
@@ -48,7 +73,7 @@ abstract class Signal
      * @return Array $recommendation
      * [instrument, side, open, stopLoss, stopLossPips, rr]
      */
-    abstract public function Analyse();
+    abstract public function analyse();
 
     protected function direction($shift){
         if($this->open($shift)>$this->close($shift)){

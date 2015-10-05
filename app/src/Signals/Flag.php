@@ -14,9 +14,6 @@ class Flag extends Signal
     public $description =   'This signal will find a flag based on 2 or 3 candles in the pole with 1 breather candle '.
                             'with two % settings for body/range of pole candles and % of breather retracement';
 
-    public function __construct(){
-
-    }
     /**
      * Shows a list of argument names for this signal
      * @return array
@@ -28,7 +25,8 @@ class Flag extends Signal
             'maxBreatherCandles',
             'percentBreatherSize',
             'strongPoleCandleCent',
-            'entryBufferPips'
+            'entryBufferPips',
+            'instrument'
         ];
         }
 
@@ -39,13 +37,20 @@ class Flag extends Signal
     /**
      * sets the arguments. accepts an array key=>value pairs
      * @param array $args
-     * @return void
+     * @return int
+     * @throws \Exception
      */
 
     public function setArgs(Array $args){
         //TODO check args in showArgs() are defined keys in input
-        $this->args=$args;
-        $this->reqNumCandles = $this->args['noOfPoleCandles']+$this->args['maxBreatherCandles']+2;
+        if($this->checkArgs($args)){
+            $this->args=$args;
+            $this->reqNumCandles = $this->args['noOfPoleCandles']+$this->args['maxBreatherCandles']+2;
+            $this->analyseArgs=true;
+            return count($args);
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -72,6 +77,7 @@ class Flag extends Signal
     public function loadCandles(Array $candles){
         if(count($candles)>$this->getReqNumCandles()){
             $this->candles=array_reverse($candles);
+            $this->analyseCandles=true;
             return(count($candles));
         } else {
             return 0;
@@ -81,9 +87,9 @@ class Flag extends Signal
     /**
      * Runs the analysis and returns a recommendation.
      * @return Array $recommendation
-     * [BOOL trade, instrument, side, open, stopLoss, stopLossPips, rr]
+     * [BOOL trade, instrument, side, entry, stopLoss, rr]
      */
-    public function Analyse(){
+    public function analyse(){
         // we need a min of 5 candles for this pattern
         $values = [];
         $trade = false;
@@ -102,8 +108,7 @@ class Flag extends Signal
         $strong = $this->args['strongPoleCandleCent'];
         $buffer = $this->args['entryBufferPips'];
         $maxValid = $maxBreatherCandles;
-        $i = 0;
-        while($i<$maxValid){
+        for($i=0;$i<$maxValid;$i++){
             // find pattern  ------------------------------------------------------------------
             $pattern = false;
             if (($this->direction($i + 1) == $this->direction($i + 2)) && ($this->direction($i) != $this->direction($i + 1))) {
