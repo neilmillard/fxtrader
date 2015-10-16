@@ -5,16 +5,38 @@
 {% block content %}
 
     {% for strategy in strategies %}
-    <div style="">
-        <p>ID: {{ strategies.accountid }} </p>
-        <p>Name: {{ strategies.name }}</p>
-        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': strategy.id}) }}">
-            Update
-        </a>
+    <div class="row" style="background: lightgoldenrodyellow;">
+        <div class="col-xs-6">
+            <p>ID: {{ strategy.id }} </p>
+            <p>Name: {{ strategy.name }}</p>
+            <p>Description: {{ strategy.description }}</p>
+            <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': strategy.id}) }}">
+                Update Strategy
+            </a>
+            <a class="btn" style="background: #3438db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategyoptions',{'uid': strategy.id}) }}">
+                Update Options
+            </a>
+            {% if strategy.is_subscribable() %}
+                <span class="alert alert-success"><span class="glyphicon glyphicon-ok-circle"></span></span>
+            {% else %}
+                <span class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span> Check Options</span>
+            {% endif %}
+            <br/>
+            <br/>
+        </div>
+        <div class="col-xs-6">
+            <ul class="list-unstyled">
+                Options
+                {% for option, value in strategy.params %}
+                    <li>{{ option }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+    <br/>
     {% endfor %}
     <div>
-        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': 'new'}) }}">
+        <a class="btn" style="background: #34982b;color: #ffffff;" href="{{ base_url() }}{{ path_for('editstrategy',{'uid': 'new'}) }}">
             Add New Strategy
         </a>
     </div>

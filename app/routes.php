@@ -23,8 +23,12 @@ $app->get('/admin/strategies','App\Action\StrategiesAction:admin')
     ->setName('adminstrategies')
     ->add('Authenticator\Middleware:auth');
 
-$app->get('/admin/editstrategy/{uid}','App\Action\StrategiesAction:edit')
+$app->map(['GET','POST'],'/admin/editstrategy/{uid}','App\Action\StrategiesAction:edit')
     ->setName('editstrategy')
+    ->add('Authenticator\Middleware:auth');
+
+$app->map(['GET','POST'],'/admin/editstrategy/{uid}/options','App\Action\StrategiesAction:options')
+    ->setName('editstrategyoptions')
     ->add('Authenticator\Middleware:auth');
 
 /** @noinspection PhpUndefinedMethodInspection */

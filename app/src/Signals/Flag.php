@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Signals;
+use App\Signal;
 
 /**
  * Class Flag
@@ -18,19 +19,16 @@ class Flag extends Signal
      * Shows a list of argument names for this signal
      * @return array
      */
-    public function showArgs(){
-        if(empty($this->argsnames)){
-        $this->argsnames = [
+    public static function showArgs(){
+        $argsNames = [
             'noOfPoleCandles',
             'maxBreatherCandles',
             'percentBreatherSize',
             'strongPoleCandleCent',
-            'entryBufferPips',
-            'instrument'
+            'entryBufferPips'
         ];
-        }
 
-        return $this->argsnames;
+        return $argsNames;
 
     }
 
@@ -42,11 +40,9 @@ class Flag extends Signal
      */
 
     public function setArgs(Array $args){
-        //TODO check args in showArgs() are defined keys in input
         if($this->checkArgs($args)){
             $this->args=$args;
             $this->reqNumCandles = $this->args['noOfPoleCandles']+$this->args['maxBreatherCandles']+2;
-            $this->analyseArgs=true;
             return count($args);
         } else {
             return 0;

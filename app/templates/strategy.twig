@@ -13,20 +13,27 @@
     </div>
     <div>
     <form class="form-signin well well-sm" role="form" name="strategy" id="strategy" method="post">
-        <h2 class="form-signin-heading">Manage Account</h2>
+        <h2 class="form-signin-heading">Manage Strategy</h2>
         <input type="text" name="name" class="form-control" placeholder="name" value="{{ strategy.name }}" required>
         <input type="text" name="description" class="form-control" placeholder="description" value="{{ strategy.description }}" required>
-        <select name="strategyexit">
-            <option value="1">1%</option>
-            <option value="3">3 Bar</option>
-            <option value="2">signal custom</option>
-        </select>
-        <select name="signal">
+        <span>Instrument: </span><select name="instrument">
+            {% for pair in instruments %}
+
+                <option value="{{ pair }}" {% if strategy.instrument==pair %}selected="selected"{% endif %}>{{ pair}}</option>
+            {% endfor %}
+        </select><br/>
+        <span>Exit Strategy: </span><select name="strategyexit">
+            <option value="1" {% if strategy.strategyexit==1 %}selected="selected"{% endif %}>1%</option>
+            <option value="3" {% if strategy.strategyexit==3 %}selected="selected"{% endif %}>3 Bar</option>
+            <option value="2" {% if strategy.strategyexit==2 %}selected="selected"{% endif %}>signal custom</option>
+        </select><br/>
+        <span>Entry Signal:</span><select name="signal">
             {% for signal in signallist %}
-                <option value="{{ signal }}">{{ signal }}</option>
+                <option value="{{ signal.name }}" {% if strategy.signal==signal.name %}selected="selected"{% endif %}>{{ signal.name}}</option>
             {% endfor %}
         </select>
-        <input type="text" name="params" class="form-control" placeholder="params" value="{{ strategy.params }}" required>
+        <span>Options</span>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </form>
     </div>

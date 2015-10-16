@@ -26,7 +26,7 @@ $container['dsn'] = function ($c) {
 
 $frozen = $container['settings']['database']['frozen'];
 //with namespace Model
-define( 'REDBEAN_MODEL_PREFIX', '\\App\\Model\\' );
+define( 'REDBEAN_MODEL_PREFIX', '\\App\\Models\\' );
 \RedBeanPHP\R::setup($container['dsn'], $container['settings']['database']['username'], $container['settings']['database']['password'],$frozen);
 
 // database mysqli connection

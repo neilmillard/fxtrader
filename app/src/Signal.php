@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Signals;
+namespace App;
 
 
 abstract class Signal
@@ -29,7 +29,9 @@ abstract class Signal
      * Shows a list of argument names for this signal
      * @return array
      */
-    abstract public function showArgs();
+    public static function showArgs(){
+        return ['Not Configured'];
+    }
 
     protected function checkArgs(Array $args){
         $okay= true;
@@ -47,7 +49,14 @@ abstract class Signal
      * @param array $args
      * @return int
      */
-    abstract public function setArgs(Array $args);
+    public function setArgs(Array $args){
+        if($this->checkArgs($args)){
+            $this->args=$args;
+            return count($args);
+        } else {
+            return 0;
+        }
+    }
 
     /**
      * Returns an array key-value of the current arguments

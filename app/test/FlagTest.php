@@ -110,7 +110,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3963,'high'=>1.4005,'low'=>1.3950,'close'=>1.3990,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3990,'high'=>1.4005,'low'=>1.3950,'close'=>1.4030,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4030,'high'=>1.4040,'low'=>1.3950,'close'=>1.4090,'complete'=>true,'gran'=>'D'),
-                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4090,'high'=>1.4091,'low'=>1.3950,'close'=>1.3995,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4090,'high'=>1.4091,'low'=>1.3925,'close'=>1.3925,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3925,'high'=>1.4005,'low'=>1.3920,'close'=>1.4000,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4105,'low'=>1.3995,'close'=>1.4100,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4100,'high'=>1.4100,'low'=>1.4060,'close'=>1.4069,'complete'=>true,'gran'=>'D'),
@@ -129,6 +129,37 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'side'=>'buy',
                     'entry'=>'1.4110',
                     'stopLoss'=>'1.4055',
+                    'rr'=>1
+                )
+            ),
+            array(
+                'bear flag',
+                array( //candles
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4005,'low'=>1.3950,'close'=>1.3970,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3970,'high'=>1.4005,'low'=>1.3920,'close'=>1.3920,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3920,'high'=>1.4005,'low'=>1.3950,'close'=>1.3963,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3963,'high'=>1.4005,'low'=>1.3950,'close'=>1.3990,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3990,'high'=>1.4005,'low'=>1.3950,'close'=>1.4030,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4030,'high'=>1.4040,'low'=>1.3950,'close'=>1.4090,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4090,'high'=>1.4091,'low'=>1.3950,'close'=>1.3995,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3995,'high'=>1.4000,'low'=>1.3910,'close'=>1.3910,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3910,'high'=>1.3915,'low'=>1.3828,'close'=>1.3830,'complete'=>true,'gran'=>'D'),
+                    array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3830,'high'=>1.3855,'low'=>1.3828,'close'=>1.3852,'complete'=>true,'gran'=>'D'),
+                ),
+                array( //args
+                    'noOfPoleCandles'=>2,
+                    'maxBreatherCandles'=>1,
+                    'percentBreatherSize'=>0.3,
+                    'strongPoleCandleCent'=>0.9,
+                    'entryBufferPips'=>0.0005,
+                    'instrument'=>'EUR_USD'
+                ),
+                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr]
+                    'trade'=>true,
+                    'instrument'=>'EUR_USD',
+                    'side'=>'sell',
+                    'entry'=>'1.3823',
+                    'stopLoss'=>'1.3860',
                     'rr'=>1
                 )
             )
