@@ -10,10 +10,10 @@ use App\Signal;
  */
 class Flag extends Signal
 {
-    protected $reqNumCandles = 10;
     public $name = 'The Flag';
     public $description =   'This signal will find a flag based on 2 or 3 candles in the pole with 1 breather candle '.
                             'with two % settings for body/range of pole candles and % of breather retracement';
+    protected $reqNumCandles = 10;
 
     /**
      * Shows a list of argument names for this signal
@@ -58,26 +58,28 @@ class Flag extends Signal
     }
 
     /**
-     * Returns the min number of Candles required for this Signal
-     * @return int
-     */
-    public function getReqNumCandles(){
-        return $this->reqNumCandles;
-    }
-
-    /**
      * Loads the candles into the instance, [date,instrument,candletime,open,high,low,close,complete,gran]
      * @param array $candles
      * @return int
      */
-    public function loadCandles(Array $candles){
-        if(count($candles)>$this->getReqNumCandles()){
-            $this->candles=array_reverse($candles);
-            $this->analyseCandles=true;
-            return(count($candles));
+    public function loadCandles(Array $candles)
+    {
+        if (count($candles) > $this->getReqNumCandles()) {
+            $this->candles = array_reverse($candles);
+            $this->analyseCandles = true;
+            return (count($candles));
         } else {
             return 0;
         }
+    }
+
+    /**
+     * Returns the min number of Candles required for this Signal
+     * @return int
+     */
+    public function getReqNumCandles()
+    {
+        return $this->reqNumCandles;
     }
 
     /**
@@ -95,6 +97,8 @@ class Flag extends Signal
         $values['entry'] = '';
         $values['stopLoss'] = '';
         $values['rr'] = 1;
+        $values['gran'] = 'D';
+        $values['expiry'] = 0;
 
         // first find if we need 2 or three in our flag pole
         $polecandles = $this->args['noOfPoleCandles'];
@@ -161,6 +165,9 @@ class Flag extends Signal
             $values['trade'] = $trade;
             $values['instrument'] = $this->candles[0]['instrument'];
             $values['rr'] = 1;
+            $values['gran'] = $this->candles[0]['gran'];
+            $granTime = \OandaWrap::gran_seconds($values['gran']);
+            $values['expiry'] = time() + $granTime;
         }
 
         return $values;
