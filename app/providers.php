@@ -14,6 +14,10 @@ $view->addExtension(new Slim\Views\TwigExtension(
     $container->get('router'),
     $container->get('request')->getUri()
 ));
+/** @var Twig_Environment $twigEnvironment */
+$twigEnvironment = $view->getEnvironment();
+$twigEnvironment->addFilter(new Twig_SimpleFilter('ebase64', 'base64_encode'));
+$twigEnvironment->addFilter(new Twig_SimpleFilter('dbase64', 'base64_decode'));
 
 $container->register($view);
 

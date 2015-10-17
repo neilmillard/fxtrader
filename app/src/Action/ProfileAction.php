@@ -20,7 +20,6 @@ final class ProfileAction extends Controller
         $id=$this->authenticator->getIdentity();
         $user = R::findOne('users',' email = :username ',['username'=>$id['email']]);
         $expUser = $user->export();
-        $expUser['hashemail'] = base64_encode($user['email']);
         $this->view->render($response, 'profile.twig',$expUser);
         return $response;
     }
@@ -41,11 +40,8 @@ final class ProfileAction extends Controller
                 return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('profile'));
             }
         }
-        if($username!='new'){
-            $user = R::findOrCreate('users', [
-                'email' => $username
-            ]);
-        } else {
+        $user = R::findOne('users', ' email = ? ', [$username]);
+        if ($user == NULL) {
             $user = R::dispense('users');
         }
         if ($request->isPost()) {

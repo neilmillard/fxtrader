@@ -14,7 +14,7 @@
                     <div class="panel-body">
                         <p> Fullname: {{ user.fullname }}</p>
                         <a class="btn btn-warning"
-                           href="{{ base_url() }}{{ path_for('edituser',{'username': hashemail}) }}">
+                           href="{{ base_url() }}{{ path_for('edituser',{'username': user.email|ebase64}) }}">
                             Update
                         </a>
                     </div>
@@ -23,7 +23,7 @@
 {% endfor %}
     </div>
     <div>
-        <a class="btn btn-success" href="{{ base_url() }}{{ path_for('edituser',{'username': 'new'}) }}">Create New
+        <a class="btn btn-success" href="{{ base_url() }}{{ path_for('edituser',{'username': 'bmV3'}) }}">Create New
             User</a>
     </div>
 <br/><br/>

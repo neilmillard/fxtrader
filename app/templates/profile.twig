@@ -9,7 +9,8 @@
             <div class="panel-heading">AccountID: {{ fullname }}</div>
             <div class="panel-body">
                 <p> Email: {{ email }}</p>
-                <a class="btn btn-success" href="{{ base_url() }}{{ path_for('edituser',{'username': hashemail}) }}">
+                <a class="btn btn-success"
+                   href="{{ base_url() }}{{ path_for('edituser',{'username': email|ebase64}) }}">
                     Update
                 </a>
             </div>
