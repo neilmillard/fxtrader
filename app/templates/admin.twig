@@ -3,11 +3,14 @@
 {% block page_title %}{{ parent() }} | Rotas{% endblock %}
 
 {% block content %}
-<div>
-    <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('users') }}">Manage Users</a>
+    <div class="page-header">
+        <h3>Admin Home</h3>
 </div>
+    <div>
+        <a class="btn" href="{{ base_url() }}{{ path_for('users') }}">Manage Users</a>
+    </div>
 <div>
-    <a class="btn" style="background: #9834db;color: #ffffff;" href="{{ base_url() }}{{ path_for('adminstrategies') }}">Manage Strategies</a>
+    <a class="btn" href="{{ base_url() }}{{ path_for('adminstrategies') }}">Manage Strategies</a>
 </div>
 <br/><br/>
 

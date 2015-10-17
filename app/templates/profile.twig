@@ -3,14 +3,19 @@
 {% block page_title %}{{ parent() }} | Profile{% endblock %}
 
 {% block content %}
-<div>
-    <h2>Identity</h2>
-    <p> Email: {{ email }}</p>
-    <p> Fullname: {{ fullname }}</p>
-    <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('edituser',{'username': hashemail}) }}">
-        Update
-    </a>
-</div>
+    <div class="page-header">Profile</div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">AccountID: {{ fullname }}</div>
+            <div class="panel-body">
+                <p> Email: {{ email }}</p>
+                <a class="btn btn-success" href="{{ base_url() }}{{ path_for('edituser',{'username': hashemail}) }}">
+                    Update
+                </a>
+            </div>
+        </div>
+    </div>
+
 <br/><br/>
 
 {% endblock %}

@@ -42,7 +42,7 @@ $app->get('/admin', 'App\Action\AdminAction:dispatch')
     ->add('Authenticator\Middleware:auth');
 
 /** @noinspection PhpUndefinedMethodInspection */
-$app->get('/users', 'App\Action\UserAction:dispatch')
+$app->get('/admin/users', 'App\Action\UserAction:dispatch')
     ->setName('users')
     ->add('Authenticator\Middleware:auth');
 

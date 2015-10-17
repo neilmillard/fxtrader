@@ -3,18 +3,28 @@
 {% block page_title %}{{ parent() }} | Users{% endblock %}
 
 {% block content %}
-{% for user in users %}
-<div>
-    <h2>{{ user.name }}</h2>
-    <p> Fullname: {{ user.fullname }}</p>
-    <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('edituser',{'username': user.name}) }}">
-        Update
-    </a>
-</div>
+    <div class="page-header">
+        <h3>Users</h3>
+    </div>
+    <div class="row">
+        {% for user in users %}
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ user.email }}</div>
+                    <div class="panel-body">
+                        <p> Fullname: {{ user.fullname }}</p>
+                        <a class="btn btn-warning"
+                           href="{{ base_url() }}{{ path_for('edituser',{'username': hashemail}) }}">
+                            Update
+                        </a>
+                    </div>
+                </div>
+            </div>
 {% endfor %}
-
+    </div>
     <div>
-        <a class="btn" style="background: #9834db;color: #ffffff;" href="{{ base_url() }}{{ path_for('edituser',{'username': 'new'}) }}">Create New User</a>
+        <a class="btn btn-success" href="{{ base_url() }}{{ path_for('edituser',{'username': 'new'}) }}">Create New
+            User</a>
     </div>
 <br/><br/>
 

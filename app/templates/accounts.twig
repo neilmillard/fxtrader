@@ -4,24 +4,38 @@
 
 {% block content %}
 
-    <div>
-        <h2>Identity</h2>
-        <p> Email: {{ identity.email }}</p>
+    <div class="page-header">
+        <h3>Accounts</h3>
     </div>
+    <div class="clearfix"></div>
+    <div class="row">
     {% for account in accounts %}
-    <div style="">
-        <p>AccountID: {{ account.accountid }} </p>
-        <p>Server Type: {{ account.servertype }} </p>
-        <p>Balance: {{ account.currency }} {{ account.balance }} </p>
-        <p>Open Trades: {{ account.openTrades }}</p>
-        <p>Open Orders: {{ account.openOrders }}</p>
-        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editaccount',{'uid': account.id}) }}">
-            Update
-        </a>
+        {% set serverlabel = "success" %}
+        {% if account.servertype == "Demo" %}
+            {% set serverlabel = "info" %}
+        {% endif %}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">AccountID: {{ account.accountid }}</div>
+                <div class="panel-body">
+                    <h4>
+                        <span class="label label-{{ serverlabel }}">{{ account.servertype }}</span>
+                        <span>Balance: {{ account.currency }} {{ account.balance }} </span>
+                    </h4>
+
+                    <p>Open Trades: <span class="badge">{{ account.openTrades }}</span></p>
+
+                    <p>Open Orders: <span class="badge">{{ account.openOrders }}</span></p>
+                    <a class="btn btn-warning" href="{{ base_url() }}{{ path_for('editaccount',{'uid': account.id}) }}">
+                        Update
+                    </a>
+                </div>
+            </div>
     </div>
     {% endfor %}
+    </div>
     <div>
-        <a class="btn" style="background: #3498db;color: #ffffff;" href="{{ base_url() }}{{ path_for('editaccount',{'uid': 'new'}) }}">
+        <a class="btn btn-success" href="{{ base_url() }}{{ path_for('editaccount',{'uid': 'new'}) }}">
             Create New account
         </a>
     </div>
