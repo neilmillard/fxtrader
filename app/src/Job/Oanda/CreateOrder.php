@@ -29,14 +29,17 @@ class CreateOrder extends Oanda
 {
     public function perform()
     {
-        //TODO: place limit order job
-        $side='buy';
-        $pair='USD_CAD';
-        $price='1.3500';
-        $expiry=time()+60;
-        $stopLoss='1.3400';
-        $takeProfit=NULL;
-        $risk=1;
+        // Check keys exist in args.
+        $order = $this->args['oanda']['order'];
+
+        $side = $order['side'];
+        $pair = $order['pair'];
+        // TODO check price is valid with side
+        $price = $order['price'];
+        $expiry = $order['expiry'];
+        $stopLoss = $order['stopLoss'];
+        $takeProfit = $order['takeProfit'];
+        $risk = $order['risk'];
 
         $this->oandaInfo->placeLimitOrder($side,$pair,$price,$expiry,$stopLoss,$takeProfit,$risk);
 

@@ -125,54 +125,32 @@ class Broker_Oanda {
 
     }
 
-    public function updateAccount(){
-        $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
-        if(empty($account)) {
-            return;
-        }
-        $data = $this->oandaWrap->account($this->accountId);
-        $account->balance = $data->balance;
-        $account->currency = $data->accountCurrency;
-        if($account->openTrades != $data->openTrades){
-            // our trades have changed best get them updated
-            // TODO: update trades table via a job
-            $account->openTrades = $data->openTrades;
-        }
-        if($account->openOrders != $data->openOrders){
-            // our ourders have changed best get them updated
-            // TODO: update orders table via a job
-            $account->openOrders = $data->openOrders;
-        }
-        $account->unrealizedPl = $data->unrealizedPl;
-        $aid = R::store($account);
-
-    }
-
     /**
      * This will get transactions from an account (from the last one acquired
      * and process the types to update orders and trades
      */
-    public function processTransactions(){
+    public function processTransactions()
+    {
         $account = R::findOne('accounts',' accountid = ?', [ $this->accountId ]);
         if(empty($account)) {
             return;
         }
         $transactionId = $account['lasttid'];
-        if(empty($transactionId)){
+        if (empty($transactionId)) {
             $otransactions = $this->oandaWrap->transactions();
         } else {
             $otransactions = $this->oandaWrap->transactions_minid($transactionId);
         }
 
-        if(isset($otransactions->code)){
+        if (isset($otransactions->code)) {
             return $otransactions->message;
         }
-        foreach($otransactions->transactions as $transaction){
+        foreach ($otransactions->transactions as $transaction) {
 
             $this->processTransaction($transaction);
 
-            if($transaction->id > $transactionId){
-                $transactionId=$transaction->id;
+            if ($transaction->id > $transactionId) {
+                $transactionId = $transaction->id;
             }
 
         }
@@ -258,6 +236,30 @@ class Broker_Oanda {
                 unset($currTrade);
                 break;
         }
+
+    }
+
+    public function updateAccount()
+    {
+        $account = R::findOne('accounts', ' accountid = ?', [$this->accountId]);
+        if (empty($account)) {
+            return;
+        }
+        $data = $this->oandaWrap->account($this->accountId);
+        $account->balance = $data->balance;
+        $account->currency = $data->accountCurrency;
+        if ($account->openTrades != $data->openTrades) {
+            // our trades have changed best get them updated
+            // TODO: update trades table via a job
+            $account->openTrades = $data->openTrades;
+        }
+        if ($account->openOrders != $data->openOrders) {
+            // our ourders have changed best get them updated
+            // TODO: update orders table via a job
+            $account->openOrders = $data->openOrders;
+        }
+        $account->unrealizedPl = $data->unrealizedPl;
+        $aid = R::store($account);
 
     }
 
@@ -364,7 +366,12 @@ class Broker_Oanda {
         $currOrder->time = $order->time;
         $currOrder->expiry = $order->orderOpened->expiry;
         $currOrder->price = $order->price;
-
+        if (empty($currOrder->account)) {
+            $account = R::findOne('accounts', ' accountid = ?', [$this->accountId]);
+            if (!empty($account)) {
+                $currOrder->account = $account;
+            }
+        }
         // apply stop loss
         $sOrder=$this->oandaWrap->order_set_stop($currOrder['oandaoid'],$stopLoss);
         $currOrder->stopLoss = $stopLoss;
