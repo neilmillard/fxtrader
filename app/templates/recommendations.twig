@@ -1,0 +1,55 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Recommendations{% endblock %}
+
+{% block content %}
+    <div>
+        <a class="btn" href="{{ base_url() }}{{ path_for('adminqueues') }}">View JobQueues Index</a>
+    </div>
+    <div class="page-header">
+        <h3>Recommendations</h3>
+    </div>
+    {% for reco in recommendations %}
+        <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Pair: {{ reco.instrument }}</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Signal</td>
+                            <td>{{ reco.signal }}</td>
+                        </tr>
+                        <tr>
+                            <td>Side</td>
+                            <td>{{ reco.side }}</td>
+                        </tr>
+                        <tr>
+                            <td>Entry</td>
+                            <td>{{ reco.entry }}</td>
+                        </tr>
+                        <tr>
+                            <td>Stop</td>
+                            <td>{{ reco.stopLoss }}</td>
+                        </tr>
+                        <tr>
+                            <td>RR</td>
+                            <td>1:{{ reco.rr }}</td>
+                        </tr>
+                        <tr>
+                            <td>Gran</td>
+                            <td>{{ reco.gran }}</td>
+                        </tr>
+                        <tr>
+                            <td>Expires</td>
+                            <td>{{ reco.expiry }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br/>
+    {% endfor %}
+    <br/><br/>
+
+{% endblock %}

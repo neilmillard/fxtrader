@@ -92,13 +92,15 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'entryBufferPips'=>0.0005,
                     'instrument'=>'EUR_USD'
                 ),
-                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr]
+                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr, gran, expiry]
                     'trade'=>false,
                     'instrument'=>'',
                     'side'=>'',
                     'entry'=>'',
                     'stopLoss'=>'',
-                    'rr'=>1
+                    'rr' => 1,
+                    'gran' => 'D',
+                    'expiry' => 0
                 )
             ),
             array(
@@ -123,13 +125,15 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'entryBufferPips'=>0.0005,
                     'instrument'=>'EUR_USD'
                 ),
-                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr]
+                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr, gran, expiry]
                     'trade'=>true,
                     'instrument'=>'EUR_USD',
                     'side'=>'buy',
                     'entry'=>'1.4110',
                     'stopLoss'=>'1.4055',
-                    'rr'=>1
+                    'rr' => 1,
+                    'gran' => 'D',
+                    'expiry' => time() + (60 * 60 * 24)
                 )
             ),
             array(
@@ -154,13 +158,15 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'entryBufferPips'=>0.0005,
                     'instrument'=>'EUR_USD'
                 ),
-                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr]
+                array( //recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr, gran, expiry]
                     'trade'=>true,
                     'instrument'=>'EUR_USD',
                     'side'=>'sell',
                     'entry'=>'1.3823',
                     'stopLoss'=>'1.3860',
-                    'rr'=>1
+                    'rr' => 1,
+                    'gran' => 'D',
+                    'expiry' => time() + (60 * 60 * 24)
                 )
             )
         );

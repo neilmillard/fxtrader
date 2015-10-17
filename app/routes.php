@@ -31,6 +31,22 @@ $app->map(['GET','POST'],'/admin/editstrategy/{uid}/options','App\Action\Strateg
     ->setName('editstrategyoptions')
     ->add('Authenticator\Middleware:auth');
 
+$app->get('/admin/queues/index', 'App\Action\QueuesAction:admin')
+    ->setName('adminqueues')
+    ->add('Authenticator\Middleware:auth');
+
+$app->get('/admin/queues/jobs', 'App\Action\QueuesAction:jobs')
+    ->setName('adminjobqueue')
+    ->add('Authenticator\Middleware:auth');
+
+$app->get('/admin/queues/workers', 'App\Action\QueuesAction:workers')
+    ->setName('adminworkers')
+    ->add('Authenticator\Middleware:auth');
+
+$app->get('/admin/recommendations', 'App\Action\QueuesAction:recommendations')
+    ->setName('adminrecommendations')
+    ->add('Authenticator\Middleware:auth');
+
 /** @noinspection PhpUndefinedMethodInspection */
 $app->map(['GET','POST'],'/user/{username}/edit', 'App\Action\ProfileAction:edituser')
     ->setName('edituser')

@@ -56,6 +56,10 @@ $container['App\Action\AdminAction'] = function ($c) {
     return new App\Action\AdminAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
 
+$container['App\Action\QueuesAction'] = function ($c) {
+    return new App\Action\QueuesAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
+};
+
 $container['App\Action\UserAction'] = function ($c) {
     return new App\Action\UserAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };

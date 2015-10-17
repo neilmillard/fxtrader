@@ -3,7 +3,9 @@
 {% block page_title %}{{ parent() }} | Strategies{% endblock %}
 
 {% block content %}
-
+    <div class="page-header">
+        <h3>Strategies</h3>
+    </div>
     {% for strategy in strategies %}
     <div class="row" style="background: lightgoldenrodyellow;">
         <div class="col-xs-6">

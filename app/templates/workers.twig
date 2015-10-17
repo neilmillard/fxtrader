@@ -1,0 +1,24 @@
+{% extends 'layout.twig' %}
+
+{% block page_title %}{{ parent() }} | Workers{% endblock %}
+
+{% block content %}
+    <div>
+        <a class="btn" href="{{ base_url() }}{{ path_for('adminqueues') }}">View JobQueues Index</a>
+    </div>
+    <div class="page-header">
+        <h3>Workers</h3>
+    </div>
+    {% for worker in workers %}
+        <div class="row">
+        <div class="col-sm-3">
+        <div class="panel panel-default">
+        <div class="panel-heading">{{ worker.name }}</div>
+        <div class="panel-body">
+            <p>{{ worker.job }}</p>
+        </div>
+        <br/>
+    {% endfor %}
+    <br/><br/>
+
+{% endblock %}
