@@ -35,8 +35,8 @@ final class QueuesAction extends Controller
     private function getTotalJobs()
     {
         $totalJobs = 0;
-        $queuenames = \Resque::queues();
-        foreach ($queuenames as $queue) {
+        $queueNames = \Resque::queues();
+        foreach ($queueNames as $queue) {
             $size = \Resque::size($queue);
             $totalJobs += $size;
         }
@@ -56,13 +56,37 @@ final class QueuesAction extends Controller
         foreach ($queuenames as $queue) {
             $size = \Resque::size($queue);
             $queues[] = ['name' => $queue,
-                'size' => $size
+                'size' => $size,
+                'jobs' => $this->peek($queue)
             ];
         }
 
         $data['queues'] = $queues;
         $this->view->render($response, 'queues.twig', $data);
         return $response;
+    }
+
+    /**
+     * Peek
+     *
+     * @param string $queue The name of the queue
+     * @param integer $start
+     * @param integer $count
+     *
+     * @return array List of jobs
+     *
+     */
+    public static function peek($queue, $start = 0, $count = 1000)
+    {
+        $jobs = \Resque::redis()->lrange('queue:' . $queue, $start, $count);
+        $curr_jobs = array();
+        if (is_array($jobs)) {
+            foreach ($jobs as $job) {
+                $curr_jobs[] = json_decode($job, TRUE);
+            }
+        }
+
+        return $curr_jobs;
     }
 
     public function recommendations(Request $request, Response $response, Array $args)
