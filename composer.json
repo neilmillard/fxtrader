@@ -38,9 +38,9 @@
         "chrisboulton/php-resque-scheduler": "1.1"
 
     },
+  "_": "hack for phpstorm 9 with phpunit 5. blacklist has been removed in current version",
   "require-dev": {
     "phpunit/phpunit": "5.0.*",
-    /* hack for phpstorm 9 with phpunit 5. blacklist has been removed in current version */
     "phpunit/php-code-coverage": "dev-master#b8436b000263f6d72fbad1d36890e247ce84857e"
   },
     "minimum-stability": "dev"
