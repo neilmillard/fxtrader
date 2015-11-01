@@ -45,9 +45,7 @@ final class ProfileAction extends Controller
             $user = R::dispense('users');
         }
         if ($request->isPost()) {
-            $data = $request->getParams();
-            //$username = $request->getParam('username');
-            $user->import($data,'userfullname');
+            $user->fullname = $request->getParam('userfullname');
             $user->email = $request->getParam('username');
             $password = $request->getParam('userpassword');
             if(!empty($password)){
