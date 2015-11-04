@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3ffc0a9b58804338e95bfa89ad31666d",
+    "hash": "da17eab322058a629939629601891cc3",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -12,16 +12,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/php-resque.git",
-                "reference": "2c5d9a1f3c454cd202afb7ad0707856a8f7defa6"
+                "reference": "4a18d5317cd669cbd785268e8d83abe8c43d26f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque/zipball/2c5d9a1f3c454cd202afb7ad0707856a8f7defa6",
-                "reference": "2c5d9a1f3c454cd202afb7ad0707856a8f7defa6",
+                "url": "https://api.github.com/repos/neilmillard/php-resque/zipball/4a18d5317cd669cbd785268e8d83abe8c43d26f6",
+                "reference": "4a18d5317cd669cbd785268e8d83abe8c43d26f6",
                 "shasum": ""
             },
             "require": {
-                "colinmollenhour/credis": "1.2.*",
+                "colinmollenhour/credis": "~1.2",
                 "php": ">=5.3.0",
                 "psr/log": "1.0.0"
             },
@@ -62,7 +62,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque/tree/master"
             },
-            "time": "2015-11-04 20:41:32"
+            "time": "2015-11-04 22:06:18"
         },
         {
             "name": "chrisboulton/php-resque-scheduler",
@@ -70,12 +70,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/php-resque-scheduler.git",
-                "reference": "9b0b4e176fbc0349d99ec7655a2ac1266bf77906"
+                "reference": "815bbb955ec7bed74188eb355c72911cc51105c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/9b0b4e176fbc0349d99ec7655a2ac1266bf77906",
-                "reference": "9b0b4e176fbc0349d99ec7655a2ac1266bf77906",
+                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/815bbb955ec7bed74188eb355c72911cc51105c2",
+                "reference": "815bbb955ec7bed74188eb355c72911cc51105c2",
                 "shasum": ""
             },
             "require": {
@@ -98,20 +98,20 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque-scheduler/tree/master"
             },
-            "time": "2015-11-04 18:49:15"
+            "time": "2015-11-04 22:03:43"
         },
         {
             "name": "colinmollenhour/credis",
-            "version": "1.2",
+            "version": "1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "e8a666d1d5cf442c81792bf6e69fabf3b5255ee8"
+                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/e8a666d1d5cf442c81792bf6e69fabf3b5255ee8",
-                "reference": "e8a666d1d5cf442c81792bf6e69fabf3b5255ee8",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/7bd47b61fc3dad28aa881de45c71026256ad27cc",
+                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,8 @@
             "autoload": {
                 "classmap": [
                     "Client.php",
-                    "Cluster.php"
+                    "Cluster.php",
+                    "Sentinel.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -136,7 +137,7 @@
             ],
             "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
             "homepage": "https://github.com/colinmollenhour/credis",
-            "time": "2013-03-19 02:57:04"
+            "time": "2014-11-13 18:40:25"
         },
         {
             "name": "container-interop/container-interop",
@@ -1014,12 +1015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "b8436b000263f6d72fbad1d36890e247ce84857e"
+                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/84b40c563a4eb4251670a23b23f808b32fcf74f5",
-                "reference": "b8436b000263f6d72fbad1d36890e247ce84857e",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c84f05be256cd7c9d2340b26f7995b4afbf8787b",
+                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b",
                 "shasum": ""
             },
             "require": {
@@ -1068,7 +1069,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-09-14 06:55:19"
+            "time": "2015-10-06 15:51:05"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1849,8 +1850,7 @@
         "slim/flash": 20,
         "gabordemooij/redbean": 20,
         "tavurth/oandawrap": 20,
-        "chrisboulton/php-resque-scheduler": 20,
-        "phpunit/php-code-coverage": 20
+        "chrisboulton/php-resque-scheduler": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -26,20 +26,33 @@ $settings = loadsettings();
 
 $REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
 
+// A redis database number
+$REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
 if(!empty($REDIS_BACKEND)) {
-    Resque::setBackend($REDIS_BACKEND);
+    if (empty($REDIS_BACKEND_DB))
+        Resque::setBackend($REDIS_BACKEND);
+    else
+        Resque::setBackend($REDIS_BACKEND, $REDIS_BACKEND_DB);
 }
 
-$logLevel = 0;
+$logLevel = false;
 $LOGGING = $settings['resque']['LOGGING'];
 $VERBOSE = $settings['resque']['VERBOSE'];
 $VVERBOSE = $settings['resque']['VVERBOSE'];
 if(!empty($LOGGING) || !empty($VERBOSE)) {
-    $logLevel = Resque_Worker::LOG_NORMAL;
+    $logLevel = true;
 }
 else if(!empty($VVERBOSE)) {
-    $logLevel = Resque_Worker::LOG_VERBOSE;
+    $logLevel = true;
 }
+
+// See if the APP_INCLUDE containes a logger object,
+// If none exists, fallback to internal logger
+if (!isset($logger) || !is_object($logger)) {
+    $logger = new Resque_Log($logLevel);
+}
+
+$BLOCKING = getenv('BLOCKING') !== FALSE;
 
 $interval = 5;
 $INTERVAL = $settings['resque']['INTERVAL'];
@@ -53,19 +66,26 @@ if(!empty($COUNT) && $COUNT > 1) {
     $count = $COUNT;
 }
 
+$PREFIX = getenv('PREFIX');
+if (!empty($PREFIX)) {
+    $logger->log(Psr\Log\LogLevel::INFO, 'Prefix set to {prefix}', array('prefix' => $PREFIX));
+    Resque_Redis::prefix($PREFIX);
+}
+
 if($count > 1) {
     for($i = 0; $i < $count; ++$i) {
-        $pid = pcntl_fork();
+        $pid = Resque::fork();
         if($pid == -1) {
-            die("Could not fork worker ".$i."\n");
+            $logger->log(Psr\Log\LogLevel::EMERGENCY, 'Could not fork worker {count}', array('count' => $i));
+            die();
         }
         // Child, start the worker
         else if(!$pid) {
             $queues = explode(',', $QUEUE);
             $worker = new Resque_Worker($queues);
-            $worker->logLevel = $logLevel;
-            fwrite(STDOUT, '*** Starting worker '.$worker."\n");
-            $worker->work($interval);
+            $worker->setLogger($logger);
+            $logger->log(Psr\Log\LogLevel::NOTICE, 'Starting worker {worker}', array('worker' => $worker));
+            $worker->work($interval, $BLOCKING);
             break;
         }
     }
@@ -74,14 +94,14 @@ if($count > 1) {
 else {
     $queues = explode(',', $QUEUE);
     $worker = new Resque_Worker($queues);
-    $worker->logLevel = $logLevel;
+    $worker->setLogger($logger);
 
-    $PIDFILE = $settings['resque']['PIDFILE'];
+    $PIDFILE = getenv('PIDFILE');
     if ($PIDFILE) {
         file_put_contents($PIDFILE, getmypid()) or
         die('Could not write PID information to ' . $PIDFILE);
     }
 
-    fwrite(STDOUT, '*** Starting worker '.$worker."\n");
-    $worker->work($interval);
+    $logger->log(Psr\Log\LogLevel::NOTICE, 'Starting worker {worker}', array('worker' => $worker));
+    $worker->work($interval, $BLOCKING);
 }

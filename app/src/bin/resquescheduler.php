@@ -15,9 +15,12 @@ require __DIR__ . '/../../loadsettings.php';
 $settings = loadsettings();
 
 $REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
-
+$REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
 if(!empty($REDIS_BACKEND)) {
-    Resque::setBackend($REDIS_BACKEND);
+    if (empty($REDIS_BACKEND_DB))
+        Resque::setBackend($REDIS_BACKEND);
+    else
+        Resque::setBackend($REDIS_BACKEND, $REDIS_BACKEND_DB);
 }
 
 $logLevel = 0;
