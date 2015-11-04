@@ -10,6 +10,7 @@ $commands = array(
     'git status',
     'git pull origin dev',
 );
+require __DIR__ . '/../vendor/autoload.php';
 
 require __DIR__ . '/../app/loadsettings.php';
 $settings = $c['settings']['logger'];
