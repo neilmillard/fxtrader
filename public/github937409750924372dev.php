@@ -1,12 +1,6 @@
 <?php
-/**
- * GIT DEPLOYMENT SCRIPT
- *
- * Used for automatically deploying websites via github or bitbucket, more deets here:
- *
- *        https://gist.github.com/1809044
- */
-
+// destination
+$gitDir = "/home/neilmillard/webapps/fxtrader_app/fxtrader";
 // The commands
 $commands = array(
     'echo $PWD',
@@ -19,15 +13,21 @@ $commands = array(
 
 // Run the commands for output
 $output = '';
+$event = @$_SERVER['HTTP_X_GITHUB_EVENT'];
+$payload = file_get_contents('php://input');
+$data = json_decode($payload, true);
+$remote = NULL;
 $tmp = trim(shell_exec('whoami'));
-if ($tmp == 'neilmillard') {
-    foreach ($commands AS $command) {
-        // Run it
-        $tmp = shell_exec($command);
-        // Output
-        $output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
-        $output .= htmlentities(trim($tmp)) . "\n";
-    }
+if ($tmp == 'neilmillard' && $data['ref'] == '/refs/heads/dev') {
+    exec("git --work-tree={$gitDir} pull -f {$remote}", $gitOutput);
+
+//    foreach ($commands AS $command) {
+//        // Run it
+//        $tmp = shell_exec($command);
+//        // Output
+//        $output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
+//        $output .= htmlentities(trim($tmp)) . "\n";
+//    }
 } else {
     $output = ":$tmp: Wrong host";
 }
