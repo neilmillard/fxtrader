@@ -11,6 +11,12 @@ $commands = array(
     'git pull origin dev',
 );
 
+require __DIR__ . '/../app/loadsettings.php';
+$settings = $c['settings']['logger'];
+$logger = new \Monolog\Logger($settings['name']);
+$logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+$logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
+
 // Run the commands for output
 $output = '';
 $event = @$_SERVER['HTTP_X_GITHUB_EVENT'];
@@ -30,7 +36,7 @@ if ($tmp == 'neilmillard' && $ref == '/refs/heads/dev') {
 //        $output .= htmlentities(trim($tmp)) . "\n";
 //    }
 } else {
-    \error_log("post hook error:username:$tmp:ref:$ref", 0);
+    $logger->addNotice("post hook error:username:$tmp:ref:$ref");
 }
 
 // Make it pretty for manual user access (and why not?)
