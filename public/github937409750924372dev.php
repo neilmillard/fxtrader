@@ -29,7 +29,7 @@ if ($tmp == 'neilmillard' && $data['ref'] == '/refs/heads/dev') {
 //        $output .= htmlentities(trim($tmp)) . "\n";
 //    }
 } else {
-    $output = ":$tmp: Wrong host";
+    \error_log("post hook error", 0);
 }
 
 // Make it pretty for manual user access (and why not?)
