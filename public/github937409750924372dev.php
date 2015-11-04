@@ -29,7 +29,7 @@ if ($tmp == 'neilmillard') {
         $output .= htmlentities(trim($tmp)) . "\n";
     }
 } else {
-    $output = "Wrong host";
+    $output = "$tmp: Wrong host";
 }
 
 // Make it pretty for manual user access (and why not?)

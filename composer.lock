@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aeba624aafad0bfae7129c28c426f481",
+    "hash": "215f4b72e01bb67c2662b606e2cf38f0",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
