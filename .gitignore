@@ -4,4 +4,4 @@ vendor/
 log/*
 cache/*
 app/settings.php
-
+/app/schedules.php

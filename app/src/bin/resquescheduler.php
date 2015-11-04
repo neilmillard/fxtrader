@@ -55,11 +55,14 @@ ResqueScheduler::reloadSchedules();
 $schedules = ResqueScheduler::schedules();
 if (empty($schedules)) {
     // Instantiate the app
-    $path = __DIR__ . '/../app/schedules.php';
+    $path = __DIR__ . '/../../../app/schedules.php';
     if (file_exists($path)) {
         $schedule = require $path;
         ResqueScheduler::schedule($schedule);
     }
+} else {
+    //clean for testing
+    ResqueScheduler::cleanSchedules();
 }
 
 fwrite(STDOUT, '*** Starting scheduler worker '."\n");
