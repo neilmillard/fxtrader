@@ -13,7 +13,7 @@ $commands = array(
 require __DIR__ . '/../vendor/autoload.php';
 
 require __DIR__ . '/../app/loadsettings.php';
-$settings = $c['settings']['logger'];
+$settings = $settings['settings']['logger'];
 $logger = new \Monolog\Logger($settings['name']);
 $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
 $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
