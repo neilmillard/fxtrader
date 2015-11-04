@@ -17,7 +17,7 @@ $data = json_decode($payload, true);
 $remote = NULL;
 $tmp = trim(shell_exec('whoami'));
 $ref = $data['ref'];
-if ($tmp == 'neilmillard' && $ref == '/refs/heads/dev') {
+if ($tmp == 'neilmillard' && $ref == 'refs/heads/dev') {
     exec("git --work-tree={$gitDir} pull -f {$remote}", $gitOutput);
 
 //    foreach ($commands AS $command) {
