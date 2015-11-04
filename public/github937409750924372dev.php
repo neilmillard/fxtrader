@@ -19,7 +19,7 @@ $commands = array(
 
 // Run the commands for output
 $output = '';
-$tmp = shell_exec('whoami');
+$tmp = trim(shell_exec('whoami'));
 if ($tmp == 'neilmillard') {
     foreach ($commands AS $command) {
         // Run it
@@ -29,7 +29,7 @@ if ($tmp == 'neilmillard') {
         $output .= htmlentities(trim($tmp)) . "\n";
     }
 } else {
-    $output = "$tmp: Wrong host";
+    $output = ":$tmp: Wrong host";
 }
 
 // Make it pretty for manual user access (and why not?)
