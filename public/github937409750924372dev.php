@@ -18,7 +18,8 @@ $payload = file_get_contents('php://input');
 $data = json_decode($payload, true);
 $remote = NULL;
 $tmp = trim(shell_exec('whoami'));
-if ($tmp == 'neilmillard' && $data['ref'] == '/refs/heads/dev') {
+$ref = $data['ref'];
+if ($tmp == 'neilmillard' && $ref == '/refs/heads/dev') {
     exec("git --work-tree={$gitDir} pull -f {$remote}", $gitOutput);
 
 //    foreach ($commands AS $command) {
@@ -29,7 +30,7 @@ if ($tmp == 'neilmillard' && $data['ref'] == '/refs/heads/dev') {
 //        $output .= htmlentities(trim($tmp)) . "\n";
 //    }
 } else {
-    \error_log("post hook error", 0);
+    \error_log("post hook error:username:$tmp:ref:$ref", 0);
 }
 
 // Make it pretty for manual user access (and why not?)
