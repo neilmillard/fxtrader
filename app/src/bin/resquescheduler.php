@@ -50,5 +50,17 @@ if ($PIDFILE) {
     die('Could not write PID information to ' . $PIDFILE);
 }
 
+//check schedules
+ResqueScheduler::reloadSchedules();
+$schedules = ResqueScheduler::schedules();
+if (empty($schedules)) {
+    // Instantiate the app
+    $path = __DIR__ . '/../app/schedules.php';
+    if (file_exists($path)) {
+        $schedule = require $path;
+        ResqueScheduler::schedule($schedule);
+    }
+}
+
 fwrite(STDOUT, '*** Starting scheduler worker '."\n");
 $worker->work($interval);
