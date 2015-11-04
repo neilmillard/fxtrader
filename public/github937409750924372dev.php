@@ -45,7 +45,7 @@ if ($tmp == 'neilmillard') {
  .  ____  .    ____________________________
  |/      \|   |                            |
 [|  <span style="color: #FF0000;">&hearts; &nbsp;&hearts; </span> |]  | Git Deployment Script v0.1 |
- |___==___|  &nbsp;/ &copy; <a href="https://gist.github.com/oodavid">oodavid</a> 2012            |
+ |___==___|  &nbsp;/ &copy; <a href="https://gist.github.com/oodavid">oodavid</a> 2012             |
               |____________________________|
     <?php echo "\r" . $output; ?>
 </pre>
