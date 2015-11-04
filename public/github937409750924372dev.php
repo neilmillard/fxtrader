@@ -1,17 +1,8 @@
 <?php
 // destination
 $gitDir = "/home/neilmillard/webapps/fxtrader_app/fxtrader";
-// The commands
-$commands = array(
-    'echo $PWD',
-    'whoami',
-    'putenv("HOME=/home/neilmillard/")',
-    'cd /home/neilmillard/webapps/fxtrader_app',
-    'git status',
-    'git pull origin dev',
-);
-require __DIR__ . '/../vendor/autoload.php';
 
+require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../app/loadsettings.php';
 $settings = $settings['settings']['logger'];
 $logger = new \Monolog\Logger($settings['name']);
