@@ -24,6 +24,14 @@
       {
       "url": "https://github.com/neilmillard/oandawrap",
       "type": "vcs"
+      },
+      {
+        "url": "https://github.com/neilmillard/php-resque-scheduler",
+        "type": "vcs"
+      },
+      {
+        "url": "https://github.com/neilmillard/php-resque",
+        "type": "vcs"
       }
     ],
     "require": {
@@ -34,8 +42,7 @@
       "gabordemooij/redbean": "dev-master",
       "tavurth/oandawrap": "dev-class",
         "ircmaxell/password-compat": "1.0.3",
-        "chrisboulton/php-resque": "1.2",
-        "chrisboulton/php-resque-scheduler": "1.1"
+      "chrisboulton/php-resque-scheduler": "dev-master"
 
     },
   "_": "hack for phpstorm 9 with phpunit 5. blacklist has been removed in current version",
