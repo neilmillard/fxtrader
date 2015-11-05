@@ -7,7 +7,11 @@ $job = 'App\Job\Oanda\GetDayCandles';
 
 require '../../vendor/autoload.php';
 date_default_timezone_set('GMT');
-Resque::setBackend('127.0.0.1:6379');
+require __DIR__ . '/../loadsettings.php';
+$settings = loadsettings();
+
+$REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
+Resque::setBackend($REDIS_BACKEND);
 
 $args = array(
     'time' => time(),
