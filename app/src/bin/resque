@@ -8,13 +8,12 @@
  */
 
 $QUEUE=getenv('QUEUE');
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-if(empty($QUEUE)) {
-    die('Specify the name or list of queues(comma separated list), php resque.php files');
-}
 
-//$QUEUE = $argv[1];
-//$QUEUE = '*';
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+if(empty($QUEUE)){
+    $QUEUE = '*';
+}
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
