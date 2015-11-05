@@ -5,7 +5,7 @@
 
 $job = 'App\Job\Oanda\GetDayCandles';
 
-require '../../vendor/chrisboulton/php-resque/lib/Resque.php';
+require '../../vendor/autoload.php';
 date_default_timezone_set('GMT');
 Resque::setBackend('127.0.0.1:6379');
 
