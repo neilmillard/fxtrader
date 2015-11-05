@@ -1,0 +1,6 @@
+check process resque_worker_low
+  with pidfile /var/run/worker_low.pid
+  start program = "/bin/sh -c 'QUEUE=low VERBOSE=1 PIDFILE=/var/run/worker_low.pid php56 -f [path/to]/bin/resque > /var/log/resque/worker_low.log &'" 
+  stop program = "/bin/sh -c 'kill -s QUIT `cat /var/run/worker_low.pid` && rm -f /var/run/worker_low.pid; exit 0;'"
+  if totalmem is greater than 300 MB for 10 cycles then restart  # eating up memory?
+  group resque_workers
