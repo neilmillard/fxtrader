@@ -1,4 +1,4 @@
-#!/usr/bin/env php
+#!/usr/bin/env php56
 <?php
 /**
  * Launch resque workers
@@ -64,11 +64,11 @@ if(!empty($COUNT) && $COUNT > 1) {
     $count = $COUNT;
 }
 
-//$PREFIX = getenv('PREFIX');
-//if (!empty($PREFIX)) {
-//    $logger->log(Psr\Log\LogLevel::INFO, 'Prefix set to {prefix}', array('prefix' => $PREFIX));
-//    Resque_Redis::prefix($PREFIX);
-//}
+$PREFIX = getenv('PREFIX');
+if (!empty($PREFIX)) {
+    $logger->log(Psr\Log\LogLevel::INFO, 'Prefix set to {prefix}', array('prefix' => $PREFIX));
+    Resque_Redis::prefix($PREFIX);
+}
 
 if($count > 1) {
     for($i = 0; $i < $count; ++$i) {
