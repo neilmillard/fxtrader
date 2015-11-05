@@ -96,7 +96,7 @@ else {
     $worker = new Resque_Worker($queues);
     $worker->setLogger($logger);
 
-    $PIDFILE = getenv('PIDFILE');
+    $PIDFILE = $settings['resque']['PIDFILE'];
     if ($PIDFILE) {
         file_put_contents($PIDFILE, getmypid()) or
         die('Could not write PID information to ' . $PIDFILE);
