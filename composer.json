@@ -42,7 +42,8 @@
       "gabordemooij/redbean": "dev-master",
       "tavurth/oandawrap": "dev-class",
         "ircmaxell/password-compat": "1.0.3",
-      "chrisboulton/php-resque-scheduler": "dev-master"
+      "chrisboulton/php-resque-scheduler": "dev-master",
+      "guzzlehttp/guzzle": "6.1.0"
 
     },
   "require-dev": {

@@ -79,3 +79,7 @@ $container['App\Action\StrategiesAction'] = function ($c) {
 $container['App\Action\TestAction'] = function ($c) {
     return new App\Action\TestAction($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
 };
+
+$container['App\Api\CandlesApi'] = function ($c) {
+    return new App\Api\CandlesApi($c['view'], $c['logger'], $c['router'], $c['flash'], $c['authenticator']);
+};

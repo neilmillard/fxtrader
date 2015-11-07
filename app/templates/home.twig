@@ -2,17 +2,26 @@
 
 {% block page_title %}{{ parent() }} | Home{% endblock %}
 
+{% block stylesheets %}
+    <link href="/css/chart.default.css" rel="stylesheet"/>
+    <link href="/css/atr.css" rel="stylesheet"/>
+{% endblock %}
 {% block content %}
 <!-- <br><br> -->
 
-    <div style="border:0 border-collapse: collapse; width: 700px;">
+    <div style="border:0; border-collapse: collapse; width: 700px;">
         <br/>
         <h2>FxTrader Application</h2>
     </div>
 
-    <div style="border:0 border-collapse: collapse; width: 700px;">
+    <div style="border:0; border-collapse: collapse; width: 700px;">
         <h3><b>Apps</b></h3>
             <a href="{{ path_for('profile') }}">Other index</a><br />
     </div>
+    <div class="chart"></div>
 {% endblock %}
-        
+{% block javascript %}
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="/scripts/techan.min.js"></script>
+    <script src="/scripts/trailatr.js"></script>
+{% endblock %}

@@ -6,6 +6,9 @@ also has Redbean and Authentication.
 * 'slim_docs': http://www.slimframework.com/docs/index.html
 * 'authentication' : http://github.com/zendframework/zf2
 * 'redbean': http://www.redbeanphp.com/
+* 'techan.js': http://techanjs.org/
+* 'oandawrap': https://github.com/tavurth/OandaWrap
+* 'php-resque': https://github.com/chrisboulton/php-resque
 
 ## Clone this project:
 

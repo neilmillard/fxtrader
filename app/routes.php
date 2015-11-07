@@ -72,3 +72,5 @@ $app->get('/logout', 'App\Action\LoginAction:logout')
 $app->get('/test/{uid}','App\Action\TestAction:test')
     ->add('Authenticator\Middleware:auth');
 
+$app->get('/api/candles', 'App\Api\CandlesApi:dispatch')
+    ->setName('CandlesApi');

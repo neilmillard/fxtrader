@@ -1,0 +1,13 @@
+.atrtrailingstop path {
+    fill: none;
+    stroke-width: 0.8;
+    stroke: #000000;
+}
+
+.atrtrailingstop path.down {
+    stroke: #AA0000;
+}
+
+.atrtrailingstop path.up {
+    stroke: #007700;
+}
