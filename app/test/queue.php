@@ -3,7 +3,7 @@
 //    die('Specify the name of a job to add. e.g, php queue.php PHP_Job');
 //}
 
-$job = 'App\Job\Oanda\GetDayCandles';
+$job = 'App\Job\OandaSystem\GetDayCandles';
 
 require '../../vendor/autoload.php';
 date_default_timezone_set('GMT');
