@@ -13,30 +13,31 @@
         <div class="row">
         <div class="col-sm-4">
         <div class="panel panel-default">
-        <div class="panel-heading">Queue: {{ queue.name }}</div>
-        <div class="panel-body">
-            <p>Jobs: <span class="badge">{{ queue.size }}</span></p>
+            <div class="panel-heading">Queue: {{ queue.name }}</div>
+            <div class="panel-body">
+                <p>Jobs: <span class="badge">{{ queue.size }}</span></p>
 
-            <div class="panel-group" id="{{ queue.name }}">
-                {% for job in queue.jobs %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#{{ queue.name }}"
-                                   href="#{{ job.id }}">{{ job.class }}</a>
-                            </h4>
-                        </div>
-                        <div id="{{ job.id }}" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                {{ dump(job.args.0) }}
+                <div class="panel-group" id="{{ queue.name }}">
+                    {% for job in queue.jobs %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#{{ queue.name }}"
+                                       href="#{{ job.id }}">{{ job.class }}</a>
+                                </h4>
                             </div>
-                        </div>
+                            <div id="{{ job.id }}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    {{ dump(job.args.0) }}
+                                </div>
+                            </div>
+                            </div>
+                    {% endfor %}
                     </div>
-                {% endfor %}
             </div>
         </div>
-        <br/>
     {% endfor %}
+    </div>
     <br/><br/>
 
 {% endblock %}
