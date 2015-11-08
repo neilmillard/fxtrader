@@ -20,6 +20,8 @@ class CandlesApi extends Controller
             return $newResponse;
         } else {
             // get the current instrument and send some data
+            //Defaults
+            $instrument =
             //TODO time needs to be 17-aug-2015,
             $data = json_encode([
                 'Date' => time(),

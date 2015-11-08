@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1ffce798fb1eba432dbd34d5b01efa9a",
+    "hash": "9b411808f319e25090952999152657e9",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
@@ -12,16 +12,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/php-resque.git",
-                "reference": "4a18d5317cd669cbd785268e8d83abe8c43d26f6"
+                "reference": "af8e51a8bd62cdf38abef68d944dda4e62c96106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque/zipball/4a18d5317cd669cbd785268e8d83abe8c43d26f6",
-                "reference": "4a18d5317cd669cbd785268e8d83abe8c43d26f6",
+                "url": "https://api.github.com/repos/neilmillard/php-resque/zipball/af8e51a8bd62cdf38abef68d944dda4e62c96106",
+                "reference": "af8e51a8bd62cdf38abef68d944dda4e62c96106",
                 "shasum": ""
             },
             "require": {
-                "colinmollenhour/credis": "~1.2",
+                "colinmollenhour/credis": "dev-master",
                 "php": ">=5.3.0",
                 "psr/log": "1.0.0"
             },
@@ -62,7 +62,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque/tree/master"
             },
-            "time": "2015-11-04 22:06:18"
+            "time": "2015-11-08 13:39:54"
         },
         {
             "name": "chrisboulton/php-resque-scheduler",
@@ -102,16 +102,16 @@
         },
         {
             "name": "colinmollenhour/credis",
-            "version": "1.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc"
+                "reference": "584cf2b028138411794c2bdc212a3bceacb521cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/7bd47b61fc3dad28aa881de45c71026256ad27cc",
-                "reference": "7bd47b61fc3dad28aa881de45c71026256ad27cc",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/584cf2b028138411794c2bdc212a3bceacb521cf",
+                "reference": "584cf2b028138411794c2bdc212a3bceacb521cf",
                 "shasum": ""
             },
             "require": {
@@ -137,7 +137,7 @@
             ],
             "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
             "homepage": "https://github.com/colinmollenhour/credis",
-            "time": "2014-11-13 18:40:25"
+            "time": "2015-11-05 16:28:08"
         },
         {
             "name": "container-interop/container-interop",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabordemooij/redbean.git",
-                "reference": "f375a1678d137ca1ff806813fac306723f97ec6b"
+                "reference": "11691bd3e90cd36196223250b47886984bdc30c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/f375a1678d137ca1ff806813fac306723f97ec6b",
-                "reference": "f375a1678d137ca1ff806813fac306723f97ec6b",
+                "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/11691bd3e90cd36196223250b47886984bdc30c0",
+                "reference": "11691bd3e90cd36196223250b47886984bdc30c0",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
             "keywords": [
                 "orm"
             ],
-            "time": "2015-09-11 18:55:25"
+            "time": "2015-11-05 20:49:55"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -918,12 +918,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "fd84403ac725fe1a053a0a109e26ecdb9928c912"
+                "reference": "b7c124bae00ab0a019a084c6b99f1df023bcb996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/fd84403ac725fe1a053a0a109e26ecdb9928c912",
-                "reference": "fd84403ac725fe1a053a0a109e26ecdb9928c912",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b7c124bae00ab0a019a084c6b99f1df023bcb996",
+                "reference": "b7c124bae00ab0a019a084c6b99f1df023bcb996",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +971,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-03 18:31:41"
+            "time": "2015-11-08 09:55:30"
         }
     ],
     "packages-dev": [
@@ -1031,16 +1031,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "d8093b631a31628342d0703764935f8bac2c56b1"
+                "reference": "e3abefcd7f106677fd352cd7c187d6c969aa9ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/d8093b631a31628342d0703764935f8bac2c56b1",
-                "reference": "d8093b631a31628342d0703764935f8bac2c56b1",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/e3abefcd7f106677fd352cd7c187d6c969aa9ddc",
+                "reference": "e3abefcd7f106677fd352cd7c187d6c969aa9ddc",
                 "shasum": ""
             },
             "require": {
@@ -1069,7 +1069,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2015-10-05 15:07:09"
+            "time": "2015-11-07 22:20:37"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1186,12 +1186,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b"
+                "reference": "3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c84f05be256cd7c9d2340b26f7995b4afbf8787b",
-                "reference": "c84f05be256cd7c9d2340b26f7995b4afbf8787b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5",
+                "reference": "3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5",
                 "shasum": ""
             },
             "require": {
@@ -1214,7 +1214,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "3.1.x-dev"
                 }
             },
             "autoload": {
@@ -1240,7 +1240,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-06 15:51:05"
+            "time": "2015-11-06 13:55:10"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1426,12 +1426,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9cbba60d8a83ba92fc61e01b94624ace56347933"
+                "reference": "c19349623f7aef33c7e3dc83d38cedccaf850385"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9cbba60d8a83ba92fc61e01b94624ace56347933",
-                "reference": "9cbba60d8a83ba92fc61e01b94624ace56347933",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c19349623f7aef33c7e3dc83d38cedccaf850385",
+                "reference": "c19349623f7aef33c7e3dc83d38cedccaf850385",
                 "shasum": ""
             },
             "require": {
@@ -1492,7 +1492,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-04 15:12:44"
+            "time": "2015-11-06 15:17:42"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

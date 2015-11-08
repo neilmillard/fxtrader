@@ -16,6 +16,7 @@ Resque::setBackend($REDIS_BACKEND);
 $args = array(
     'time' => time(),
     'userid' => 'not needed',
+    'days' => '200',
     'oanda' => array(
         'accountId' => '6717454',
     ),
