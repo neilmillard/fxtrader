@@ -96,24 +96,24 @@ d3.csv("/api/candles", function (error, data) {
         .attr("class", "y axis")
         .call(yAxis);
 
-    svg.append("g")
-        .attr("class", "y annotation left")
-        .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
-        .call(ohlcAnnotation);
-
-    svg.append("g")
-        .attr("class", "x annotation bottom")
-        .datum([{value: x.domain()[30]}])
-        .call(timeAnnotation);
-
-    svg.append('g')
-        .attr("class", "crosshair")
-        .call(crosshair);
-
-    svg.append("g")
-        .attr("class", "supstances analysis")
-        .attr("clip-path", "url(#ohlcClip)");
-
-    svg.select("g.supstances").datum(supstanceData).call(supstance);
+    //svg.append("g")
+    //    .attr("class", "y annotation left")
+    //    .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
+    //    .call(ohlcAnnotation);
+    //
+    //svg.append("g")
+    //    .attr("class", "x annotation bottom")
+    //    .datum([{value: x.domain()[30]}])
+    //    .call(timeAnnotation);
+    //
+    //svg.append('g')
+    //    .attr("class", "crosshair")
+    //    .call(crosshair);
+    //
+    //svg.append("g")
+    //    .attr("class", "supstances analysis")
+    //    .attr("clip-path", "url(#ohlcClip)")
+    //    .datum(supstanceData)
+    //    .call(supstance);
 
 });
