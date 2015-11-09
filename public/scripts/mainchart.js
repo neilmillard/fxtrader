@@ -10,6 +10,10 @@ var x = techan.scale.financetime()
 var y = d3.scale.linear()
     .range([height, 0]);
 
+var candlestick = techan.plot.candlestick()
+    .xScale(x)
+    .yScale(y);
+
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
