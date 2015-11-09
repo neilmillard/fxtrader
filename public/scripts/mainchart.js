@@ -59,10 +59,8 @@ svg.append("clipPath")
     .attr("height", y(0) - y(1));
 
 svg.append("g")
-    .datum(data)
     .attr("class", "candlestick")
-    .attr("clip-path", "url(#clip)")
-    .call(candlestick);
+    .attr("clip-path", "url(#clip)");
 
 svg.append("g")
     .attr("class", "x axis")
@@ -117,8 +115,15 @@ d3.csv("/api/candles", function (error, data) {
     //    { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
     //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
     //];
-
     svg.select("g.candlestick").datum(data);
+    draw();
 });
+function draw(){
+    var accessor = candlestick.accessor();
+
+    svg.select('g.x.axis').call(xAxis);
+    svg.select('g.y.axis').call(yAxis);
+    svg.select("g.candlestick").call(candlestick);
+};
 
 
