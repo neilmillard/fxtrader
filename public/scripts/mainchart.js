@@ -37,9 +37,12 @@ var crosshair = techan.plot.crosshair()
     .xScale(x)
     .yScale(y)
     .xAnnotation(timeAnnotation)
-    .yAnnotation(ohlcAnnotation)
-    .on("enter", enter)
-    .on("out", out);
+    .yAnnotation(ohlcAnnotation);
+
+var supstance = techan.plot.supstance()
+    .xScale(x)
+    .yScale(y)
+    .annotation(ohlcAnnotation);
 
 var svg = d3.select("div.chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -54,14 +57,6 @@ svg.append("clipPath")
     .attr("y", y(1))
     .attr("width", width)
     .attr("height", y(0) - y(1));
-
-function enter() {
-    coordsText.style("display", "inline");
-}
-
-function out() {
-    coordsText.style("display", "none");
-}
 
 d3.csv("/api/candles", function (error, data) {
     var accessor = candlestick.accessor();
