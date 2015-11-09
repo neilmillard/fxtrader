@@ -58,6 +58,41 @@ svg.append("clipPath")
     .attr("width", width)
     .attr("height", y(0) - y(1));
 
+svg.append("g")
+    .datum(data)
+    .attr("class", "candlestick")
+    .attr("clip-path", "url(#clip)")
+    .call(candlestick);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+//svg.append("g")
+//    .attr("class", "y annotation left")
+//    .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
+//    .call(ohlcAnnotation);
+//
+//svg.append("g")
+//    .attr("class", "x annotation bottom")
+//    .datum([{value: x.domain()[30]}])
+//    .call(timeAnnotation);
+
+svg.append('g')
+    .attr("class", "crosshair")
+    .call(crosshair);
+
+//svg.append("g")
+//    .attr("class", "supstances analysis")
+//    .attr("clip-path", "url(#ohlcClip)")
+//    .datum(supstanceData)
+//    .call(supstance);
+
 d3.csv("/api/candles", function (error, data) {
     var accessor = candlestick.accessor();
 
@@ -83,39 +118,7 @@ d3.csv("/api/candles", function (error, data) {
     //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
     //];
 
-    svg.append("g")
-        .datum(data)
-        .attr("class", "candlestick")
-        .attr("clip-path", "url(#clip)")
-        .call(candlestick);
-
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-    //svg.append("g")
-    //    .attr("class", "y annotation left")
-    //    .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
-    //    .call(ohlcAnnotation);
-    //
-    //svg.append("g")
-    //    .attr("class", "x annotation bottom")
-    //    .datum([{value: x.domain()[30]}])
-    //    .call(timeAnnotation);
-    //
-    //svg.append('g')
-    //    .attr("class", "crosshair")
-    //    .call(crosshair);
-    //
-    //svg.append("g")
-    //    .attr("class", "supstances analysis")
-    //    .attr("clip-path", "url(#ohlcClip)")
-    //    .datum(supstanceData)
-    //    .call(supstance);
-
+    svg.select("g.candlestick").datum(data);
 });
+
+
