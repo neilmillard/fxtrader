@@ -23,26 +23,26 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(d3.format(",.4f"));
 
-var ohlcAnnotation = techan.plot.axisannotation()
-    .axis(yAxis)
-    .format(d3.format(',.4f'));
-
-var timeAnnotation = techan.plot.axisannotation()
-    .axis(xAxis)
-    .format(d3.time.format('%Y-%m-%d'))
-    .width(65)
-    .translate([0, height]);
-
-var crosshair = techan.plot.crosshair()
-    .xScale(x)
-    .yScale(y)
-    .xAnnotation(timeAnnotation)
-    .yAnnotation(ohlcAnnotation);
-
-var supstance = techan.plot.supstance()
-    .xScale(x)
-    .yScale(y)
-    .annotation(ohlcAnnotation);
+//var ohlcAnnotation = techan.plot.axisannotation()
+//    .axis(yAxis)
+//    .format(d3.format(',.4f'));
+//
+//var timeAnnotation = techan.plot.axisannotation()
+//    .axis(xAxis)
+//    .format(d3.time.format('%Y-%m-%d'))
+//    .width(65)
+//    .translate([0, height]);
+//
+//var crosshair = techan.plot.crosshair()
+//    .xScale(x)
+//    .yScale(y)
+//    .xAnnotation(timeAnnotation)
+//    .yAnnotation(ohlcAnnotation);
+//
+//var supstance = techan.plot.supstance()
+//    .xScale(x)
+//    .yScale(y)
+//    .annotation(ohlcAnnotation);
 
 var svg = d3.select("div.chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -76,10 +76,10 @@ d3.csv("/api/candles", function (error, data) {
         return d3.ascending(accessor.d(a), accessor.d(b));
     });
 
-    var supstanceData = [
-        { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
-        { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
-    ];
+    //var supstanceData = [
+    //    { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
+    //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
+    //];
 
     svg.append("g")
         .datum(data)
