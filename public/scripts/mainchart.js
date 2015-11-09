@@ -76,6 +76,7 @@ d3.csv("/api/candles", function (error, data) {
         return d3.ascending(accessor.d(a), accessor.d(b));
     });
 
+    x.domain(data.map(accessor.d));
     //var supstanceData = [
     //    { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
     //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
