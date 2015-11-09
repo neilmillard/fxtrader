@@ -10,14 +10,6 @@ var x = techan.scale.financetime()
 var y = d3.scale.linear()
     .range([height, 0]);
 
-var candlestick = techan.plot.candlestick()
-    .xScale(x)
-    .yScale(y);
-
-var atrtrailingstop = techan.plot.atrtrailingstop()
-    .xScale(x)
-    .yScale(y);
-
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
@@ -26,6 +18,24 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
     .tickFormat(d3.format(",.4f"));
+
+var ohlcAnnotation = techan.plot.axisannotation()
+    .axis(yAxis)
+    .format(d3.format(',.4f'));
+
+var timeAnnotation = techan.plot.axisannotation()
+    .axis(xAxis)
+    .format(d3.time.format('%Y-%m-%d'))
+    .width(65)
+    .translate([0, height]);
+
+var crosshair = techan.plot.crosshair()
+    .xScale(x)
+    .yScale(y)
+    .xAnnotation(timeAnnotation)
+    .yAnnotation(ohlcAnnotation)
+    .on("enter", enter)
+    .on("out", out);
 
 var svg = d3.select("div.chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -59,20 +69,16 @@ d3.csv("/api/candles", function (error, data) {
         return d3.ascending(accessor.d(a), accessor.d(b));
     });
 
-    var atrtrailingstopData = techan.indicator.atrtrailingstop()(data);
-    x.domain(data.map(accessor.d));
-    y.domain(techan.scale.plot.atrtrailingstop(atrtrailingstopData).domain());
+    var supstanceData = [
+        { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
+        { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
+    ];
 
     svg.append("g")
         .datum(data)
         .attr("class", "candlestick")
         .attr("clip-path", "url(#clip)")
         .call(candlestick);
-
-    svg.append("g")
-        .datum(atrtrailingstopData)
-        .attr("class", "atrtrailingstop")
-        .call(atrtrailingstop);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -82,4 +88,33 @@ d3.csv("/api/candles", function (error, data) {
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+    svg.append("g")
+        .attr("class", "y annotation left")
+        .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
+        .call(ohlcAnnotation);
+
+    svg.append("g")
+        .attr("class", "x annotation bottom")
+        .datum([{value: x.domain()[30]}])
+        .call(timeAnnotation);
+
+    svg.append('g')
+        .attr("class", "crosshair")
+        .call(crosshair);
+
+    svg.append("g")
+        .attr("class", "supstances analysis")
+        .attr("clip-path", "url(#ohlcClip)");
+
+    svg.select("g.supstances").datum(supstanceData).call(supstance);
+
+    function enter() {
+        coordsText.style("display", "inline");
+    }
+
+    function out() {
+        coordsText.style("display", "none");
+    }
+
 });
