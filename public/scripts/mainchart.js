@@ -51,6 +51,14 @@ svg.append("clipPath")
     .attr("width", width)
     .attr("height", y(0) - y(1));
 
+function enter() {
+    coordsText.style("display", "inline");
+}
+
+function out() {
+    coordsText.style("display", "none");
+}
+
 d3.csv("/api/candles", function (error, data) {
     var accessor = candlestick.accessor();
 
@@ -108,13 +116,5 @@ d3.csv("/api/candles", function (error, data) {
         .attr("clip-path", "url(#ohlcClip)");
 
     svg.select("g.supstances").datum(supstanceData).call(supstance);
-
-    function enter() {
-        coordsText.style("display", "inline");
-    }
-
-    function out() {
-        coordsText.style("display", "none");
-    }
 
 });
