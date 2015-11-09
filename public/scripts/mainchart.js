@@ -23,21 +23,21 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(d3.format(",.4f"));
 
-//var ohlcAnnotation = techan.plot.axisannotation()
-//    .axis(yAxis)
-//    .format(d3.format(',.4f'));
-//
-//var timeAnnotation = techan.plot.axisannotation()
-//    .axis(xAxis)
-//    .format(d3.time.format('%Y-%m-%d'))
-//    .width(65)
-//    .translate([0, height]);
-//
-//var crosshair = techan.plot.crosshair()
-//    .xScale(x)
-//    .yScale(y)
-//    .xAnnotation(timeAnnotation)
-//    .yAnnotation(ohlcAnnotation);
+var ohlcAnnotation = techan.plot.axisannotation()
+    .axis(yAxis)
+    .format(d3.format(',.4f'));
+
+var timeAnnotation = techan.plot.axisannotation()
+    .axis(xAxis)
+    .format(d3.time.format('%Y-%m-%d'))
+    .width(65)
+    .translate([0, height]);
+
+var crosshair = techan.plot.crosshair()
+    .xScale(x)
+    .yScale(y)
+    .xAnnotation(timeAnnotation)
+    .yAnnotation(ohlcAnnotation);
 //
 //var supstance = techan.plot.supstance()
 //    .xScale(x)
@@ -71,15 +71,15 @@ svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
 
-//svg.append("g")
-//    .attr("class", "y annotation left")
-//    .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
-//    .call(ohlcAnnotation);
-//
-//svg.append("g")
-//    .attr("class", "x annotation bottom")
-//    .datum([{value: x.domain()[30]}])
-//    .call(timeAnnotation);
+svg.append("g")
+    .attr("class", "y annotation left")
+    .datum([{value: 74}, {value: 67.5}, {value: 58}, {value:40}]) // 74 should not be rendered
+    .call(ohlcAnnotation);
+
+svg.append("g")
+    .attr("class", "x annotation bottom")
+    .datum([{value: x.domain()[30]}])
+    .call(timeAnnotation);
 
 svg.append('g')
     .attr("class", "crosshair")
