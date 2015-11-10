@@ -41,7 +41,7 @@ class AnalyseTrigger extends Job
 
         $job = 'App\Job\Analyse';
 
-        $this->container['logger']->info("Processing Strategies for ".$args['instrument'].'@'.$this->args['time']);
+        echo("Processing Strategies for ".$args['instrument'].'@'.$this->args['time']);
 
         //load strategies
         $strategies = R::find('strategy',' instrument = :instrument', [':instrument' => $args['instrument']]);
@@ -52,7 +52,7 @@ class AnalyseTrigger extends Job
             $jobId = Resque::enqueue('medium', $job, $args, true);
         }
         $delay = time() - $this->args['time'];
-        $this->container['logger']->info("Delay: '.$delay.' Seconds. Processed ".count($strategies)." Strategies");
+        echo("Delay: '.$delay.' Seconds. Processed ".count($strategies)." Strategies");
         return;
     }
 }
