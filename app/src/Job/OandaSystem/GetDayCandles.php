@@ -13,14 +13,14 @@ class GetDayCandles extends Job\OandaSystem
         } else {
             $days = 2;
         }
-        $this->container->logger->info("Fetching ".$days.'Candles @'.$this->args['time']);
+        $this->logger->info("Fetching ".$days.'Candles @'.$this->args['time']);
 
         $newCandles = $this->oandaInfo->fetchDaily($days);
         //TODO Trigger job if new candle(s)
         if(!empty($newCandles)){
             $job = 'App\Job\AnalyseTrigger';
 
-            $this->container->logger->info("Processing ".count($newCandles).'@'.$this->args['time']);
+            $this->logger->info("Processing ".count($newCandles).'@'.$this->args['time']);
 
             $args = array(
                 'time' => time(),
@@ -31,7 +31,7 @@ class GetDayCandles extends Job\OandaSystem
                 $args['gran']           = $newCandle['gran'];
 
                 $jobId = Resque::enqueue('medium', $job, $args, true);
-                $this->container['logger']->info("Job ".$jobId.' for '.$newCandle['instrument']);
+                $this->logger->info("Job ".$jobId.' for '.$newCandle['instrument']);
             }
 
         };
