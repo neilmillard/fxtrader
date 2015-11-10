@@ -64,13 +64,10 @@ class Broker_Oanda {
                     if($todayCandle->id)
                     {
                         $updated++;
+                        $closed=$todayCandle->complete;
                     } else {
                         $new++;
-                        $newCandles[]=[
-                            'instrument' => $instrument,
-                            'analysisCandle' => $candleTime,
-                            'gran'           => 'D'
-                        ];
+                        $closed=false;
                     }
                     $todayCandle->candletime = $candleTime;
                     $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
@@ -80,7 +77,13 @@ class Broker_Oanda {
                     $todayCandle->complete = $candle->complete;
                     $todayCandle->gran = 'D';
                     R::store($todayCandle);
-
+                    if($closed!=$candle->complete){
+                        $newCandles[]=[
+                            'instrument' => $instrument,
+                            'analysisCandle' => $candleTime,
+                            'gran'           => 'D'
+                        ];
+                    }
                 }
             }
         }
