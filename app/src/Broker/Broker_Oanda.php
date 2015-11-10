@@ -64,13 +64,13 @@ class Broker_Oanda {
                     if($todayCandle->id)
                     {
                         $updated++;
+                    } else {
+                        $new++;
                         $newCandles[]=[
                             'instrument' => $instrument,
                             'analysisCandle' => $candleTime,
                             'gran'           => 'D'
                         ];
-                    } else {
-                        $new++;
                     }
                     $todayCandle->candletime = $candleTime;
                     $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
