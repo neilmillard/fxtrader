@@ -15,6 +15,7 @@ class GetDayCandles extends Job\OandaSystem
         }
 
         $this->oandaInfo->fetchDaily($days);
+        //TODO Trigger job if new candle(s)
 
     }
 
