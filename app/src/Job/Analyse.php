@@ -1,23 +1,20 @@
 <?php
 
 namespace App\Job;
+use App\Job;
 
-/**
- * TODO
- * require Args array
-$args = array(
-    'time' => time(),
-    'AnalysisCandle' => timestamp of candle that triggered analysis
-    'StrategyID' => '',
-    'args' => [
-        * dependant on signal
-     ],
+//$args = array(
+//    'time'           => time(),
+//    'instrument'     => 'USD_CAD',
+//    'analysisCandle' => 3948085858, //timestamp of candle that triggered analysis
+//    'gran'           => 'D',
+//    'strategyId'     => 3,
+//    'signal'         => 'Flag',
+//    'params'         => [], //dependant on signal
+//);
 
-);
 
- */
-
-class Analyse
+class Analyse extends Job
 {
     /**
      *   load candles (based on args and AnalysisCandle)
@@ -26,4 +23,15 @@ class Analyse
      *   save recommendation (if any)
      *   trigger recommendation job
      */
+    public function perform()
+    {
+        $instrument = $this->args['instrument'];
+
+
+        // Check keys exist in args.
+        $order = $this->args['oanda']['order'];
+
+
+
+    }
 }

@@ -45,6 +45,7 @@ class Broker_Oanda {
 
         $updated=0;
         $new=0;
+        $newCandles=[];
         // offset so candle 'date' is more reflective. i.e. candle starts @ 2nd Jan 2015 @ 2200hr. That would be labeled as 2015-01-03.
         $dateOffsetSeconds = 60*60*12; // offset is 12 hrs as midpoint of daily
         foreach ($this->pairs as $pair){
@@ -55,7 +56,7 @@ class Broker_Oanda {
                 $instrument = $history->instrument;
                 foreach( $history->candles as $candle ) {
                     $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
-                    $candletime = $candle->time;
+                    $candleTime = $candle->time;
                     //get candle data so we can update it
                     $todayCandle = R::findOrCreate('candle',
                         [ 'date' => $date,
@@ -63,10 +64,15 @@ class Broker_Oanda {
                     if($todayCandle->id)
                     {
                         $updated++;
+                        $newCandles[]=[
+                            'instrument' => $instrument,
+                            'analysisCandle' => $candleTime,
+                            'gran'           => 'D'
+                        ];
                     } else {
                         $new++;
                     }
-                    $todayCandle->candletime = $candletime;
+                    $todayCandle->candletime = $candleTime;
                     $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
                     $todayCandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
                     $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
@@ -80,7 +86,7 @@ class Broker_Oanda {
         }
         echo date('Y-m-d H:i')." : ";
         echo "New:$new : Updated:$updated\n";
-
+        return $newCandles;
     }
 
     public function fetchHourly($hours = 2){
