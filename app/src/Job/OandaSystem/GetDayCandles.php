@@ -13,13 +13,14 @@ class GetDayCandles extends Job\OandaSystem
         } else {
             $days = 2;
         }
+        $this->container->logger->info("Fetching ".$days.'Candles @'.$this->args['time']);
 
         $newCandles = $this->oandaInfo->fetchDaily($days);
         //TODO Trigger job if new candle(s)
         if(!empty($newCandles)){
             $job = 'App\Job\AnalyseTrigger';
 
-            $this->container['logger']->info("Processing ".count($newCandles).'@'.$this->args['time']);
+            $this->container->logger->info("Processing ".count($newCandles).'@'.$this->args['time']);
 
             $args = array(
                 'time' => time(),
