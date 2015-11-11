@@ -5,7 +5,7 @@ use App\Job;
 use RedBeanPHP\R;
 use \Resque;
 /**
- * TODO
+ *
  * require Args array
 $args = array(
 'time' => time(),
@@ -50,6 +50,7 @@ class AnalyseTrigger extends Job
             $args['signal']     = $strategy->signal;
             $args['params']     = $strategy->params;
             $jobId = Resque::enqueue('medium', $job, $args, true);
+            $this->logger->info("Creating Job $jobId for ".$strategy->name.'@'.$this->args['time']);
         }
         $delay = time() - $this->args['time'];
         $this->logger->info("Delay: '.$delay.' Seconds. Processed ".count($strategies)." Strategies");

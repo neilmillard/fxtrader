@@ -2,6 +2,8 @@
 
 namespace App\Job;
 use App\Job;
+use App\Models\Recommendations as Model_Recommendations;
+use RedBeanPHP\R;
 
 //$args = array(
 //    'time'           => time(),
@@ -26,28 +28,48 @@ class Analyse extends Job
     public function perform()
     {
         $instrument = $this->args['instrument'];
-        $gran       = $this->args('gran');
+        $gran       = $this->args['gran'];
         $endtime    = $this->args['analysisCandle'];
 
-        //TODO: load signal -> see test folder
-
-
-        //TODO: min number of candles required by the signal
-        $days       = 10;
-        $candles = R::find(
+        $class = $this->args['signal'];
+        //full namespace to signals
+        $signalClass = 'App\\Signals\\'.$class;
+        if (class_exists($signalClass))
+        {
+            /* @var \App\Signal $signalTest */
+            $signalTest = new $signalClass($this->args['params'],[1]);
+            $noCandles = $signalTest->getReqNumCandles();
+        } else {
+            throw new \Exception("Signal $signalClass not found");
+        }
+        unset($signalTest);
+        //min number of candles required by the signal
+        //$noCandles       = 10;
+        $candleBeans = R::find(
             'candle',
-            ' instrument = :instrument AND gran = :gran AND candletime < :endtime ORDER BY date DESC LIMIT :days',
+            ' instrument = :instrument AND gran = :gran AND candletime <= :endTime ORDER BY date DESC LIMIT :candles',
             [
                 ':instrument' => $instrument,
                 ':gran' => $gran,
-                ':days' => $days,
-                ':endtime'  => $endtime
+                ':candles' => $noCandles,
+                ':endTime'  => $endtime
             ]
         );
+        if(count($candleBeans)==$noCandles){
+            $candles = R::exportAll($candleBeans);
+        } else {
+            throw new \Exception("Not enough or no candles found for $instrument before $endtime");
+        }
+        /* @var \App\Signal $analysisClass */
+        $analysisClass = new $signalClass($this->args['params'],$candles);
+        $result = $analysisClass->analyse();
+        if($result['trade']){
+            $recommendation = new Model_Recommendations($result);
+            $recommendation->setStrategy( $this->args['strategyId'] );
+            $this->logger->info("Recommendation found: for ".$instrument." by StratID:".$this->args['strategyId']);
+            //TODO: trigger orders
 
-        // Check keys exist in args.
-        $order = $this->args['oanda']['order'];
-
+        }
 
 
     }

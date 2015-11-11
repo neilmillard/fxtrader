@@ -16,7 +16,6 @@ class GetDayCandles extends Job\OandaSystem
         $this->logger->info("Fetching ".$days.'Candles @'.$this->args['time']);
 
         $newCandles = $this->oandaInfo->fetchDaily($days);
-        //TODO Trigger job if new closed candle(s)
         if(!empty($newCandles)){
             $job = 'App\Job\AnalyseTrigger';
 
