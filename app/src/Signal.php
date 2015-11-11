@@ -6,7 +6,7 @@ namespace App;
 abstract class Signal
 {
 
-    protected $argsnames = [];
+    protected $argsNames = [];
     protected $args;
     protected $candles;
 
@@ -79,7 +79,7 @@ abstract class Signal
 
     /**
      * Runs the analysis and returns a recommendation.
-     * @return Array $recommendation
+     * @return array $recommendation
      * [instrument, side, open, stopLoss, stopLossPips, rr]
      */
     abstract public function analyse();

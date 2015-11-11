@@ -133,7 +133,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'stopLoss'=>'1.4055',
                     'rr' => 1,
                     'gran' => 'D',
-                    'expiry' => time() + (60 * 60 * 24)
+                    'expiry' => 102923494 + (60 * 60 * 48)
                 )
             ),
             array(
@@ -166,7 +166,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'stopLoss'=>'1.3860',
                     'rr' => 1,
                     'gran' => 'D',
-                    'expiry' => time() + (60 * 60 * 24)
+                    'expiry' => 102923494 + (60 * 60 * 48)
                 )
             )
         );

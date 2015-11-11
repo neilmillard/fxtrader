@@ -66,7 +66,6 @@ class Flag extends Signal
     {
         if (count($candles) > $this->getReqNumCandles()) {
             $this->candles = array_reverse($candles);
-            $this->analyseCandles = true;
             return (count($candles));
         } else {
             return 0;
@@ -84,7 +83,7 @@ class Flag extends Signal
 
     /**
      * Runs the analysis and returns a recommendation.
-     * @return Array $recommendation
+     * @return array $recommendation
      * [BOOL trade, instrument, side, entry, stopLoss, rr]
      */
     public function analyse(){
@@ -167,7 +166,8 @@ class Flag extends Signal
             $values['rr'] = 1;
             $values['gran'] = $this->candles[0]['gran'];
             $granTime = \OandaWrap::gran_seconds($values['gran']);
-            $values['expiry'] = time() + $granTime;
+            // The open time of the candle + 2x time period of candle
+            $values['expiry'] = $this->candles[0]['candletime'] + (2 * $granTime);
         }
 
         return $values;
