@@ -41,7 +41,14 @@ class AnalyseTrigger extends Job
 
         $job = 'App\Job\Analyse';
 
-        $this->logger->info("Processing Strategies for ".$args['instrument'].'@'.$this->args['time']);
+        //$this->logger->info("Processing Strategies for ".$args['instrument'].'@'.$this->args['time']);
+        $this->logger->log(
+            \Psr\Log\LogLevel::INFO,
+            'Processing Strategies for {instrument} @ {time}',
+            array('instrument' => $this->args['instrument'],
+                  'time'       => $this->args['time']
+            )
+        );
 
         //load strategies
         $strategies = R::find('strategy',' instrument = :instrument', [':instrument' => $args['instrument']]);
@@ -53,7 +60,13 @@ class AnalyseTrigger extends Job
             $this->logger->info("Creating Job $jobId for ".$strategy->name.'@'.$this->args['time']);
         }
         $delay = time() - $this->args['time'];
-        $this->logger->info("Delay: '.$delay.' Seconds. Processed ".count($strategies)." Strategies");
+        $this->logger->log(
+            \Psr\Log\LogLevel::INFO,
+            'Delay: {delay} Seconds. Processed {$strategies} Strategies',
+            array('delay'     => $delay,
+                'strategies'  => count($strategies)
+            )
+        );
         return;
     }
 }
