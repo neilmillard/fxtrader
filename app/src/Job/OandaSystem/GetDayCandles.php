@@ -3,6 +3,7 @@
 namespace App\Job\OandaSystem;
 
 use App\Job;
+use Psr\Log\LogLevel;
 use \Resque;
 class GetDayCandles extends Job\OandaSystem
 {
@@ -19,7 +20,13 @@ class GetDayCandles extends Job\OandaSystem
         if(!empty($newCandles)){
             $job = 'App\Job\AnalyseTrigger';
 
-            $this->logger->info("Processing ".count($newCandles).'@'.$this->args['time']);
+            $this->logger->log(
+                LogLevel::INFO,
+                'Processing {candleCount} @ {time}',
+                array('candleCount' => count($newCandles),
+                    'time' => $this->args['time'],
+                )
+            );
 
             $args = array(
                 'time' => time(),
@@ -30,7 +37,13 @@ class GetDayCandles extends Job\OandaSystem
                 $args['gran']           = $newCandle['gran'];
 
                 $jobId = Resque::enqueue('medium', $job, $args, true);
-                $this->logger->info("Job ".$jobId.' for '.$newCandle['instrument']);
+                $this->logger->log(
+                    LogLevel::INFO,
+                    'Queuing Job {jobid} for {instrument}',
+                     array('jobid'    => $jobId,
+                         'instrument' => $newCandle['instrument'],
+                     )
+                );
             }
 
         };
