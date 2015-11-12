@@ -1,5 +1,7 @@
 #!/usr/bin/env php56
 <?php
+use Monolog\Handler\LogglyHandler;
+
 /**
  * Launch resque workers
  * User: Neil
@@ -47,7 +49,11 @@ else if(!empty($VVERBOSE)) {
 $lsettings = $settings['logger'];
 $logger = new \Monolog\Logger($lsettings['name']);
 $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
-$logger->pushHandler(new \Monolog\Handler\StreamHandler($lsettings['path'], \Monolog\Logger::DEBUG));
+if(empty($lsettings['loggly'])) {
+    $logger->pushHandler(new \Monolog\Handler\StreamHandler($lsettings['path'], \Monolog\Logger::DEBUG));
+} else {
+    $logger->pushHandler(new LogglyHandler($lsettings['loggly'].'/tag/monolog', \Monolog\Logger::INFO));
+}
 
 // See if the APP_INCLUDE containes a logger object,
 // If none exists, fallback to internal logger

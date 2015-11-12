@@ -15,6 +15,8 @@ return [
     'logger' => [
         'name' => 'app',
         'path' => __DIR__ . '/../log/app.log',
+        // Set your loggly.com token here.
+        'loggly' => '',
     ],
 
     // database settings
