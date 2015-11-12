@@ -51,7 +51,7 @@ class AnalyseTrigger extends Job
         );
 
         //load strategies
-        $strategies = R::find('strategy',' instrument = :instrument', [':instrument' => $args['instrument']]);
+        $strategies = R::find('strategies',' instrument = :instrument', [':instrument' => $args['instrument']]);
         foreach ($strategies as $strategy) {
             $args['strategyId'] = $strategy->id;
             $args['signal']     = $strategy->signal;
