@@ -34,6 +34,7 @@ class Job
         require_once __DIR__ . '/../dependencies.php';
         $REDIS_BACKEND = $this->settings['resque']['REDIS_BACKEND'];
         \Resque::setBackend($REDIS_BACKEND);
+        $this->logger = $this->job->worker->logger;
     }
 
 }
