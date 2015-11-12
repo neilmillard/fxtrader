@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Neil
- * Date: 20/09/2015
- * Time: 21:21
- */
 
 namespace App;
 
+use Psr\Log\LoggerInterface;
 use Slim\Container;
 
 class Job
@@ -23,7 +18,7 @@ class Job
     public $args;
     /* @var string The name of the queue that this job belongs to. */
     public $queue;
-    /* @var \Monolog\Logger */
+    /* @var LoggerInterface */
     protected $logger;
 
     public function setUp()
@@ -39,7 +34,6 @@ class Job
         require_once __DIR__ . '/../dependencies.php';
         $REDIS_BACKEND = $this->settings['resque']['REDIS_BACKEND'];
         \Resque::setBackend($REDIS_BACKEND);
-        $this->logger=$container['logger'];
     }
 
 }

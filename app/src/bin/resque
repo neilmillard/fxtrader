@@ -44,6 +44,11 @@ else if(!empty($VVERBOSE)) {
     $logLevel = true;
 }
 
+$settings = $settings['logger'];
+$logger = new \Monolog\Logger($settings['name']);
+$logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+$logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
+
 // See if the APP_INCLUDE containes a logger object,
 // If none exists, fallback to internal logger
 if (!isset($logger) || !is_object($logger)) {
