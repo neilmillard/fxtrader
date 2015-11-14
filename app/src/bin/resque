@@ -25,7 +25,6 @@ require __DIR__ . '/../../loadsettings.php';
 $settings = loadsettings();
 
 $REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
-
 // A redis database number
 $REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
 if(!empty($REDIS_BACKEND)) {

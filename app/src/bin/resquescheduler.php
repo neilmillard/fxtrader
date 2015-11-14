@@ -1,11 +1,20 @@
-
+#!/usr/bin/env php56
 <?php
+use Monolog\Handler\LogglyHandler;
+
 /**
  * Launch resque scheduler workers
  * User: Neil
  * Date: 21/09/2015
  * Time: 09:17
  */
+
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+
+
+
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -15,6 +24,7 @@ require __DIR__ . '/../../loadsettings.php';
 $settings = loadsettings();
 
 $REDIS_BACKEND = $settings['resque']['REDIS_BACKEND'];
+// A redis database number
 $REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
 if(!empty($REDIS_BACKEND)) {
     if (empty($REDIS_BACKEND_DB))
@@ -34,17 +44,27 @@ else if(!empty($VVERBOSE)) {
     $logLevel = ResqueScheduler_Worker::LOG_VERBOSE;
 }
 
+$lsettings = $settings['logger'];
+$logger = new \Monolog\Logger($lsettings['name']);
+$logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+if (empty($lsettings['loggly'])) {
+    $logger->pushHandler(new \Monolog\Handler\StreamHandler($lsettings['path'], \Monolog\Logger::DEBUG));
+} else {
+    $logger->pushHandler(new LogglyHandler($lsettings['loggly'] . '/tag/fxschedworker', \Monolog\Logger::INFO));
+}
+
 $interval = 5;
 $INTERVAL = $settings['resque']['INTERVAL'];
 if(!empty($INTERVAL)) {
     $interval = $INTERVAL;
 }
 
-
 $worker = new ResqueScheduler_Worker();
+$worker->setLogger($logger);
 $worker->logLevel = $logLevel;
 
-$PIDFILE = $settings['resquescheduler']['PIDFILE'];
+//$PIDFILE = $settings['resquescheduler']['PIDFILE'];
+$PIDFILE = getenv('PIDFILE');
 if ($PIDFILE) {
     file_put_contents($PIDFILE, getmypid()) or
     die('Could not write PID information to ' . $PIDFILE);
@@ -65,5 +85,5 @@ if (empty($schedules)) {
     ResqueScheduler::cleanSchedules();
 }
 
-fwrite(STDOUT, '*** Starting scheduler worker '."\n");
+$logger->log(Psr\Log\LogLevel::NOTICE, 'Starting scheduler worker {worker}', array('worker' => $worker));
 $worker->work($interval);
