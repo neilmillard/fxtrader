@@ -70,12 +70,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/php-resque-scheduler.git",
-                "reference": "815bbb955ec7bed74188eb355c72911cc51105c2"
+                "reference": "fd28a6f22cada4ff33a7910840067b893b1479ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/815bbb955ec7bed74188eb355c72911cc51105c2",
-                "reference": "815bbb955ec7bed74188eb355c72911cc51105c2",
+                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/fd28a6f22cada4ff33a7910840067b893b1479ab",
+                "reference": "fd28a6f22cada4ff33a7910840067b893b1479ab",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque-scheduler/tree/master"
             },
-            "time": "2015-11-04 22:03:43"
+            "time": "2015-11-14 15:39:13"
         },
         {
             "name": "colinmollenhour/credis",
@@ -761,16 +761,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "3.0.0-RC1",
+            "version": "3.0.0-RC2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "d4ac4db27348eea2c3ba305c8b49028583600d3a"
+                "reference": "c181a3a7666677fcf5dee2c03c504d5731262745"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/d4ac4db27348eea2c3ba305c8b49028583600d3a",
-                "reference": "d4ac4db27348eea2c3ba305c8b49028583600d3a",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/c181a3a7666677fcf5dee2c03c504d5731262745",
+                "reference": "c181a3a7666677fcf5dee2c03c504d5731262745",
                 "shasum": ""
             },
             "require": {
@@ -823,7 +823,7 @@
                 "micro",
                 "router"
             ],
-            "time": "2015-09-07 20:13:22"
+            "time": "2015-11-09 10:57:43"
         },
         {
             "name": "slim/twig-view",
