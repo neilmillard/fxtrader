@@ -33,12 +33,12 @@ final class StrategiesAction extends Controller
             $strategy = R::load('strategies', $uid);
             if($strategy->id==0){
                 $this->flash->addMessage('flash','No record found');
-                return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('strategies'));
+                return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
             }
             // restrict access to own profile or Admin role
             if(strtolower($id['role'])!='admin'){
                 $this->flash->addMessage('flash','Access Denied');
-                return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('strategies'));
+                return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
             }
 
         } else {
@@ -51,7 +51,7 @@ final class StrategiesAction extends Controller
 
             $aid = R::store($strategy);
             $this->flash->addMessage('flash',"Strategy updated");
-            return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('strategies'));
+            return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
 
         }
         $viewData['strategy']=$strategy;
