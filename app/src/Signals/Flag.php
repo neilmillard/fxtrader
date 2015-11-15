@@ -64,7 +64,7 @@ class Flag extends Signal
      */
     public function loadCandles(Array $candles)
     {
-        if (count($candles) > $this->getReqNumCandles()) {
+        if (count($candles) >= $this->getReqNumCandles()) {
             $this->candles = array_reverse($candles);
             return (count($candles));
         } else {
