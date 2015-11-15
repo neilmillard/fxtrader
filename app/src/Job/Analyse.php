@@ -37,7 +37,7 @@ class Analyse extends Job
         if (class_exists($signalClass))
         {
             /* @var \App\Signal $signalTest */
-            $signalTest = new $signalClass($this->args['params'],[1]);
+            $signalTest = new $signalClass($this->args['params'], array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
             $noCandles = $signalTest->getReqNumCandles();
         } else {
             throw new \Exception("Signal $signalClass not found");
