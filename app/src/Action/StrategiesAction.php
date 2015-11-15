@@ -88,14 +88,6 @@ final class StrategiesAction extends Controller
         return $signals;
     }
 
-    public function getInstruments()
-    {
-        //$instruments = [];
-        $settings = loadsettings();
-        $instruments = $settings['oanda']['pairs'];
-        return $instruments;
-    }
-
     public function options(Request $request, Response $response, Array $args)
     {
         $uid = $args['uid'];

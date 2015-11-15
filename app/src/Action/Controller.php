@@ -32,4 +32,16 @@ abstract class Controller
         //$this->view->render($response, 'home.twig');
         return $response;
     }
+
+    /**
+     * get the instruments - at the moment only oanda is supported
+     * @return mixed
+     */
+    public function getInstruments($broker = 'oanda')
+    {
+        //$instruments = [];
+        $settings = loadsettings();
+        $instruments = (array_key_exists($broker, $settings) ? $settings[$broker]['pairs'] : []);
+        return $instruments;
+    }
 }

@@ -18,6 +18,18 @@
         <h3><b>Apps</b></h3>
             <a href="{{ path_for('profile') }}">Other index</a><br />
     </div>
+    <div style="border:0; border-collapse: collapse; width: 700px;">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label for="instrument">Instrument:</label>
+                <select id="instrument" name="instrument">
+                    {% for pair in instruments %}
+                        <option value="{{ pair }}">{{ pair }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
     <div class="chart"></div>
 {% endblock %}
 {% block javascript %}

@@ -13,7 +13,8 @@ final class HomeAction extends Controller
     public function dispatch(Request $request, Response $response, Array $args)
     {
         $this->logger->info("Home page action dispatched");
-        $this->view->render($response, 'home.twig');
+        $data['instruments'] = $this->getInstruments('oanda');
+        $this->view->render($response, 'home.twig', $data);
         return $response;
     }
 }
