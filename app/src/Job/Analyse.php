@@ -51,7 +51,7 @@ class Analyse extends Job
             [
                 ':instrument' => $instrument,
                 ':gran' => $gran,
-                ':candles' => $noCandles,
+                ':candles' => $noCandles + 1,
                 ':endTime'  => $endtime
             ]
         );
