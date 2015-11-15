@@ -22,7 +22,6 @@ class CandlesApi extends Controller
     {
         $id = $this->authenticator->getIdentity();
         if (empty($id)) {
-            //TODO: return json instead
             $path = __DIR__;
             $newStream = new LazyOpenStream($path . '/../../../public/data.csv', 'r');
         } else {
@@ -36,7 +35,7 @@ class CandlesApi extends Controller
             $fp = fopen('php://temp', 'r+b');
             $newStream = new Stream($fp);
             $newStream->write('Date,Open,High,Low,Close,Volume' . PHP_EOL);
-            $instrument = $request->getParam('instrument');
+            $instrument = $args['instrument'];
             if (!in_array($instrument, $pairs)) {
                 $instrument = $pairs[1];
             }

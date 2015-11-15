@@ -91,33 +91,41 @@ svg.append('g')
 //    .datum(supstanceData)
 //    .call(supstance);
 
-d3.csv("/api/candles", function (error, data) {
-    var accessor = candlestick.accessor();
-
-    data = data.map(function (d) {
-        // Open, high, low, close generally not required, is being used here to demonstrate colored volume
-        // bars
-        return {
-            date: parseDate(d.Date),
-            volume: +d.Volume,
-            open: +d.Open,
-            high: +d.High,
-            low: +d.Low,
-            close: +d.Close
-        };
-    }).sort(function (a, b) {
-        return d3.ascending(accessor.d(a), accessor.d(b));
-    });
-
-    x.domain(data.map(accessor.d));
-    y.domain(techan.scale.plot.ohlc(data, accessor).domain());
-    //var supstanceData = [
-    //    { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
-    //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
-    //];
-    svg.select("g.candlestick").datum(data);
-    draw();
+getdata();
+$('#instrument').on('change', function () {
+    getdata(this.value);
 });
+
+function getdata(instrument) {
+    d3.csv("/api/candles/" + instrument, function (error, data) {
+        var accessor = candlestick.accessor();
+
+        data = data.map(function (d) {
+            // Open, high, low, close generally not required, is being used here to demonstrate colored volume
+            // bars
+            return {
+                date: parseDate(d.Date),
+                volume: +d.Volume,
+                open: +d.Open,
+                high: +d.High,
+                low: +d.Low,
+                close: +d.Close
+            };
+        }).sort(function (a, b) {
+            return d3.ascending(accessor.d(a), accessor.d(b));
+        });
+
+        x.domain(data.map(accessor.d));
+        y.domain(techan.scale.plot.ohlc(data, accessor).domain());
+        //var supstanceData = [
+        //    { start: new Date(2015, 2, 11), end: new Date(2015, 2, 14), value: 0.9800 },
+        //    { start: new Date(2014, 10, 21), end: new Date(2014, 10, 27), value: 0.9450 }
+        //];
+        svg.select("g.candlestick").datum(data);
+        draw();
+    });
+}
+
 function draw(){
     var accessor = candlestick.accessor();
 
