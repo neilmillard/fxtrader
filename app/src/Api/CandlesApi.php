@@ -31,7 +31,7 @@ class CandlesApi extends Controller
             $settings = loadsettings();
             $pairs = $settings['oanda']['pairs'];
             $grans = ['H1', 'D'];
-            $days = 200;
+            $noCandles = 200;
             $fp = fopen('php://temp', 'r+b');
             $newStream = new Stream($fp);
             $newStream->write('Date,Open,High,Low,Close,Volume' . PHP_EOL);
@@ -45,22 +45,21 @@ class CandlesApi extends Controller
             }
             $candles = R::find(
                 'candle',
-                ' instrument = :instrument AND gran = :gran ORDER BY date DESC LIMIT :days',
+                ' instrument = :instrument AND gran = :gran ORDER BY date DESC LIMIT :noCandles',
                 [
                     ':instrument' => $instrument,
                     ':gran' => $gran,
-                    ':days' => $days
+                    ':noCandles' => $noCandles
                 ]
             );
             if (!empty($candles)) {
                 foreach ($candles as $candle) {
-                    //TODO time needs to be 17-aug-2015,
                     $data = [];
-                    $candletime = new \DateTime('@' . $candle->candletime);
+                    $candleTime = new \DateTime('@' . $candle->candletime);
                     if ($gran == 'D') {
-                        $data['Date'] = $candletime->format('d-M-y');
+                        $data['Date'] = $candleTime->format('d-M-y');
                     } else {
-                        $data['Date'] = $candletime->format('Y-m-d H:i:s');
+                        $data['Date'] = $candleTime->format('Y-m-d H:i:s');
                     }
                     $data['Open'] = $candle->open;
                     $data['High'] = $candle->high;
