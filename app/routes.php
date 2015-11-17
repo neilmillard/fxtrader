@@ -35,6 +35,10 @@ $app->get('/admin/analysestrategy/{uid}','App\Action\StrategiesAction:triggerStr
     ->setName('triggerstragetyscan')
     ->add('Authenticator\Middleware:auth');
 
+$app->get('/admin/recommendations', 'App\Action\StrategiesAction:recommendations')
+    ->setName('adminrecommendations')
+    ->add('Authenticator\Middleware:auth');
+
 $app->get('/admin/queues/index', 'App\Action\QueuesAction:admin')
     ->setName('adminqueues')
     ->add('Authenticator\Middleware:auth');
@@ -45,10 +49,6 @@ $app->get('/admin/queues/jobs', 'App\Action\QueuesAction:jobs')
 
 $app->get('/admin/queues/workers', 'App\Action\QueuesAction:workers')
     ->setName('adminworkers')
-    ->add('Authenticator\Middleware:auth');
-
-$app->get('/admin/recommendations', 'App\Action\QueuesAction:recommendations')
-    ->setName('adminrecommendations')
     ->add('Authenticator\Middleware:auth');
 
 /** @noinspection PhpUndefinedMethodInspection */

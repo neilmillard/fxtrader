@@ -199,4 +199,22 @@ final class StrategiesAction extends Controller
         $this->flash->addMessage('flash','Analysis Queued');
         return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
     }
+
+    public function recommendations(Request $request, Response $response, Array $args)
+    {
+        $data = [];
+        //TODO: get the most recent recommendations. this could show the results too.
+        // Limit to 20.
+        // Recommendation: [trade, instrument, side, entry, stopLoss, stopLossPips, rr, gran, expiry]
+
+        $recommendations = R::findAll('recommendations', ' ORDER BY expiry DESC LIMIT 20');
+        foreach ($recommendations as $recommendation) {
+            $strategy = $recommendation->fetchAs('strategies')->strategy;
+            $recommendation->signal = $strategy->signal;
+        }
+
+        $data['recommendations'] = $recommendations;
+        $this->view->render($response, 'recommendations.twig', $data);
+        return $response;
+    }
 }
