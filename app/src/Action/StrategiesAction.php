@@ -186,7 +186,7 @@ final class StrategiesAction extends Controller
         $job = 'App\Job\Analyse';
 
         foreach ($newCandles as $newCandle) {
-            $args['analysisCandle'] = $newCandle['analysisCandle'];
+            $args['analysisCandle'] = $newCandle['time'];
             $jobId = Resque::enqueue('medium', $job, $args, true);
             $this->logger->log(
                 LogLevel::INFO,
