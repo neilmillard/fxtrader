@@ -56,7 +56,7 @@ return [
 
     // Resque
     'resque'    => [
-        'REDIS_BACKEND' => '127.0.0.1:6379',
+        'REDIS_BACKEND' => 'redis://user:pass@127.0.0.1:6379/',
         'LOGGING'       => '',
         'VERBOSE'       => '',
         'VVERBOSE'      => '',
