@@ -23,3 +23,6 @@ $container['database'] = function ($c) {
     //$connection = new mysqli($settings['host'], $settings['username'], $settings['password'], $settings['database']);
     return $connection;
 };
+
+$REDIS_BACKEND = $container['settings']['resque']['REDIS_BACKEND'];
+\Resque::setBackend($REDIS_BACKEND);

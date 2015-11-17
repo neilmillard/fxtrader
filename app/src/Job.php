@@ -32,8 +32,9 @@ class Job
         $this->container = $container;
         // Set up datalayer
         require_once __DIR__ . '/../datalayer.php';
-        $REDIS_BACKEND = $this->settings['resque']['REDIS_BACKEND'];
-        \Resque::setBackend($REDIS_BACKEND);
+//  moved to datalayer.php
+//        $REDIS_BACKEND = $this->settings['resque']['REDIS_BACKEND'];
+//        \Resque::setBackend($REDIS_BACKEND);
         $this->logger = $this->job->worker->logger;
     }
 
