@@ -15,7 +15,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ worker.name }}</div>
                 <div class="panel-body">
-                    <p>{{ dump(worker.job) }}</p>
+                    <p>{{ dump(worker.job.payload.class) }}</p>
                 </div>
             </div>
         </div>
