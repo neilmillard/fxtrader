@@ -19,14 +19,14 @@
                 Update Options
             </a>
             {% if strategy.is_subscribable() %}
+                <a class="btn" style="background: #a7db48;color: #ffffff;" href="{{ base_url() }}{{ path_for('triggerstragetyscan',{'uid': strategy.id}) }}">
+                    Initiate Analysis
+                </a>
+            {% endif %}
+            {% if strategy.is_subscribable() %}
                 <span class="alert alert-success"><span class="glyphicon glyphicon-ok-circle"></span></span>
             {% else %}
                 <span class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span> Check Options</span>
-            {% endif %}
-            {% if strategy.is_subscribable() %}
-                <a class="btn" style="background: #3438db;color: #ffffff;" href="{{ base_url() }}{{ path_for('triggerstragetyscan',{'uid': strategy.id}) }}">
-                    Initiate Analysis
-                </a>
             {% endif %}
             <br/>
             <br/>
