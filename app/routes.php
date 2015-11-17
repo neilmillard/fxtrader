@@ -31,6 +31,10 @@ $app->map(['GET','POST'],'/admin/editstrategy/{uid}/options','App\Action\Strateg
     ->setName('editstrategyoptions')
     ->add('Authenticator\Middleware:auth');
 
+$app->get('/admin/analysestrategy/{uid}','App\Action\StrategiesAction:triggerStrategyScan')
+    ->setName('triggerstragetyscan')
+    ->add('Authenticator\Middleware:auth');
+
 $app->get('/admin/queues/index', 'App\Action\QueuesAction:admin')
     ->setName('adminqueues')
     ->add('Authenticator\Middleware:auth');

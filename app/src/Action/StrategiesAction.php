@@ -1,12 +1,11 @@
 <?php
 namespace App\Action;
 
+use Psr\Log\LogLevel;
 use RedBeanPHP\R;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Slim\Router;
-use Slim\Views\Twig;
-use Monolog\Logger;
+use \Resque;
 
 final class StrategiesAction extends Controller
 {
@@ -142,5 +141,62 @@ final class StrategiesAction extends Controller
             $params = call_user_func($testClass.'::showArgs');
         }
         return $params;
+    }
+
+    public function triggerStrategyScan(Request $request, Response $response, Array $args)
+    {
+        $uid = $args['uid'];
+        if(empty($uid)){
+            $this->flash->addMessage('flash','No record specified');
+            return $response->withRedirect($request->getUri()->getBaseUrl().$this->router->pathFor('homepage'));
+        }
+        $strategy = R::load('strategies', $uid);
+        if($strategy->id==0){
+            $this->flash->addMessage('flash','No record found');
+            return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
+        }
+        $instrument = $strategy->instrument;
+        $noCandles  = 200;
+        $endTime    = time();
+        $gran       = 'D';
+        $candleBeans = R::find(
+            'candle',
+            ' instrument = :instrument AND gran = :gran AND candletime <= :endTime ORDER BY date DESC LIMIT :candles',
+            [
+                ':instrument' => $instrument,
+                ':gran' => $gran,
+                ':candles' => $noCandles,
+                ':endTime'  => $endTime
+            ]
+        );
+        if(count($candleBeans)>10){
+            $newCandles = R::exportAll($candleBeans);
+        } else {
+            $this->flash->addMessage('flash', "Not enough data");
+            return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
+        }
+        $args = array(
+            'time'       => time(),
+            'instrument' => $instrument,
+            'gran'       => $gran,
+            'strategyId' => $strategy->id,
+            'signal'     => $strategy->signal,
+            'params'     => $strategy->params,
+        );
+        $job = 'App\Job\Analyse';
+
+        foreach ($newCandles as $newCandle) {
+            $args['analysisCandle'] = $newCandle['analysisCandle'];
+            $jobId = Resque::enqueue('medium', $job, $args, true);
+            $this->logger->log(
+                LogLevel::INFO,
+                'Queuing Job {jobid} for {instrument}',
+                array('jobid'    => $jobId,
+                    'instrument' => $newCandle['instrument'],
+                )
+            );
+        }
+        $this->flash->addMessage('flash','Analysis Queued');
+        return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
     }
 }
