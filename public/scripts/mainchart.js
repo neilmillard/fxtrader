@@ -91,7 +91,7 @@ svg.append('g')
 //    .datum(supstanceData)
 //    .call(supstance);
 
-initial = $('#instrument').value;
+initial = $('#instrument').val();
 getdata(initial);
 $('#instrument').on('change', function () {
     getdata(this.value);
