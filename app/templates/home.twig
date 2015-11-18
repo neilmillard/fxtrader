@@ -25,7 +25,7 @@
                 <label for="instrument">Instrument:</label>
                 <select id="instrument" name="instrument">
                     {% for pair in instruments %}
-                        <option value="{{ pair }}">{{ pair }}</option>
+                        <option value="{{ pair }}" {% if pair=='USD_CAD' %}selected="selected"{% endif %}>{{ pair }}</option>
                     {% endfor %}
                 </select>
             </div>
