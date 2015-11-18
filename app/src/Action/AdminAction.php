@@ -24,7 +24,7 @@ final class AdminAction extends Controller
 
     public function fetchCandlesDay(Request $request, Response $response, Array $args)
     {
-        $job = 'App\Job\GetDayCandles';
+        $job = 'App\Job\OandaSystem\GetDayCandles';
         $args = array(
             'time' => time(),
             'days' => '5',
