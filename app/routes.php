@@ -62,7 +62,7 @@ $app->get('/admin', 'App\Action\AdminAction:dispatch')
     ->add('Authenticator\Middleware:auth');
 
 /** @noinspection PhpUndefinedMethodInspection */
-$app->get('/admin', 'App\Action\AdminAction:fetchCandlesDay')
+$app->get('/admin/fetchcandlesday', 'App\Action\AdminAction:fetchCandlesDay')
     ->setName('fetchcandlesday')
     ->add('Authenticator\Middleware:auth');
 
