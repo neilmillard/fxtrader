@@ -9,6 +9,7 @@ use Slim\Http\Response;
 use Slim\Router;
 use Slim\Views\Twig;
 use Monolog\Logger;
+use Resque;
 
 final class AdminAction extends Controller
 {
@@ -19,6 +20,19 @@ final class AdminAction extends Controller
 
         $this->view->render($response, 'admin.twig');
         return $response;
+    }
+
+    public function fetchCandlesDay(Request $request, Response $response, Array $args)
+    {
+        $job = 'App\Job\GetDayCandles';
+        $args = array(
+            'time' => time(),
+            'days' => '5',
+        );
+        $jobId = Resque::enqueue('default', $job, $args, true);
+
+        $this->flash->addMessage('flash','Job Queued');
+        return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
     }
 
 }

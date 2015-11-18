@@ -1,17 +1,12 @@
 <?php
 return [
     'schedule_1' => [
-        'cron' => "5 10 * * *",
+        'cron' => "5 22 * * *",
         'class' => '\App\Job\OandaSystem\GetDayCandles',
         'args' => [
             'queue' => 'low',
             'time' => time(),
-            'userid' => 'not needed',
-            'oanda' => [
-                'apiKey' => '',
-                'accountId' => '',
-                'serverType' => 'Demo',
-            ]
+            'days'   => '2',
         ],
         'description' => "long description",
     ]
