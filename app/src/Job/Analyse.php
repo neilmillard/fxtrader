@@ -30,7 +30,8 @@ class Analyse extends Job
         $instrument = $this->args['instrument'];
         $gran       = $this->args['gran'];
         $endtime    = $this->args['analysisCandle'];
-
+        // help SQLSTATE[HY000]: General error: 2006 MySQL server has gone away?
+        R::testConnection();
         $class = $this->args['signal'];
         //full namespace to signals
         $signalClass = 'App\\Signals\\'.$class;
