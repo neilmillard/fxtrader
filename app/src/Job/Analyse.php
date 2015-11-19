@@ -30,8 +30,6 @@ class Analyse extends Job
         $instrument = $this->args['instrument'];
         $gran       = $this->args['gran'];
         $endtime    = $this->args['analysisCandle'];
-        // help SQLSTATE[HY000]: General error: 2006 MySQL server has gone away?
-        R::testConnection();
         $class = $this->args['signal'];
         //full namespace to signals
         $signalClass = 'App\\Signals\\'.$class;
@@ -67,7 +65,13 @@ class Analyse extends Job
         if($result['trade']){
             $recommendation = new Model_Recommendations($result);
             $recommendation->setStrategy( $this->args['strategyId'] );
-            $this->logger->info("Recommendation found: for ".$instrument." by StratID:".$this->args['strategyId']);
+            $this->logger->log(
+                \Psr\Log\LogLevel::INFO,
+                'Recommendation found: for {instrument} by StratID: {strategy}',
+                array('instrument' => $this->args['instrument'],
+                    'strategy'       => $this->args['strategyId']
+                )
+            );
             //TODO: trigger orders
 
         }
