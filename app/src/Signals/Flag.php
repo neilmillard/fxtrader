@@ -106,7 +106,7 @@ class Flag extends Signal
         $breatherCent = $this->args['percentBreatherSize'];
         $strong = $this->args['strongPoleCandleCent'];
         $buffer = $this->args['entryBufferPips'];
-        $tolerance = $buffer /2;
+        $tolerance = 0; //$buffer /2;
         $maxValid = $maxBreatherCandles;
         for($i=0;$i<$maxValid;$i++){
             // find pattern  ------------------------------------------------------------------
