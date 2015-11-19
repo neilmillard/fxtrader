@@ -169,7 +169,8 @@ final class StrategiesAction extends Controller
                 ':endTime'  => $endTime
             ]
         );
-        if(count($candleBeans)>10){
+        $total = count($candleBeans);
+        if($total>10){
             $newCandles = R::exportAll($candleBeans);
         } else {
             $this->flash->addMessage('flash', "Not enough data");
@@ -184,7 +185,7 @@ final class StrategiesAction extends Controller
             'params'     => $strategy->params,
         );
         $job = 'App\Job\Analyse';
-
+        $counter = $total;
         foreach ($newCandles as $newCandle) {
             $args['analysisCandle'] = $newCandle['candletime'];
             $jobId = Resque::enqueue('medium', $job, $args, true);
@@ -195,6 +196,10 @@ final class StrategiesAction extends Controller
                     'instrument' => $newCandle['instrument'],
                 )
             );
+            // leave 10 candles for the analysis
+            $counter--;
+            if($counter<10)
+                continue;
         }
         $this->flash->addMessage('flash','Analysis Queued');
         return $response->withRedirect($request->getUri()->getBaseUrl() . $this->router->pathFor('adminstrategies'));
