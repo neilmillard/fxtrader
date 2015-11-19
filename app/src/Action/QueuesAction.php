@@ -102,10 +102,12 @@ final class QueuesAction extends Controller
         foreach ($workerlist as $worker) {
             $job = $worker->job();
             if (empty($job)) {
-                $job['payload'] = "Idle";
+                $status = "Idle";
+            } else {
+                $status = print_r($job['payload']['class'],true);
             }
             $workers[] = ['name' => (string)$worker,
-                'job' => print_r($job['payload'],true),
+                'job' => $status,
             ];
         }
 
