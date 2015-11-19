@@ -1,17 +1,18 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9b411808f319e25090952999152657e9",
+    "hash": "e9a591ea67e7e387bc3a905be9c22552",
+    "content-hash": "95788ff182baa79cf39777dd73b749e4",
     "packages": [
         {
             "name": "chrisboulton/php-resque",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/php-resque.git",
+                "url": "https://github.com/neilmillard/php-resque",
                 "reference": "af8e51a8bd62cdf38abef68d944dda4e62c96106"
             },
             "dist": {
@@ -69,7 +70,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/php-resque-scheduler.git",
+                "url": "https://github.com/neilmillard/php-resque-scheduler",
                 "reference": "fd28a6f22cada4ff33a7910840067b893b1479ab"
             },
             "dist": {
@@ -106,12 +107,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "584cf2b028138411794c2bdc212a3bceacb521cf"
+                "reference": "83684f7ae16909d76087b7796ca0141540c033b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/584cf2b028138411794c2bdc212a3bceacb521cf",
-                "reference": "584cf2b028138411794c2bdc212a3bceacb521cf",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/83684f7ae16909d76087b7796ca0141540c033b0",
+                "reference": "83684f7ae16909d76087b7796ca0141540c033b0",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +126,7 @@
                     "Sentinel.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -137,7 +138,7 @@
             ],
             "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
             "homepage": "https://github.com/colinmollenhour/credis",
-            "time": "2015-11-05 16:28:08"
+            "time": "2015-11-16 18:12:52"
         },
         {
             "name": "container-interop/container-interop",
@@ -159,7 +160,7 @@
                     "Interop\\Container\\": "src/Interop/Container/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -398,7 +399,7 @@
                     "lib/password.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -419,16 +420,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.17.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24"
+                "reference": "7d20351afc85aa23c5795309c9984a1e93d81c27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
-                "reference": "bee7f0dc9c3e0b69a6039697533dca1e845c8c24",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/7d20351afc85aa23c5795309c9984a1e93d81c27",
+                "reference": "7d20351afc85aa23c5795309c9984a1e93d81c27",
                 "shasum": ""
             },
             "require": {
@@ -457,6 +458,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
                 "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
@@ -466,7 +468,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16.x-dev"
+                    "dev-master": "1.18.x-dev"
                 }
             },
             "autoload": {
@@ -474,7 +476,7 @@
                     "Monolog\\": "src/Monolog"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -492,7 +494,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-10-14 12:51:02"
+            "time": "2015-11-18 18:03:10"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -520,7 +522,7 @@
                     "Cron": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -564,7 +566,7 @@
                     "src/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -655,7 +657,7 @@
                     "Psr\\Http\\Message\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -696,7 +698,7 @@
                     "Psr\\Log\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -854,7 +856,7 @@
                     "Slim\\Views\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -881,7 +883,7 @@
             "version": "dev-class",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/OandaWrap.git",
+                "url": "https://github.com/neilmillard/oandawrap",
                 "reference": "c1cd9c3956a9cd22dc10202720d9ea67789ecff1"
             },
             "dist": {
@@ -918,12 +920,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b7c124bae00ab0a019a084c6b99f1df023bcb996"
+                "reference": "db93842e80d758f6c74c3e1f1f088badb3fc84f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b7c124bae00ab0a019a084c6b99f1df023bcb996",
-                "reference": "b7c124bae00ab0a019a084c6b99f1df023bcb996",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/db93842e80d758f6c74c3e1f1f088badb3fc84f0",
+                "reference": "db93842e80d758f6c74c3e1f1f088badb3fc84f0",
                 "shasum": ""
             },
             "require": {
@@ -944,7 +946,7 @@
                     "Twig_": "lib/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -971,7 +973,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-08 09:55:30"
+            "time": "2015-11-17 12:22:13"
         }
     ],
     "packages-dev": [
@@ -1010,7 +1012,7 @@
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1108,7 +1110,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1153,7 +1155,7 @@
                     "Prophecy\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1186,12 +1188,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5"
+                "reference": "6aa886e7de7d04dc4ac7b799063a806e36c03ce3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5",
-                "reference": "3e8e8c5b7cc76a1199e251ded7b417dfcf7684a5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6aa886e7de7d04dc4ac7b799063a806e36c03ce3",
+                "reference": "6aa886e7de7d04dc4ac7b799063a806e36c03ce3",
                 "shasum": ""
             },
             "require": {
@@ -1222,7 +1224,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1240,7 +1242,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-06 13:55:10"
+            "time": "2015-11-12 21:11:35"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1270,7 +1272,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1312,7 +1314,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1353,7 +1355,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1403,7 +1405,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1426,12 +1428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c19349623f7aef33c7e3dc83d38cedccaf850385"
+                "reference": "fac3d00509c2415355fe067ac19cd353a60e73bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c19349623f7aef33c7e3dc83d38cedccaf850385",
-                "reference": "c19349623f7aef33c7e3dc83d38cedccaf850385",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fac3d00509c2415355fe067ac19cd353a60e73bf",
+                "reference": "fac3d00509c2415355fe067ac19cd353a60e73bf",
                 "shasum": ""
             },
             "require": {
@@ -1474,7 +1476,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1492,7 +1494,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-06 15:17:42"
+            "time": "2015-11-17 20:05:45"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1500,12 +1502,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "382c729a52b7ef682e94c73fd6868f5ee8116ba7"
+                "reference": "b28b029356e65091dfbf8c2bc4ef106ffece509e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/382c729a52b7ef682e94c73fd6868f5ee8116ba7",
-                "reference": "382c729a52b7ef682e94c73fd6868f5ee8116ba7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/b28b029356e65091dfbf8c2bc4ef106ffece509e",
+                "reference": "b28b029356e65091dfbf8c2bc4ef106ffece509e",
                 "shasum": ""
             },
             "require": {
@@ -1531,7 +1533,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1548,7 +1550,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-10-18 07:55:54"
+            "time": "2015-11-09 15:37:17"
         },
         {
             "name": "sebastian/comparator",
@@ -1583,7 +1585,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1645,7 +1647,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1697,7 +1699,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1749,7 +1751,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1817,7 +1819,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1865,7 +1867,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1915,7 +1917,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1949,7 +1951,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1970,12 +1972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "29dee11bd37eae3de68b5113dc4b84dc8e2b786e"
+                "reference": "e594d90fba4e4cddc146bdd3907126b1d74d7316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/29dee11bd37eae3de68b5113dc4b84dc8e2b786e",
-                "reference": "29dee11bd37eae3de68b5113dc4b84dc8e2b786e",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e594d90fba4e4cddc146bdd3907126b1d74d7316",
+                "reference": "e594d90fba4e4cddc146bdd3907126b1d74d7316",
                 "shasum": ""
             },
             "require": {
@@ -1995,7 +1997,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2011,7 +2013,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-02 20:34:04"
+            "time": "2015-11-18 13:48:51"
         }
     ],
     "aliases": [],
