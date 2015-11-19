@@ -62,6 +62,17 @@ class Analyse extends Job
         /* @var \App\Signal $analysisClass */
         $analysisClass = new $signalClass($this->args['params'],$candles);
         $result = $analysisClass->analyse();
+        if($endtime == 1445806800){
+            $this->logger->log(
+                \Psr\Log\LogLevel::INFO,
+                'Processed {instrument} candle @{endTime}| Result was {result}',
+                array('instrument' => $this->args['instrument'],
+                    'endTime'      => $endtime,
+                    'result'       => print_r($result,true)
+                    
+                )
+            );
+        }
         if($result['trade']){
             $recommendation = new Model_Recommendations($result);
             $recommendation->setStrategy( $this->args['strategyId'] );
