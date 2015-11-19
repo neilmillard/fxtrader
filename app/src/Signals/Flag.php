@@ -106,6 +106,7 @@ class Flag extends Signal
         $breatherCent = $this->args['percentBreatherSize'];
         $strong = $this->args['strongPoleCandleCent'];
         $buffer = $this->args['entryBufferPips'];
+        $tolerance = $buffer /2;
         $maxValid = $maxBreatherCandles;
         for($i=0;$i<$maxValid;$i++){
             // find pattern  ------------------------------------------------------------------
@@ -128,7 +129,7 @@ class Flag extends Signal
 
             // check pole is strong  -----------------------------------------------------------
             $strongPoles = true;
-            for($j=1;$j<$polecandles;$j++){
+            for($j=1;$j<=$polecandles;$j++){
                 $perCentBody = $this->body($j) / $this->range($j);
                 if($perCentBody<$strong)
                     $strongPoles = false;
@@ -138,7 +139,7 @@ class Flag extends Signal
                 continue;
 
             // does the breather breach the pole?
-            if($this->poleBreach($i))
+            if($this->poleBreach($i,$tolerance))
                 continue;
 
             // probably got a valid signal.
@@ -175,13 +176,14 @@ class Flag extends Signal
 
     /**
      * @param $shift
+     * @param $tolerance
      * @return bool
      */
-    protected function poleBreach($shift){
+    protected function poleBreach($shift,$tolerance=0){
         if($this->direction($shift)=='BEAR'){
-            return ($this->high($shift)>$this->high($shift+1));
+            return ($this->high($shift)>($this->high($shift+1)+$tolerance));
         } else {
-            return ($this->low($shift)<$this->low($shift+1));
+            return ($this->low($shift)<($this->low($shift+1)-$tolerance));
         }
     }
 

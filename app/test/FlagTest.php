@@ -121,7 +121,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'noOfPoleCandles'=>2,
                     'maxBreatherCandles'=>1,
                     'percentBreatherSize'=>0.3,
-                    'strongPoleCandleCent'=>0.9,
+                    'strongPoleCandleCent'=>0.6,
                     'entryBufferPips'=>0.0005,
                     'instrument'=>'EUR_USD'
                 ),
@@ -154,7 +154,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     'noOfPoleCandles'=>2,
                     'maxBreatherCandles'=>1,
                     'percentBreatherSize'=>0.3,
-                    'strongPoleCandleCent'=>0.9,
+                    'strongPoleCandleCent'=>0.6,
                     'entryBufferPips'=>0.0005,
                     'instrument'=>'EUR_USD'
                 ),
