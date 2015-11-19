@@ -105,7 +105,7 @@ final class QueuesAction extends Controller
                 $job = "Idle";
             }
             $workers[] = ['name' => (string)$worker,
-                'job' => $job->payload,
+                'job' => $job,
             ];
         }
 
