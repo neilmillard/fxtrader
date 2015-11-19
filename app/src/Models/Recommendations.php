@@ -27,20 +27,17 @@ class Recommendations extends SimpleModel
         $theBean = R::findOrCreate('recommendations',
             [ 'expiry' => $recommendAr['expiry'],
                 'instrument' => $recommendAr['instrument'] ]);
-        // don't update if recommendation already exists
-        if(empty($theBean->id)){
-            $theBean->import(
-                $recommendAr,
-                [   'instrument',
-                    'side',
-                    'entry',
-                    'stopLoss',
-                    'rr' ,
-                    'gran',
-                    'expiry'
-                ]
-            );
-        }
+        $theBean->import(
+            $recommendAr,
+            [   'instrument',
+                'side',
+                'entry',
+                'stopLoss',
+                'rr' ,
+                'gran',
+                'expiry'
+            ]
+        );
         return $theBean;
     }
 }
