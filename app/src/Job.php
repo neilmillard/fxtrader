@@ -3,6 +3,7 @@
 namespace App;
 
 use Psr\Log\LoggerInterface;
+use RedBeanPHP\R;
 use Slim\Container;
 
 class Job
@@ -36,6 +37,11 @@ class Job
 //        $REDIS_BACKEND = $this->settings['resque']['REDIS_BACKEND'];
 //        \Resque::setBackend($REDIS_BACKEND);
         $this->logger = $this->job->worker->logger;
+    }
+
+    public function tearDown()
+    {
+        R::close();
     }
 
 }
