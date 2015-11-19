@@ -2,7 +2,7 @@
 
 namespace App\Job;
 use App\Job;
-use App\Models\Recommendations as Model_Recommendations;
+use App\Models\Recommendations;
 use RedBeanPHP\R;
 
 //$args = array(
@@ -62,9 +62,13 @@ class Analyse extends Job
         /* @var \App\Signal $analysisClass */
         $analysisClass = new $signalClass($this->args['params'],$candles);
         $result = $analysisClass->analyse();
-        if($result['expiry']>0){
-            $recommendation = new Model_Recommendations($result);
-            $recommendation->setStrategy( $this->args['strategyId'] );
+        if($result['trade']){
+            $recommendation = Recommendations::factory($result);
+            $strategy = R::load('strategies',$this->args['strategyId']);
+            if(empty($recommendation->strategy_id)){
+                $recommendation->strategy = $strategy;
+            }
+            R::store($recommendation);
             $this->logger->log(
                 \Psr\Log\LogLevel::INFO,
                 'Recommendation found: for {instrument} by StratID: {strategy}',

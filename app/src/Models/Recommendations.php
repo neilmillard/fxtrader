@@ -19,19 +19,28 @@ use \RedBeanPHP\SimpleModel;
  */
 class Recommendations extends SimpleModel
 {
-    public function factory(Array $recommendAr){
-        $theModel = R::findOrCreate('recommendations',
+    /**
+     * @param array $recommendAr
+     * @return \RedBeanPHP\OODBBean
+     */
+    public static function factory($recommendAr){
+        $theBean = R::findOrCreate('recommendations',
             [ 'expiry' => $recommendAr['expiry'],
                 'instrument' => $recommendAr['instrument'] ]);
-        if(empty($theModel->id)){
-            $theModel->import($recommendAr);
+        // don't update if recommendation already exists
+        if(empty($theBean->id)){
+            $theBean->import(
+                $recommendAr,
+                [   'instrument',
+                    'side',
+                    'entry',
+                    'stopLoss',
+                    'rr' ,
+                    'gran',
+                    'expiry'
+                ]
+            );
         }
-        return $theModel;
-    }
-
-    public function setStrategy($strategyId){
-        $strategy = R::load('strategies',$strategyId);
-        $this->strategy = $strategy;
-        R::store($this->bean);
+        return $theBean;
     }
 }
