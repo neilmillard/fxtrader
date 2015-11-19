@@ -216,6 +216,7 @@ final class StrategiesAction extends Controller
         foreach ($recommendations as $recommendation) {
             $strategy = $recommendation->fetchAs('strategies')->strategy;
             $recommendation->signal = $strategy->signal;
+            $recommendation->expiry = date('Y-m-d H:i:s', ($recommendation->expiry));
         }
 
         $data['recommendations'] = $recommendations;
