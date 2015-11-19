@@ -105,7 +105,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
             ),
             array(
                 'bull flag',
-                array( //candles
+                array_reverse(array( //candles
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4005,'low'=>1.3950,'close'=>1.3970,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3970,'high'=>1.4005,'low'=>1.3920,'close'=>1.3920,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3920,'high'=>1.4005,'low'=>1.3950,'close'=>1.3963,'complete'=>true,'gran'=>'D'),
@@ -116,7 +116,7 @@ class FlagTest extends \PHPUnit_Framework_TestCase
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.3925,'high'=>1.4005,'low'=>1.3920,'close'=>1.4000,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4000,'high'=>1.4105,'low'=>1.3995,'close'=>1.4100,'complete'=>true,'gran'=>'D'),
                     array('date'=>'2015','instrument'=>'EUR_USD','candletime'=>'102923494','open'=>1.4100,'high'=>1.4100,'low'=>1.4060,'close'=>1.4069,'complete'=>true,'gran'=>'D'),
-                ),
+                )),
                 array( //args
                     'noOfPoleCandles'=>2,
                     'maxBreatherCandles'=>1,
