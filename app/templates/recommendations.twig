@@ -9,47 +9,38 @@
     <div class="page-header">
         <h3>Recommendations</h3>
     </div>
-    {% for reco in recommendations %}
-        <div class="row">
-        <div class="col-sm-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">Pair: {{ reco.instrument }}</div>
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <tr>
-                            <td>Signal</td>
-                            <td>{{ reco.signal }}</td>
-                        </tr>
-                        <tr>
-                            <td>Side</td>
-                            <td>{{ reco.side }}</td>
-                        </tr>
-                        <tr>
-                            <td>Entry</td>
-                            <td>{{ reco.entry }}</td>
-                        </tr>
-                        <tr>
-                            <td>Stop</td>
-                            <td>{{ reco.stopLoss }}</td>
-                        </tr>
-                        <tr>
-                            <td>RR</td>
-                            <td>1:{{ reco.rr }}</td>
-                        </tr>
-                        <tr>
-                            <td>Gran</td>
-                            <td>{{ reco.gran }}</td>
-                        </tr>
-                        <tr>
-                            <td>Expires</td>
-                            <td>{{ reco.expiry }}</td>
-                        </tr>
-                    </table>
-                </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="panel-body">
+                <table class="table table-striped">
+                <thead><tr>
+                <th>Instrument</th>
+                <th>Signal</th>
+                <th>Side</th>
+                <th>Entry</th>
+                <th>Stop</th>
+                <th>Risk:Reward</th>
+                <th>Gran</th>
+                <th>Expires</th>
+                </tr></thead>
+                <tbody>
+                {% for reco in recommendations %}
+                <tr><td>{{ reco.instrument }}</td>
+                    <td>{{ reco.signal }}</td>
+                    <td>{{ reco.side }}</td>
+                    <td>{{ reco.entry }}</td>
+                    <td>{{ reco.stopLoss }}</td>
+                    <td>1:{{ reco.rr }}</td>
+                    <td>{{ reco.gran }}</td>
+                    <td>{{ reco.expiry }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
             </div>
         </div>
+    </div>
         <br/>
-    {% endfor %}
     <br/><br/>
 
 {% endblock %}
