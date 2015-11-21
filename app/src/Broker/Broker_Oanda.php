@@ -43,51 +43,66 @@ class Broker_Oanda {
 
     public function fetchDaily($days = 2){
 
-        $updated=0;
-        $new=0;
-        $newCandles=[];
-        // offset so candle 'date' is more reflective. i.e. candle starts @ 2nd Jan 2015 @ 2200hr. That would be labeled as 2015-01-03.
-        $dateOffsetSeconds = 60*60*12; // offset is 12 hrs as midpoint of daily
-        foreach ($this->pairs as $pair){
-            $start = mktime(0, 0, 1, date("m")  , date("d")-1, date("Y"));
-            $start=$start-(($days)*(60*60*24));
-            $history=$this->oandaWrap->candles($pair, 'D',array('start'=>$start, 'count'=>$days+1, 'candleFormat' => 'midpoint'));
-            if(!isset($history->code)){
-                $instrument = $history->instrument;
-                foreach( $history->candles as $candle ) {
-                    $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
-                    $candleTime = $candle->time;
-                    //get candle data so we can update it
-                    $todayCandle = R::findOrCreate('candle',
-                        [ 'date' => $date,
-                          'instrument' => $instrument ]);
-                    if($todayCandle->id)
-                    {
-                        $updated++;
-                        $closed=$todayCandle->complete;
-                    } else {
-                        $new++;
-                        $closed=false;
-                    }
-                    $todayCandle->candletime = $candleTime;
-                    $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
-                    $todayCandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
-                    $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
-                    $todayCandle->close = substr(sprintf("%.4f", $candle->closeMid),0,6);
-                    $todayCandle->complete = $candle->complete;
-                    $todayCandle->gran = 'D';
-                    R::store($todayCandle);
-                    if($closed!=$candle->complete){
-                        $newCandles[]=[
-                            'instrument' => $instrument,
-                            'analysisCandle' => $candleTime,
-                            'gran'           => 'D'
-                        ];
+        return $this->fetchCandles($days, 'D');
+    }
+
+    public function fetchCandles($candles = 2, $gran = 'D')
+    {
+
+        $updated = 0;
+        $new = 0;
+        $newCandles = [];
+        if (in_array($gran, ['D', 'H1'])) {
+            // offset so candle 'date' is more reflective. i.e. candle starts @ 2nd Jan 2015 @ 2200hr. That would be labeled as 2015-01-03.
+            if ($gran == "D") {
+                $dateOffsetSeconds = 60 * 60 * 12;// offset is 12 hrs as midpoint of daily
+                $duration = (60 * 60 * 24);
+            } else {
+                $dateOffsetSeconds = 0;
+                $duration = (60 * 60);
+            }
+            foreach ($this->pairs as $pair) {
+                $start = mktime(0, 0, 1, date("m"), date("d") - 1, date("Y"));
+                $start = $start - (($candles) * $duration);
+                $history = $this->oandaWrap->candles($pair, $gran, array('start' => $start, 'count' => $candles + 1, 'candleFormat' => 'midpoint'));
+                if (!isset($history->code)) {
+                    $instrument = $history->instrument;
+                    foreach ($history->candles as $candle) {
+                        $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
+                        $candleTime = $candle->time;
+                        //get candle data so we can update it
+                        $todayCandle = R::findOrCreate('candle',
+                            ['date' => $date,
+                                'instrument' => $instrument]);
+                        if ($todayCandle->id) {
+                            $updated++;
+                        } else {
+                            $new++;
+                        }
+                        $closed = $todayCandle->complete;
+                        $todayCandle->candletime = $candleTime;
+                        $todayCandle->open = substr(sprintf("%.4f", $candle->openMid), 0, 6);
+                        $todayCandle->high = substr(sprintf("%.4f", $candle->highMid), 0, 6);
+                        $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid), 0, 6);
+                        $todayCandle->close = substr(sprintf("%.4f", $candle->closeMid), 0, 6);
+                        $todayCandle->complete = $candle->complete;
+                        $todayCandle->gran = $gran;
+                        R::store($todayCandle);
+                        if ($closed != $candle->complete) {
+                            $newCandles[] = [
+                                'instrument' => $instrument,
+                                'analysisCandle' => $candleTime,
+                                'gran' => $gran
+                            ];
+                        }
                     }
                 }
             }
+        } else {
+            echo "Wrong gran value";
         }
-        echo date('Y-m-d H:i')." : ";
+
+        echo date('Y-m-d H:i') . " : ";
         echo "New:$new : Updated:$updated\n";
         return $newCandles;
     }
@@ -96,6 +111,7 @@ class Broker_Oanda {
 
         $updated=0;
         $new=0;
+        $newCandles = [];
         // offset so candle 'date' is more reflective. i.e. candle starts @ 2nd Jan 2015 @ 2200hr. That would be labeled as 2015-01-03.
         $dateOffsetSeconds = 0; // offset is 1 second as midpoint of hourly
         foreach ($this->pairs as $pair){
@@ -106,7 +122,7 @@ class Broker_Oanda {
                 $instrument = $history->instrument;
                 foreach( $history->candles as $candle ) {
                     $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
-                    $candletime = $candle->time;
+                    $candleTime = $candle->time;
                     //get candle data so we can update it
                     $todayCandle = R::findOrCreate('candle',
                         [ 'date' => $date,
@@ -117,7 +133,8 @@ class Broker_Oanda {
                     } else {
                         $new++;
                     }
-                    $todayCandle->candletime = $candletime;
+                    $closed = $todayCandle->complete;
+                    $todayCandle->candletime = $candleTime;
                     $todayCandle->open = substr(sprintf("%.4f", $candle->openMid),0,6);
                     $todayCandle->high = substr(sprintf("%.4f", $candle->highMid),0,6);
                     $todayCandle->low = substr(sprintf("%.4f", $candle->lowMid),0,6);
@@ -125,13 +142,19 @@ class Broker_Oanda {
                     $todayCandle->complete = $candle->complete;
                     $todayCandle->gran = 'H1';
                     R::store($todayCandle);
-
+                    if ($closed != $candle->complete) {
+                        $newCandles[] = [
+                            'instrument' => $instrument,
+                            'analysisCandle' => $candleTime,
+                            'gran' => 'D'
+                        ];
+                    }
                 }
             }
         }
         echo date('Y-m-d H:i')." : ";
         echo "New:$new : Updated:$updated\n";
-
+        return $newCandles;
     }
 
     /**
