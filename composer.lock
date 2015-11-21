@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e9a591ea67e7e387bc3a905be9c22552",
+    "hash": "9b411808f319e25090952999152657e9",
     "content-hash": "95788ff182baa79cf39777dd73b749e4",
     "packages": [
         {
@@ -12,7 +12,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/php-resque",
+                "url": "https://github.com/neilmillard/php-resque.git",
                 "reference": "af8e51a8bd62cdf38abef68d944dda4e62c96106"
             },
             "dist": {
@@ -70,13 +70,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/php-resque-scheduler",
-                "reference": "fd28a6f22cada4ff33a7910840067b893b1479ab"
+                "url": "https://github.com/neilmillard/php-resque-scheduler.git",
+                "reference": "270d7ab9349554fb3bef65ca022a34e3661d4d41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/fd28a6f22cada4ff33a7910840067b893b1479ab",
-                "reference": "fd28a6f22cada4ff33a7910840067b893b1479ab",
+                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/270d7ab9349554fb3bef65ca022a34e3661d4d41",
+                "reference": "270d7ab9349554fb3bef65ca022a34e3661d4d41",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque-scheduler/tree/master"
             },
-            "time": "2015-11-14 15:39:13"
+            "time": "2015-11-21 16:16:58"
         },
         {
             "name": "colinmollenhour/credis",
@@ -126,7 +126,7 @@
                     "Sentinel.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -160,7 +160,7 @@
                     "Interop\\Container\\": "src/Interop/Container/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -399,7 +399,7 @@
                     "lib/password.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -424,12 +424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "7d20351afc85aa23c5795309c9984a1e93d81c27"
+                "reference": "055125a98d92ce5fa8946e5f80cdf52405244120"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/7d20351afc85aa23c5795309c9984a1e93d81c27",
-                "reference": "7d20351afc85aa23c5795309c9984a1e93d81c27",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/055125a98d92ce5fa8946e5f80cdf52405244120",
+                "reference": "055125a98d92ce5fa8946e5f80cdf52405244120",
                 "shasum": ""
             },
             "require": {
@@ -476,7 +476,7 @@
                     "Monolog\\": "src/Monolog"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -494,7 +494,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-11-18 18:03:10"
+            "time": "2015-11-21 00:43:47"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -522,7 +522,7 @@
                     "Cron": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -566,7 +566,7 @@
                     "src/functions.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -657,7 +657,7 @@
                     "Psr\\Http\\Message\\": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -698,7 +698,7 @@
                     "Psr\\Log\\": ""
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -856,7 +856,7 @@
                     "Slim\\Views\\": "src"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -883,7 +883,7 @@
             "version": "dev-class",
             "source": {
                 "type": "git",
-                "url": "https://github.com/neilmillard/oandawrap",
+                "url": "https://github.com/neilmillard/OandaWrap.git",
                 "reference": "c1cd9c3956a9cd22dc10202720d9ea67789ecff1"
             },
             "dist": {
@@ -946,7 +946,7 @@
                     "Twig_": "lib/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1012,7 +1012,7 @@
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1110,7 +1110,7 @@
                     ]
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1155,7 +1155,7 @@
                     "Prophecy\\": "src/"
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1224,7 +1224,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1272,7 +1272,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1314,7 +1314,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1355,7 +1355,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1405,7 +1405,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1428,12 +1428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fac3d00509c2415355fe067ac19cd353a60e73bf"
+                "reference": "ac2e32c1d87cd8d2689a25e344a87de93858608c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fac3d00509c2415355fe067ac19cd353a60e73bf",
-                "reference": "fac3d00509c2415355fe067ac19cd353a60e73bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ac2e32c1d87cd8d2689a25e344a87de93858608c",
+                "reference": "ac2e32c1d87cd8d2689a25e344a87de93858608c",
                 "shasum": ""
             },
             "require": {
@@ -1476,7 +1476,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1494,7 +1494,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-11-17 20:05:45"
+            "time": "2015-11-20 13:46:44"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1533,7 +1533,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1585,7 +1585,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1647,7 +1647,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1699,7 +1699,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1751,7 +1751,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1819,7 +1819,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1867,7 +1867,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1917,7 +1917,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1951,7 +1951,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1997,7 +1997,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],

@@ -7,7 +7,11 @@ require __DIR__ . '/../app/loadsettings.php';
 $settings = $settings['settings']['logger'];
 $logger = new \Monolog\Logger($settings['name']);
 $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
-$logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
+if (empty($lsettings['loggly'])) {
+    $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
+} else {
+    $logger->pushHandler(new \Monolog\Handler\LogglyHandler($settings['loggly'] . '/tag/monolog', \Monolog\Logger::INFO));
+}
 
 // Run the commands for output
 $output = '';
@@ -18,8 +22,10 @@ $remote = NULL;
 $tmp = trim(shell_exec('whoami'));
 $ref = $data['ref'];
 if ($tmp == 'neilmillard' && $ref == 'refs/heads/dev') {
+    exec("git --work-tree={$gitDir} stash", $gitOutput1);
     exec("git --work-tree={$gitDir} pull -f {$remote}", $gitOutput);
-
+    exec("composer -q -n -w=${gitDir} update", $composerOutput);
+    exec("rm ${gitDir}/composer.lock");
 //    foreach ($commands AS $command) {
 //        // Run it
 //        $tmp = shell_exec($command);
