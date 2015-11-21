@@ -12,4 +12,5 @@ check process resque_worker_[QUEUE]
   start program = "/bin/sh -c 'APP_INCLUDE=[APP_INCLUDE] QUEUE=[QUEUE] VERBOSE=1 PIDFILE=/var/run/resque/worker_[QUEUE].pid php -f [PATH/TO/RESQUE]/bin/resque > /var/log/resque/worker_[QUEUE].log &'" as uid [UID] and gid [GID]
   stop program = "/bin/sh -c 'kill `cat /var/run/resque/worker_[QUEUE].pid` && rm -f /var/run/resque/worker_[QUEUE].pid; exit 0;'"
   if totalmem is greater than 300 MB for 10 cycles then restart  # eating up memory?
+  if uptime > 4 hours then restart # mysql link reset
   group resque_workers
