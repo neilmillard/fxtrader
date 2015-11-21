@@ -35,14 +35,17 @@ if(!empty($REDIS_BACKEND)) {
 }
 
 $logLevel = false;
+$loggerLevel = \Monolog\Logger::WARNING;
 $LOGGING = $settings['resque']['LOGGING'];
 $VERBOSE = $settings['resque']['VERBOSE'];
 $VVERBOSE = $settings['resque']['VVERBOSE'];
 if(!empty($LOGGING) || !empty($VERBOSE)) {
     $logLevel = true;
+    $loggerLevel = \Monolog\Logger::NOTICE;
 }
 else if(!empty($VVERBOSE)) {
     $logLevel = true;
+    $loggerLevel = \Monolog\Logger::INFO;
 }
 
 $lsettings = $settings['logger'];
@@ -51,7 +54,7 @@ $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
 if(empty($lsettings['loggly'])) {
     $logger->pushHandler(new \Monolog\Handler\StreamHandler($lsettings['path'], \Monolog\Logger::DEBUG));
 } else {
-    $logger->pushHandler(new LogglyHandler($lsettings['loggly'].'/tag/fxworker', \Monolog\Logger::INFO));
+    $logger->pushHandler(new LogglyHandler($lsettings['loggly'] . '/tag/fxworker', $loggerLevel));
 }
 
 // See if the APP_INCLUDE containes a logger object,
