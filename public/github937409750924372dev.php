@@ -25,7 +25,6 @@ if ($tmp == 'neilmillard' && $ref == 'refs/heads/dev') {
     exec("git --work-tree={$gitDir} stash", $gitOutput1);
     exec("git --work-tree={$gitDir} pull -f {$remote}", $gitOutput);
     exec("composer -q -n -w=${gitDir} update", $composerOutput);
-    exec("rm ${gitDir}/composer.lock");
 //    foreach ($commands AS $command) {
 //        // Run it
 //        $tmp = shell_exec($command);
