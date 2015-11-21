@@ -57,13 +57,15 @@ class Broker_Oanda {
             if ($gran == "D") {
                 $dateOffsetSeconds = 60 * 60 * 12;// offset is 12 hrs as midpoint of daily
                 $duration = (60 * 60 * 24);
+                $start = mktime(0, 0, 1, date("m"), date("d") - 1, date("Y"));
             } else {
                 $dateOffsetSeconds = 0;
                 $duration = (60 * 60);
+                $start = time();
             }
+            $start = $start - (($candles) * $duration);
+
             foreach ($this->pairs as $pair) {
-                $start = mktime(0, 0, 1, date("m"), date("d") - 1, date("Y"));
-                $start = $start - (($candles) * $duration);
                 $history = $this->oandaWrap->candles($pair, $gran, array('start' => $start, 'count' => $candles + 1, 'candleFormat' => 'midpoint'));
                 if (!isset($history->code)) {
                     $instrument = $history->instrument;
