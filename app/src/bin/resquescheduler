@@ -83,6 +83,12 @@ if (empty($schedules)) {
 } else {
     //clean for testing
     ResqueScheduler::cleanSchedules();
+    // Instantiate the app
+    $path = __DIR__ . '/../../../app/schedules.php';
+    if (file_exists($path)) {
+        $schedule = require $path;
+        ResqueScheduler::schedule($schedule);
+    }
 }
 
 $logger->log(Psr\Log\LogLevel::NOTICE, 'Starting scheduler worker {worker}', array('worker' => $worker));
