@@ -15,7 +15,7 @@ class GetHourCandles extends Job\OandaSystem
             $candles = 2;
         }
         $this->logger->log(
-            LogLevel::INFO,
+            LogLevel::NOTICE,
             'Fetching {candles} Candles @{time}',
             array('candles' => $candles,
                 'time' => $this->args['time'],
