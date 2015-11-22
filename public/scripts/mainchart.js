@@ -91,10 +91,16 @@ svg.append('g')
 //    .datum(supstanceData)
 //    .call(supstance);
 
-initial = $('#instrument').val();
-getdata(initial);
+var instrument = $('#instrument').val();
+var gran = $('#gran').val();
+getdata(instrument,gran);
 $('#instrument').on('change', function () {
-    getdata(this.value);
+    instrument = this.value;
+    getdata(instrument,gran);
+});
+$('#gran').on('change', function () {
+    gran = this.value;
+    getdata(instrument,gran);
 });
 
 function getdata(instrument) {

@@ -28,6 +28,11 @@
                         <option value="{{ pair }}" {% if pair=='USD_CAD' %}selected="selected"{% endif %}>{{ pair }}</option>
                     {% endfor %}
                 </select>
+                <label for="gran">GRAN</label>
+                <select id="gran" name="gran">
+                    <option value="D">Daily</option>
+                    <option value="H1">Hourly</option>
+                </select>
             </div>
         </form>
     </div>
