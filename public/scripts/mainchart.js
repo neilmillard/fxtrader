@@ -31,7 +31,7 @@ var ohlcAnnotation = techan.plot.axisannotation()
 var timeAnnotation = techan.plot.axisannotation()
     .axis(xAxis)
     .format(d3.time.format('%Y-%m-%d %H:%M'))
-    .width(65)
+    .width(90)
     .translate([0, height]);
 
 var crosshair = techan.plot.crosshair()
