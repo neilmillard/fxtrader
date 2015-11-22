@@ -3,7 +3,7 @@
 //    die('Specify the name of a job to add. e.g, php queue.php PHP_Job');
 //}
 
-$job = 'App\Job\OandaSystem\GetDayCandles';
+$job = 'App\Job\OandaSystem\GetHourCandles';
 
 require '../../vendor/autoload.php';
 date_default_timezone_set('GMT');
@@ -16,7 +16,7 @@ Resque::setBackend($REDIS_BACKEND);
 $args = array(
     'time' => time(),
     'userid' => 'not needed',
-    'days' => '200',
+    'candles' => '200',
     'oanda' => array(
         'accountId' => '6717454',
     ),

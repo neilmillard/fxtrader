@@ -21,7 +21,7 @@ class GetHourCandles extends Job\OandaSystem
                 'time' => $this->args['time'],
             )
         );
-        $newCandles = $this->oandaInfo->fetchHourly();
+        $newCandles = $this->oandaInfo->fetchHourly($candles);
 
         $this->runAnalysis($newCandles);
 
