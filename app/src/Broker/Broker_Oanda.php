@@ -58,10 +58,12 @@ class Broker_Oanda {
                 $dateOffsetSeconds = 60 * 60 * 12;// offset is 12 hrs as midpoint of daily
                 $duration = (60 * 60 * 24);
                 $start = mktime(0, 0, 1, date("m"), date("d") - 1, date("Y"));
+                $format = 'Y-m-d';
             } else {
                 $dateOffsetSeconds = 0;
                 $duration = (60 * 60);
                 $start = time();
+                $format = 'Y-m-d H:i:s';
             }
             $start = $start - (($candles) * $duration);
 
@@ -70,11 +72,11 @@ class Broker_Oanda {
                 if (!isset($history->code)) {
                     $instrument = $history->instrument;
                     foreach ($history->candles as $candle) {
-                        $date = date('Y-m-d', ($candle->time + $dateOffsetSeconds));
+                        $date = date($format, ($candle->time + $dateOffsetSeconds));
                         $candleTime = $candle->time;
                         //get candle data so we can update it
                         $todayCandle = R::findOrCreate('candle',
-                            ['date' => $date,
+                            ['candletime' => $candleTime,
                                 'instrument' => $instrument]);
                         if ($todayCandle->id) {
                             $updated++;
