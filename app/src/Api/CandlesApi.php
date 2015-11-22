@@ -57,9 +57,9 @@ class CandlesApi extends Controller
                     $data = [];
                     $candleTime = new \DateTime('@' . $candle->candletime);
                     if ($gran == 'D') {
-                        $data['Date'] = $candleTime->format('d-M-y');
+                        $data['Date'] = $candleTime->format('d-M-y H:i:s');
                     } else {
-                        $data['Date'] = $candleTime->format('Y-m-d H:i:s');
+                        $data['Date'] = $candleTime->format('d-M-y H:i:s');
                     }
                     $data['Open'] = $candle->open;
                     $data['High'] = $candle->high;
