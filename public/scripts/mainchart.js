@@ -103,8 +103,8 @@ $('#gran').on('change', function () {
     getdata(instrument,gran);
 });
 
-function getdata(instrument) {
-    d3.csv("/api/candles/" + instrument, function (error, data) {
+function getdata(instrument,gran) {
+    d3.csv("/api/candles/" + instrument + "?gran="+gran, function (error, data) {
         var accessor = candlestick.accessor();
 
         data = data.map(function (d) {
