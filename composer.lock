@@ -71,12 +71,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neilmillard/php-resque-scheduler.git",
-                "reference": "270d7ab9349554fb3bef65ca022a34e3661d4d41"
+                "reference": "45335ce4d6f1ea34cf157ea497e999c38d33ebf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/270d7ab9349554fb3bef65ca022a34e3661d4d41",
-                "reference": "270d7ab9349554fb3bef65ca022a34e3661d4d41",
+                "url": "https://api.github.com/repos/neilmillard/php-resque-scheduler/zipball/45335ce4d6f1ea34cf157ea497e999c38d33ebf2",
+                "reference": "45335ce4d6f1ea34cf157ea497e999c38d33ebf2",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
             "support": {
                 "source": "https://github.com/neilmillard/php-resque-scheduler/tree/master"
             },
-            "time": "2015-11-21 16:16:58"
+            "time": "2015-11-28 10:19:31"
         },
         {
             "name": "colinmollenhour/credis",
@@ -107,12 +107,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "83684f7ae16909d76087b7796ca0141540c033b0"
+                "reference": "409edfd0ea81f5cb74afbdb86df54890c207b5e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/83684f7ae16909d76087b7796ca0141540c033b0",
-                "reference": "83684f7ae16909d76087b7796ca0141540c033b0",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/409edfd0ea81f5cb74afbdb86df54890c207b5e4",
+                "reference": "409edfd0ea81f5cb74afbdb86df54890c207b5e4",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
             ],
             "description": "Credis is a lightweight interface to the Redis key-value store which wraps the phpredis library when available for better performance.",
             "homepage": "https://github.com/colinmollenhour/credis",
-            "time": "2015-11-16 18:12:52"
+            "time": "2015-11-28 01:20:04"
         },
         {
             "name": "container-interop/container-interop",
@@ -424,12 +424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "055125a98d92ce5fa8946e5f80cdf52405244120"
+                "reference": "cab3ff71ffc802af272928ff71341cfc51e8ee98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/055125a98d92ce5fa8946e5f80cdf52405244120",
-                "reference": "055125a98d92ce5fa8946e5f80cdf52405244120",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/cab3ff71ffc802af272928ff71341cfc51e8ee98",
+                "reference": "cab3ff71ffc802af272928ff71341cfc51e8ee98",
                 "shasum": ""
             },
             "require": {
@@ -494,7 +494,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-11-21 00:43:47"
+            "time": "2015-11-26 23:48:42"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1128,12 +1128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "4f9b1eaf0a7da77c362f8d91cbc68ab1f4718d62"
+                "reference": "826f28f4cd17b31e4d42aa21729e52f88d91bc39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/4f9b1eaf0a7da77c362f8d91cbc68ab1f4718d62",
-                "reference": "4f9b1eaf0a7da77c362f8d91cbc68ab1f4718d62",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/826f28f4cd17b31e4d42aa21729e52f88d91bc39",
+                "reference": "826f28f4cd17b31e4d42aa21729e52f88d91bc39",
                 "shasum": ""
             },
             "require": {
@@ -1180,7 +1180,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-09-22 14:49:23"
+            "time": "2015-11-24 09:53:50"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1972,12 +1972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e594d90fba4e4cddc146bdd3907126b1d74d7316"
+                "reference": "e450ed0433ed8186d45c6e88b038c0c7b5d74851"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e594d90fba4e4cddc146bdd3907126b1d74d7316",
-                "reference": "e594d90fba4e4cddc146bdd3907126b1d74d7316",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e450ed0433ed8186d45c6e88b038c0c7b5d74851",
+                "reference": "e450ed0433ed8186d45c6e88b038c0c7b5d74851",
                 "shasum": ""
             },
             "require": {
@@ -2013,7 +2013,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-18 13:48:51"
+            "time": "2015-11-26 07:02:09"
         }
     ],
     "aliases": [],
